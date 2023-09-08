@@ -1,0 +1,30 @@
+ .header {
+    padding: 20px 0;
+    background-color: var(--header-background-color) !important;
+    border-bottom: 1px solid var(--header-border-color)! important;
+    color: var(--header-menu-item-color);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+   .menu {
+     display: flex;
+     justify-content: space-between;
+     width: 100%;
+
+     div {
+       width: 33%;
+       text-align: center;
+     }
+   }
+  }
+
+  .main {
+    justify-content: center;
+    align-items: center;
+    display: flex;
+    flex: 1 1 auto;
+    background-color: var(--main-content-background-color);
+    color: var(--main-content-text-color);
+  }
+
