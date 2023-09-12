@@ -14,6 +14,11 @@ import { FlexLayoutModule} from "@angular/flex-layout";
 import { DashboardComponent } from './pages/dashboard/dashboard.component';
 import { FullYearComponent } from './pages/full-year/full-year.component';
 import { LastMonthComponent } from './pages/last-month/last-month.component';
+import { LoginComponent } from './pages/login/login.component';
+import {ReactiveFormsModule} from "@angular/forms";
+import {MatInputModule} from "@angular/material/input";
+import {MatCardModule} from "@angular/material/card";
+import {CommonModule} from "@angular/common";
 
 @NgModule({
   declarations: [
@@ -21,6 +26,7 @@ import { LastMonthComponent } from './pages/last-month/last-month.component';
     DashboardComponent,
     FullYearComponent,
     LastMonthComponent,
+    LoginComponent,
   ],
   imports: [
     BrowserModule,
@@ -32,7 +38,11 @@ import { LastMonthComponent } from './pages/last-month/last-month.component';
     MatButtonModule,
     MatListModule,
     MatIconModule,
-    FlexLayoutModule
+    FlexLayoutModule,
+    ReactiveFormsModule,
+    MatInputModule,
+    MatCardModule,
+    CommonModule
   ],
   providers: [],
   bootstrap: [AppComponent]

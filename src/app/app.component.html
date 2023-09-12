@@ -1,5 +1,5 @@
 <div style="height: 80vh;">
-  <mat-toolbar class="header">
+  <mat-toolbar class="header" *ngIf="!isLoginPage()">
     <mat-toolbar-row class="menu">
       <div>
         <button mat-icon-button (click)="sidenav.toggle()" fxShow="true" fxHide.gt-sm>
@@ -8,8 +8,8 @@
         <span>My Budget</span>
       </div>
       <div fxShow="true" fxHide.lt-md>
-        <a routerLink="/" mat-button>Tableau de bord</a>
-        <a routerLink="/last-month" mat-button>Mois précedent</a>
+        <a routerLink="/dashboard" mat-button>Tableau de bord</a>
+        <a routerLink="/last-month" mat-button>Mes catégories</a>
         <a routerLink="/full-year" mat-button>Année complète</a>
       </div>
       <div>
@@ -23,7 +23,7 @@
       <mat-nav-list>
         <a (click)="sidenav.toggle()" href="" mat-list-item>Close</a>
         <a href="#" mat-list-item>Tableau de bord</a>
-        <a href="#" mat-list-item>Mois précedent</a>
+        <a href="#" mat-list-item>Mes catégories</a>
         <a href="#" mat-list-item>Année complète</a>
       </mat-nav-list>
     </mat-sidenav>
