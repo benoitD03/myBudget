@@ -19,6 +19,8 @@ import {ReactiveFormsModule} from "@angular/forms";
 import {MatInputModule} from "@angular/material/input";
 import {MatCardModule} from "@angular/material/card";
 import {CommonModule} from "@angular/common";
+import {AccountService} from "./services/account.service";
+import {HttpClientModule} from "@angular/common/http";
 
 @NgModule({
   declarations: [
@@ -42,9 +44,10 @@ import {CommonModule} from "@angular/common";
     ReactiveFormsModule,
     MatInputModule,
     MatCardModule,
-    CommonModule
+    CommonModule,
+    HttpClientModule
   ],
-  providers: [],
+  providers: [AccountService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

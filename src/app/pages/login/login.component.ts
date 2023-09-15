@@ -1,5 +1,8 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import {AccountService} from "../../services/account.service";
+import {Router} from "@angular/router";
+import {Config} from "../../class/config";
 
 @Component({
   selector: 'app-login',
@@ -9,17 +12,34 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 export class LoginComponent {
   loginForm: FormGroup;
 
-  constructor(private fb: FormBuilder) {
+  constructor(private fb: FormBuilder, private accountService: AccountService, private router: Router) {
     this.loginForm = this.fb.group({
       email: ['', [Validators.required, Validators.email]],
       password: ['', Validators.required]
     });
   }
 
+  /**
+   * Méthode d'envoi du formulaire de connexion
+   */
   onSubmit() {
     if (this.loginForm.valid) {
-      // Envoyer les données du formulaire au serveur pour l'authentification
-      console.log(this.loginForm.value);
+      const email = this.loginForm.get('email')?.value;
+      const password = this.loginForm.get('password')?.value;
+
+      this.accountService.login(email, password).subscribe(
+        (response: any) => {
+          let token = response.access_token;
+          if (token) {
+            localStorage.setItem('token', token);
+            this.router.navigate([Config.ROUTE_DASHBOARD])
+          }
+        },
+        (error: any) => {
+          console.error(error)
+        }
+      )
+
     }
   }
 }

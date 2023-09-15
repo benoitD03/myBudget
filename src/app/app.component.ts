@@ -11,6 +11,9 @@ export class AppComponent {
   }
   isLightTheme = true
 
+  /**
+   * Methode pour changer de thème
+   */
   onThemeSwitchChange() {
     this.isLightTheme = !this.isLightTheme
 
@@ -20,6 +23,9 @@ export class AppComponent {
     );
   }
 
+  /**
+   * Methode pour voir si la page affiché est la page de connexion
+   */
   isLoginPage(): boolean {
     return this.router.url === '/login'
   }
