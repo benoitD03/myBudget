@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import {Router} from "@angular/router";
+import {AccountService} from "./services/account.service";
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
@@ -7,7 +8,7 @@ import {Router} from "@angular/router";
 })
 export class AppComponent {
 
-  constructor(private router: Router) {
+  constructor(private router: Router, private accountService: AccountService) {
   }
   isLightTheme = true
 
@@ -21,6 +22,10 @@ export class AppComponent {
       'data-theme',
       this.isLightTheme? 'light' : 'dark'
     );
+  }
+
+  onClickLogout() {
+    this.accountService.logout();
   }
 
   /**

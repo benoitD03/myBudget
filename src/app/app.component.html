@@ -12,8 +12,13 @@
         <a routerLink="/last-month" mat-button>Mes catégories</a>
         <a routerLink="/full-year" mat-button>Année complète</a>
       </div>
-      <div>
-        <mat-slide-toggle (change)="onThemeSwitchChange()">{{ isLightTheme ? 'dark' : 'light' }} theme</mat-slide-toggle>
+      <div class="button-container">
+        <div id="switch-theme">
+          <mat-slide-toggle (change)="onThemeSwitchChange()">{{ isLightTheme ? 'dark' : 'light' }} theme</mat-slide-toggle>
+        </div>
+        <button mat-mini-fab color="warn" (click)="onClickLogout()">
+          <mat-icon>power_settings_new</mat-icon>
+        </button>
       </div>
     </mat-toolbar-row>
   </mat-toolbar>
