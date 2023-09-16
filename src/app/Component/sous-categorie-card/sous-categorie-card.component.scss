@@ -1,0 +1,41 @@
+#card-content {
+  width: 350px;
+  background-color: var(--card-content-background-color);
+  color: var(--card-content-text-color);
+  #header {
+    display: flex;
+    justify-content: space-between;
+    #header-icon {
+      background-color: orange;
+      width: 80px !important;
+      height: 80px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 3%;
+      margin-top: -40px;
+      box-shadow: 5px 5px 15px 5px rgba(0,0,0,0.3);
+      .mat-icon {
+        color: white;
+        width: 40px;
+        height: 40px;
+        font-size: 40px !important;
+      }
+    }
+    #header-name {
+      text-align: right;
+      max-width: 250px;
+      h3 {
+        margin-top: 0;
+      }
+
+    }
+  }
+  #footer {
+    display: flex;
+    justify-content: space-between;
+    #footer-somme {
+      font-weight: bold;
+    }
+  }
+}

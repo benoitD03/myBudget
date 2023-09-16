@@ -9,7 +9,7 @@
       </div>
       <div fxShow="true" fxHide.lt-md>
         <a routerLink="/dashboard" mat-button>Tableau de bord</a>
-        <a routerLink="/last-month" mat-button>Mes catégories</a>
+        <a routerLink="/last-month" mat-button>Mois dernier</a>
         <a routerLink="/full-year" mat-button>Année complète</a>
       </div>
       <div class="button-container">
@@ -24,12 +24,12 @@
   </mat-toolbar>
 
   <mat-sidenav-container fxFlexFill>
-    <mat-sidenav #sidenav>
-      <mat-nav-list>
-        <a (click)="sidenav.toggle()" href="" mat-list-item>Close</a>
-        <a href="#" mat-list-item>Tableau de bord</a>
-        <a href="#" mat-list-item>Mes catégories</a>
-        <a href="#" mat-list-item>Année complète</a>
+    <mat-sidenav #sidenav class="sidenav">
+      <mat-nav-list class="sidenav-list">
+          <a class="sidenav-list-item" routerLink="/dashboard" mat-list-item>Tableau de bord</a>
+        <a class="sidenav-list-item" routerLink="/my-categories" mat-list-item>Mes catégories</a>
+          <a class="sidenav-list-item" routerLink="/last-month" mat-list-item>Mois dernier</a>
+          <a class="sidenav-list-item" routerLink="/full-year" mat-list-item>Année complète</a>
       </mat-nav-list>
     </mat-sidenav>
     <mat-sidenav-content fxFlexFill class="main">

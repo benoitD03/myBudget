@@ -21,6 +21,9 @@ import {MatCardModule} from "@angular/material/card";
 import {CommonModule} from "@angular/common";
 import {AccountService} from "./services/account.service";
 import {HttpClientModule} from "@angular/common/http";
+import { MyCategoriesComponent } from './pages/my-categories/my-categories.component';
+import { CategorieCardComponent } from './Component/categorie-card/categorie-card.component';
+import { SousCategorieCardComponent } from './Component/sous-categorie-card/sous-categorie-card.component';
 
 @NgModule({
   declarations: [
@@ -29,6 +32,9 @@ import {HttpClientModule} from "@angular/common/http";
     FullYearComponent,
     LastMonthComponent,
     LoginComponent,
+    MyCategoriesComponent,
+    CategorieCardComponent,
+    SousCategorieCardComponent,
   ],
   imports: [
     BrowserModule,
