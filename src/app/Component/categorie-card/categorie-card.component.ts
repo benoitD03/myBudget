@@ -6,5 +6,5 @@ import { Component } from '@angular/core';
   styleUrls: ['./categorie-card.component.scss']
 })
 export class CategorieCardComponent {
-
+  panelOpenState = false;
 }

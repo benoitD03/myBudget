@@ -24,6 +24,8 @@ import {HttpClientModule} from "@angular/common/http";
 import { MyCategoriesComponent } from './pages/my-categories/my-categories.component';
 import { CategorieCardComponent } from './Component/categorie-card/categorie-card.component';
 import { SousCategorieCardComponent } from './Component/sous-categorie-card/sous-categorie-card.component';
+import {MatExpansionModule} from "@angular/material/expansion";
+import {MatTooltipModule} from "@angular/material/tooltip";
 
 @NgModule({
   declarations: [
@@ -51,7 +53,9 @@ import { SousCategorieCardComponent } from './Component/sous-categorie-card/sous
     MatInputModule,
     MatCardModule,
     CommonModule,
-    HttpClientModule
+    HttpClientModule,
+    MatExpansionModule,
+    MatTooltipModule
   ],
   providers: [AccountService],
   bootstrap: [AppComponent]

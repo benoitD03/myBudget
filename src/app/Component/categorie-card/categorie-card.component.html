@@ -1,5 +1,28 @@
 <mat-card>
   <mat-card-content id="card-content">
-    Categorie Card
+    <div id="header">
+      <div id="header-icon">
+        <button matTooltip="Toutes les dépenses liées à la maison" mat-fab color="warn" aria-label="Example icon button with a home icon" (click)="panelOpenState = !panelOpenState">
+          <mat-icon>home</mat-icon>
+        </button>
+      </div>
+      <div id="header-name">
+        <h3>Dépenses Maison</h3>
+      </div>
+      <div id="header-total">
+        <h3>500 €</h3>
+      </div>
+    </div>
+    <div id="footer">
+    <mat-accordion>
+      <mat-expansion-panel [expanded]="panelOpenState" (opened)="panelOpenState = true" (closed)="panelOpenState = false">
+        <mat-expansion-panel-header>
+          <mat-panel-title>
+            {{panelOpenState ? 'Cacher' : 'Voir'}} les dépenses
+          </mat-panel-title>
+        </mat-expansion-panel-header >
+      </mat-expansion-panel>
+    </mat-accordion>
+    </div>
   </mat-card-content>
 </mat-card>

@@ -1,3 +1,37 @@
+#card-content{
+
+  width: 500px;
+  background-color: orange;
+
+  #header {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 10px;
+    color: black !important;
+    #header-icon {
+      //background-color: rgba(255, 165, 0, 0.22) !important;
+      width: 60px !important;
+      height: 60px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 50%;
+      box-shadow: 5px 5px 15px 5px rgba(0, 0, 0, 0.3);
+
+      .mat-icon {
+        color: var(--card-content-text-color);
+        width: 30px;
+        height: 30px;
+        font-size: 30px !important;
+      }
+    }
+
+    #header-name {
+      width: 75%;
+      text-align: center;
+    }
+  }
+}
 
 
 
