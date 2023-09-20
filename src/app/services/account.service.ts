@@ -30,6 +30,7 @@ export class AccountService {
   logout() {
     this.router.navigate([Config.ROUTE_LOGIN])
     localStorage.removeItem('token');
+    localStorage.removeItem('id_User');
   }
 
   /**
@@ -37,6 +38,13 @@ export class AccountService {
    */
   getToken(): string | null {
     return localStorage.getItem('token');
+  }
+
+  /**
+   * Methode pour récupérer l'id de l'utilisateur connecté
+   */
+  getIdUser(): string | null {
+    return localStorage.getItem('id_User');
   }
 
   /**

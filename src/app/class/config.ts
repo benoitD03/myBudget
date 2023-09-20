@@ -8,4 +8,5 @@ export class Config {
 
   static URL_API = 'http://localhost:3000'
   static URL_LOGIN = Config.URL_API + '/auth/login'
+  static URL_CATEGORIES = Config.URL_API + '/categories/all'
 }

@@ -26,6 +26,7 @@ import { CategorieCardComponent } from './Component/categorie-card/categorie-car
 import { SousCategorieCardComponent } from './Component/sous-categorie-card/sous-categorie-card.component';
 import {MatExpansionModule} from "@angular/material/expansion";
 import {MatTooltipModule} from "@angular/material/tooltip";
+import {MatTableModule} from "@angular/material/table";
 
 @NgModule({
   declarations: [
@@ -55,7 +56,8 @@ import {MatTooltipModule} from "@angular/material/tooltip";
     CommonModule,
     HttpClientModule,
     MatExpansionModule,
-    MatTooltipModule
+    MatTooltipModule,
+    MatTableModule
   ],
   providers: [AccountService],
   bootstrap: [AppComponent]

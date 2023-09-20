@@ -30,8 +30,10 @@ export class LoginComponent {
       this.accountService.login(email, password).subscribe(
         (response: any) => {
           let token = response.access_token;
+          let id_User = response.id_User;
           if (token) {
             localStorage.setItem('token', token);
+            localStorage.setItem('id_User', id_User);
             this.router.navigate([Config.ROUTE_DASHBOARD])
           }
         },
