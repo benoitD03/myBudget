@@ -27,6 +27,9 @@ import { SousCategorieCardComponent } from './Component/sous-categorie-card/sous
 import {MatExpansionModule} from "@angular/material/expansion";
 import {MatTooltipModule} from "@angular/material/tooltip";
 import {MatTableModule} from "@angular/material/table";
+import { DialogCreateCategorieComponent } from './Component/dialog-create-categorie/dialog-create-categorie.component';
+import {MatDialogModule} from "@angular/material/dialog";
+import {MatCheckboxModule} from "@angular/material/checkbox";
 
 @NgModule({
   declarations: [
@@ -38,6 +41,7 @@ import {MatTableModule} from "@angular/material/table";
     MyCategoriesComponent,
     CategorieCardComponent,
     SousCategorieCardComponent,
+    DialogCreateCategorieComponent,
   ],
   imports: [
     BrowserModule,
@@ -57,7 +61,9 @@ import {MatTableModule} from "@angular/material/table";
     HttpClientModule,
     MatExpansionModule,
     MatTooltipModule,
-    MatTableModule
+    MatTableModule,
+    MatDialogModule,
+    MatCheckboxModule
   ],
   providers: [AccountService],
   bootstrap: [AppComponent]

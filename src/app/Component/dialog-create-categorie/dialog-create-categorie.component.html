@@ -1,0 +1,45 @@
+<form [formGroup]="createCategorieForm" (ngSubmit)="onSubmit()">
+  <div id="form">
+
+    <div id="form-Nom">
+      <mat-form-field appearance="fill">
+        <mat-label>Nom</mat-label>
+        <input matInput formControlName="Nom" type="text" placeholder="Nom" required>
+        <mat-error *ngIf="createCategorieForm.get('Nom')?.hasError('required')">Le nom est requis</mat-error>
+      </mat-form-field>
+    </div>
+
+    <div id="form-Image">
+      <mat-form-field appearance="fill">
+        <mat-label>Image</mat-label>
+        <input matInput formControlName="Image" type="text" placeholder="Image" required>
+        <mat-error *ngIf="createCategorieForm.get('Image')?.hasError('required')">L'image est requise</mat-error>
+      </mat-form-field>
+    </div>
+
+    <div id="form-Description">
+      <mat-form-field appearance="fill">
+        <mat-label>Description</mat-label>
+        <input matInput formControlName="Description" type="text" placeholder="Description">
+      </mat-form-field>
+    </div>
+
+    <div id="form-Revenu-Depense">
+      <p><mat-checkbox formControlName="Depense">Dépense</mat-checkbox></p>
+      <p><mat-checkbox formControlName="Revenu">Revenu</mat-checkbox></p>
+    </div>
+
+    <div id="form-Couleur">
+      <mat-form-field appearance="fill">
+        <mat-label>Couleur</mat-label>
+        <input matInput formControlName="Couleur" type="text" placeholder="Couleur" required>
+      </mat-form-field>
+    </div>
+
+
+    <div id="form-button">
+      <button mat-raised-button color="primary" type="submit">Créer cette catégorie</button>
+    </div>
+
+  </div>
+</form>

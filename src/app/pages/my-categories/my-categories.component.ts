@@ -3,6 +3,10 @@ import {Categorie} from "../../class/categorie";
 import {CategorieService} from "../../services/categorie.service";
 import {AccountService} from "../../services/account.service";
 import {MatTable} from "@angular/material/table";
+import {MatDialog} from "@angular/material/dialog";
+import {
+  DialogCreateCategorieComponent
+} from "../../Component/dialog-create-categorie/dialog-create-categorie.component";
 
 @Component({
   selector: 'app-my-categories',
@@ -12,9 +16,10 @@ import {MatTable} from "@angular/material/table";
 export class MyCategoriesComponent implements OnInit{
   categories: Categorie[] = []
   Columns: string[] = ['Nom', 'Image', 'Description', 'Depense', 'Revenu', 'Couleur'];
+  // categorie: Categorie;
 
 
-  constructor(private categorieService: CategorieService, private accountService: AccountService) {
+  constructor(private categorieService: CategorieService, private accountService: AccountService, public dialog: MatDialog) {
   }
   ngOnInit() {
     const id_User = + !this.accountService.getIdUser();
@@ -33,7 +38,15 @@ export class MyCategoriesComponent implements OnInit{
 
   }
 
-  addData() {
+  openDialogCreateCategorie() {
+    const dialogRef = this.dialog.open(DialogCreateCategorieComponent, {
+      maxWidth: '100vw', maxHeight: '100vh', height: '80%', width: '80%',
 
+      // data: this.categorie,
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      // this.categorie = result;
+    });
   }
 }
