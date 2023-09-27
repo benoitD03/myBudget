@@ -40,9 +40,10 @@ export class MyCategoriesComponent implements OnInit{
 
   openDialogCreateCategorie() {
     const dialogRef = this.dialog.open(DialogCreateCategorieComponent, {
-      maxWidth: '100vw', maxHeight: '100vh', height: '80%', width: '80%',
-
-      // data: this.categorie,
+      maxWidth: '100vw',
+       maxHeight: '100vh',
+       height: '80%',
+       width: '80%',
     });
 
     dialogRef.afterClosed().subscribe(result => {

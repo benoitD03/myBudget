@@ -1,0 +1,16 @@
+#title {
+  text-align: center;
+  margin: 40px 0;
+}
+#form {
+  text-align: center;
+  mat-form-field {
+    width: 80%;
+    margin: 15px 0;
+  }
+  #form-Revenu-Depense {
+    display: flex;
+    justify-content: center;
+    margin: 15px 0;
+  }
+}

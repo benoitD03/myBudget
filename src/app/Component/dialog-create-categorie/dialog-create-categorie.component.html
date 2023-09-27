@@ -1,4 +1,7 @@
 <form [formGroup]="createCategorieForm" (ngSubmit)="onSubmit()">
+  <div id="title">
+    <h2>Ajout d'une catégorie</h2>
+  </div>
   <div id="form">
 
     <div id="form-Nom">
@@ -25,8 +28,8 @@
     </div>
 
     <div id="form-Revenu-Depense">
-      <p><mat-checkbox formControlName="Depense">Dépense</mat-checkbox></p>
-      <p><mat-checkbox formControlName="Revenu">Revenu</mat-checkbox></p>
+      <div><mat-checkbox formControlName="Depense">Dépense</mat-checkbox></div>
+      <div><mat-checkbox formControlName="Revenu">Revenu</mat-checkbox></div>
     </div>
 
     <div id="form-Couleur">
