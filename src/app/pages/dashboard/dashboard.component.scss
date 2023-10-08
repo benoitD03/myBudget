@@ -1,0 +1,23 @@
+header{
+  font-weight: bold;
+  #title {
+    font-size: 30px;
+    text-align: center;
+    margin: 30px 0;
+  }
+  #infos {
+    display: flex;
+    justify-content: space-around;
+    font-size: 25px;
+  }
+}
+
+#main {
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+  .categorie-container {
+    text-align: center;
+    width: 100%;
+  }
+}

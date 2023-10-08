@@ -1,14 +1,14 @@
 <div class="demo-button-container">
   <button mat-raised-button (click)="openDialogCreateCategorie()">
-    Add data
+    <mat-icon>plus_one</mat-icon>Ajouter
   </button>
-  <button
-    mat-raised-button
-    [disabled]="!categories.length"
-    (click)="removeData()"
-    class="demo-button">
-    Remove data
-  </button>
+<!--  <button-->
+<!--    mat-raised-button-->
+<!--    [disabled]="!categories.length"-->
+<!--    (click)="removeData()"-->
+<!--    class="demo-button">-->
+<!--    Remove data-->
+<!--  </button>-->
 </div>
 
 <table mat-table [dataSource]="categories" class="mat-elevation-z8">
