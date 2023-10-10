@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
+import {Categorie} from "../../class/categorie";
 
 @Component({
   selector: 'app-categorie-card',
@@ -7,4 +8,5 @@ import { Component } from '@angular/core';
 })
 export class CategorieCardComponent {
   panelOpenState = false;
+  @Input() categorie: any;
 }
