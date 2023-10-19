@@ -21,6 +21,7 @@
             {{panelOpenState ? 'Cacher' : 'Voir'}} les dépenses
           </mat-panel-title>
         </mat-expansion-panel-header >
+        <div *ngFor="let sousCategorie of sousCategories; index as i">{{ sousCategorie.Nom }}</div>
       </mat-expansion-panel>
     </mat-accordion>
     </div>
