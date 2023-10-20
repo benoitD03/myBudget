@@ -21,7 +21,7 @@ export class CategorieService {
 
     const headers = token ? new HttpHeaders({ Authorization: `Bearer ${token}` }) : new HttpHeaders();
 
-    return this.http.get<Categorie[]>(Config.URL_CATEGORIES, { headers });
+    return this.http.get<Categorie[]>(Config.URL_CATEGORIES+'?id_User='+userId, { headers });
   }
 
 

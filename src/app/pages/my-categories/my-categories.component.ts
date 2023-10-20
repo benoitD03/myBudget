@@ -22,8 +22,8 @@ export class MyCategoriesComponent implements OnInit{
   constructor(private categorieService: CategorieService, private accountService: AccountService, public dialog: MatDialog) {
   }
   ngOnInit() {
-    const id_User = + !this.accountService.getIdUser();
-    this.categorieService.getCategoriesByUserId(id_User).subscribe(
+    const id_User = this.accountService.getIdUser();
+    this.categorieService.getCategoriesByUserId(Number(id_User)).subscribe(
       (data) => {
         this.categories=data;
         console.log(this.categories)

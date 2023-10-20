@@ -23,7 +23,7 @@ export class SousCategorieService {
 
     const headers = token ? new HttpHeaders({ Authorization: `Bearer ${token}` }) : new HttpHeaders();
 
-    return this.http.get<SousCategorie[]>(Config.URL_SOUS_CATEGORIES, { headers });
+    return this.http.get<SousCategorie[]>(Config.URL_SOUS_CATEGORIES+'?id_Categorie='+categorieId, { headers });
   }
 
 }

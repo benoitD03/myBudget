@@ -14,8 +14,8 @@ export class DashboardComponent {
   constructor(private categorieService: CategorieService, private accountService: AccountService) {
   }
   ngOnInit() {
-    const id_User = + !this.accountService.getIdUser();
-    this.categorieService.getCategoriesByUserId(id_User).subscribe(
+    let id_User : string | null= this.accountService.getIdUser();
+    this.categorieService.getCategoriesByUserId(Number(id_User)).subscribe(
       (data) => {
         this.categories=data;
         console.log(this.categories)
