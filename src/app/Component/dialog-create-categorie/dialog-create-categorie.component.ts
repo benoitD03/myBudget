@@ -10,7 +10,7 @@ import {Categorie} from "../../class/categorie";
 @Component({
   selector: 'app-dialog-create-categorie',
   templateUrl: './dialog-create-categorie.component.html',
-  styleUrls: ['./dialog-create-categorie.component.scss']
+  styleUrls: ['./dialog-create-categorie.component.scss'],
 })
 export class DialogCreateCategorieComponent {
   createCategorieForm: FormGroup;
@@ -20,8 +20,7 @@ export class DialogCreateCategorieComponent {
       Nom: ['', Validators.required],
       Image: ['', Validators.required],
       Description: [''],
-      Revenu: [''],
-      Depense: [''],
+      Depense: [true, Validators.required],
       Couleur: ['', Validators.required]
     });
   }
@@ -30,12 +29,11 @@ export class DialogCreateCategorieComponent {
       const nom = this.createCategorieForm.get('Nom')?.value;
       const image = this.createCategorieForm.get('Image')?.value;
       const description = this.createCategorieForm.get('Description')?.value;
-      const revenu = this.createCategorieForm.get('Revenu')?.value;
       const depense = this.createCategorieForm.get('Depense')?.value;
       const couleur = this.createCategorieForm.get('Couleur')?.value;
       const idUser = this.accountService.getIdUser();
     //
-      this.categorieService.createCategorie(nom, image, description, depense, revenu, couleur, idUser).subscribe(
+      this.categorieService.createCategorie(nom, image, description, depense, couleur, Number(idUser)).subscribe(
         (response: any) => {
           console.log(response)
           this.dialogRef.close();
@@ -47,4 +45,7 @@ export class DialogCreateCategorieComponent {
     }
   }
 
+  test() {
+    console.log(this.createCategorieForm.get('Depense')?.value)
+  }
 }

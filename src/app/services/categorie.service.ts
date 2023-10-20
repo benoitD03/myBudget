@@ -25,7 +25,7 @@ export class CategorieService {
   }
 
 
-  createCategorie(nom: string, image: string, description: string, depense: boolean, revenu: boolean, couleur: string, userId: any): Observable<any> {
+  createCategorie(nom: string, image: string, description: string, depense: boolean, couleur: string, userId: any): Observable<any> {
     const token = this.accountService.getToken();
 
     const headers = token ? new HttpHeaders({ Authorization: `Bearer ${token}` }) : new HttpHeaders();
@@ -35,9 +35,8 @@ export class CategorieService {
       Image: image,
       Description: description,
       Depense: depense,
-      Revenu: revenu,
       Couleur: couleur,
-      userIdUser: userId
+      user: userId
     };
 
     return this.http.post(Config.URL_CREATE_CATEGORIE, categorieData, { headers });

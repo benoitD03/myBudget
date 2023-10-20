@@ -3,7 +3,6 @@ export class SousCategorie {
   Nom: string = "";
   Image: string = "";
   Depense: boolean = false;
-  Revenu: boolean = false;
   Date: any = "";
   Somme: number = 0;
   userIdUser!: number;

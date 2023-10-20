@@ -27,10 +27,10 @@
       </mat-form-field>
     </div>
 
-    <div id="form-Revenu-Depense">
-      <div><mat-checkbox formControlName="Depense">Dépense</mat-checkbox></div>
-      <div><mat-checkbox formControlName="Revenu">Revenu</mat-checkbox></div>
-    </div>
+    <mat-radio-group formControlName="Depense" aria-label="Select an option">
+      <mat-radio-button [value]="true">Dépense</mat-radio-button>
+      <mat-radio-button [value]="false">Revenu</mat-radio-button>
+    </mat-radio-group>
 
     <div id="form-Couleur">
       <mat-form-field appearance="fill">

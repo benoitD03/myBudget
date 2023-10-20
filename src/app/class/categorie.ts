@@ -3,8 +3,7 @@ export class Categorie {
   Nom: string = "";
   Image: string = "";
   Description: string = "";
-  Depense: boolean = false;
-  Revenu: boolean = false;
+  Depense?: boolean;
   userIdUser!: number;
   Couleur: string = '';
 }

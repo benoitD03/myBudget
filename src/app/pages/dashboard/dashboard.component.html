@@ -17,7 +17,7 @@
   <div id="revenus" class="categorie-container">
     <h2>Revenus</h2>
     <div *ngFor="let categorie of categories; index as i">
-      <app-categorie-card *ngIf="categorie.Revenu" [categorie]="categorie"></app-categorie-card>
+      <app-categorie-card *ngIf="!categorie.Depense" [categorie]="categorie"></app-categorie-card>
     </div>
   </div>
 </section>

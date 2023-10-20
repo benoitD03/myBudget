@@ -30,6 +30,7 @@ import {MatTableModule} from "@angular/material/table";
 import { DialogCreateCategorieComponent } from './Component/dialog-create-categorie/dialog-create-categorie.component';
 import {MatDialogModule} from "@angular/material/dialog";
 import {MatCheckboxModule} from "@angular/material/checkbox";
+import {MatRadioModule} from "@angular/material/radio";
 
 @NgModule({
   declarations: [
@@ -43,28 +44,29 @@ import {MatCheckboxModule} from "@angular/material/checkbox";
     SousCategorieCardComponent,
     DialogCreateCategorieComponent,
   ],
-  imports: [
-    BrowserModule,
-    AppRoutingModule,
-    BrowserAnimationsModule,
-    MatSlideToggleModule,
-    MatToolbarModule,
-    MatSidenavModule,
-    MatButtonModule,
-    MatListModule,
-    MatIconModule,
-    FlexLayoutModule,
-    ReactiveFormsModule,
-    MatInputModule,
-    MatCardModule,
-    CommonModule,
-    HttpClientModule,
-    MatExpansionModule,
-    MatTooltipModule,
-    MatTableModule,
-    MatDialogModule,
-    MatCheckboxModule
-  ],
+    imports: [
+        BrowserModule,
+        AppRoutingModule,
+        BrowserAnimationsModule,
+        MatSlideToggleModule,
+        MatToolbarModule,
+        MatSidenavModule,
+        MatButtonModule,
+        MatListModule,
+        MatIconModule,
+        FlexLayoutModule,
+        ReactiveFormsModule,
+        MatInputModule,
+        MatCardModule,
+        CommonModule,
+        HttpClientModule,
+        MatExpansionModule,
+        MatTooltipModule,
+        MatTableModule,
+        MatDialogModule,
+        MatCheckboxModule,
+        MatRadioModule
+    ],
   providers: [AccountService],
   bootstrap: [AppComponent]
 })
