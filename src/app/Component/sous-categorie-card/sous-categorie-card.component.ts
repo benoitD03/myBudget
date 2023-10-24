@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import {Component, Input} from '@angular/core';
 
 @Component({
   selector: 'app-sous-categorie-card',
@@ -6,5 +6,5 @@ import { Component } from '@angular/core';
   styleUrls: ['./sous-categorie-card.component.scss']
 })
 export class SousCategorieCardComponent {
-
+  @Input() sousCategorie: any;
 }

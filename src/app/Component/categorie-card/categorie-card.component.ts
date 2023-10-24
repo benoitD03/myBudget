@@ -12,6 +12,7 @@ export class CategorieCardComponent {
   panelOpenState = false;
   @Input() categorie: any;
   sousCategories: SousCategorie[] = [];
+  totalCategorie: number = 0;
   constructor(private sousCategorieService: SousCategorieService, private accountService: AccountService) {
   }
   ngOnInit() {
@@ -20,7 +21,9 @@ export class CategorieCardComponent {
     this.sousCategorieService.getSousCategoriesByCategorieId(id_Categorie).subscribe(
       (data) => {
         this.sousCategories=data;
-        console.log(this.sousCategories)
+        for (const sousCategorie of this.sousCategories) {
+          this.totalCategorie += sousCategorie.Somme;
+        }
       },
       (error) => {
         console.error('Erreur lors de la récupération des sous catégories :', error);

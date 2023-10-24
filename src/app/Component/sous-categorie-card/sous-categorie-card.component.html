@@ -1,19 +1,19 @@
-<mat-card id="card-content">
+<mat-card id="card-content" [ngStyle]="{ 'background-color': sousCategorie.Couleur }">
   <mat-card-content >
     <div id="header">
       <div id="header-icon">
-        <mat-icon class="mat-icon">payment</mat-icon>
+        <mat-icon class="mat-icon">{{ sousCategorie.Image }}</mat-icon>
       </div>
       <div id="header-name">
-        <h3>Facture Internet</h3>
+        <h3>{{sousCategorie.Nom}}</h3>
       </div>
     </div>
     <div id="footer">
       <div id="footer-date">
-        <p>05/06/2023</p>
+        <p>{{ sousCategorie.Date }}</p>
       </div>
       <div id="footer-somme">
-        <p>40,00 €</p>
+        <p>{{ sousCategorie.Somme }} €</p>
       </div>
     </div>
     <mat-divider></mat-divider>

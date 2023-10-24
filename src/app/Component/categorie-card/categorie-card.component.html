@@ -10,7 +10,7 @@
         <h3>{{categorie.Nom}}</h3>
       </div>
       <div id="header-total">
-        <h3>500 €</h3>
+        <h3>{{ totalCategorie }} €</h3>
       </div>
     </div>
     <div id="footer">
@@ -21,7 +21,9 @@
             {{panelOpenState ? 'Cacher' : 'Voir'}} les dépenses
           </mat-panel-title>
         </mat-expansion-panel-header >
-        <div *ngFor="let sousCategorie of sousCategories; index as i">{{ sousCategorie.Nom }}</div>
+        <div *ngFor="let sousCategorie of sousCategories; index as i">
+          <app-sous-categorie-card [sousCategorie]="sousCategorie"></app-sous-categorie-card>
+        </div>
       </mat-expansion-panel>
     </mat-accordion>
     </div>
