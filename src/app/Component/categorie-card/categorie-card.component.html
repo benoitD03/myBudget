@@ -14,18 +14,18 @@
       </div>
     </div>
     <div id="footer">
-    <mat-accordion>
-      <mat-expansion-panel [expanded]="panelOpenState" (opened)="panelOpenState = true" (closed)="panelOpenState = false">
-        <mat-expansion-panel-header>
-          <mat-panel-title>
-            {{panelOpenState ? 'Cacher' : 'Voir'}} les dépenses
-          </mat-panel-title>
-        </mat-expansion-panel-header >
-        <div *ngFor="let sousCategorie of sousCategories; index as i">
-          <app-sous-categorie-card [sousCategorie]="sousCategorie"></app-sous-categorie-card>
-        </div>
-      </mat-expansion-panel>
-    </mat-accordion>
+      <mat-accordion>
+        <mat-expansion-panel [expanded]="panelOpenState" (opened)="panelOpenState = true" (closed)="panelOpenState = false">
+          <mat-expansion-panel-header>
+            <mat-panel-title>
+              {{panelOpenState ? 'Cacher' : 'Voir'}} les dépenses
+            </mat-panel-title>
+          </mat-expansion-panel-header >
+          <div class="sous-categorie-container" *ngFor="let sousCategorie of sousCategories; index as i">
+            <app-sous-categorie-card [sousCategorie]="sousCategorie"></app-sous-categorie-card>
+          </div>
+        </mat-expansion-panel>
+      </mat-accordion>
     </div>
   </mat-card-content>
 </mat-card>

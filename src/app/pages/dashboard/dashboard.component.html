@@ -1,9 +1,9 @@
 <header>
   <div id="title">Mois en cours</div>
   <div id="infos">
-    <p>Revenu Total: €</p>
-    <p>Dépenses Totales: €</p>
-    <p>Epargne possible: €</p>
+    <p>Revenu Total: {{ totalRevenu }} €</p>
+    <p>Dépenses Totales: {{ totalDepense }} €</p>
+    <p>Epargne possible: {{ epargnePossible }} €</p>
   </div>
 </header>
 
@@ -11,13 +11,13 @@
   <div id="depenses" class="categorie-container">
     <h2>Dépenses</h2>
     <div *ngFor="let categorie of categories; index as i">
-      <app-categorie-card *ngIf="categorie.Depense" [categorie]="categorie"></app-categorie-card>
+      <app-categorie-card *ngIf="categorie.Depense" [categorie]="categorie" (totalCategorieChange)="updateTotalCategory($event)"></app-categorie-card>
     </div>
   </div>
   <div id="revenus" class="categorie-container">
     <h2>Revenus</h2>
     <div *ngFor="let categorie of categories; index as i">
-      <app-categorie-card *ngIf="!categorie.Depense" [categorie]="categorie"></app-categorie-card>
+      <app-categorie-card *ngIf="!categorie.Depense" [categorie]="categorie" (totalCategorieChange)="updateTotalCategory($event)"></app-categorie-card>
     </div>
   </div>
 </section>
