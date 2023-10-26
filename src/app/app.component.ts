@@ -19,7 +19,6 @@ export class AppComponent {
   ngAfterViewInit() {
     this.observer
       .observe(['(max-width: 1100px)'])
-      // .pipe(delay(1), untilDestroyed(this))
       .subscribe((res) => {
         if (res.matches) {
           this.sidenav.mode = 'over';
@@ -31,10 +30,6 @@ export class AppComponent {
       });
 
     this.router.events
-      // .pipe(
-      //   untilDestroyed(this),
-      //   filter((e) => e instanceof NavigationEnd)
-      // )
       .subscribe(() => {
         if (this.sidenav.mode === 'over') {
           this.sidenav.close();
@@ -53,7 +48,9 @@ export class AppComponent {
       this.isLightTheme? 'light' : 'dark'
     );
   }
-
+  /**
+   * Methode de déconnexion
+   */
   onClickLogout() {
     this.accountService.logout();
   }
