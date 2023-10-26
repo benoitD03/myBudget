@@ -1,0 +1,18 @@
+#title {
+  text-align: center;
+  margin: 40px 0;
+}
+#form {
+  text-align: center;
+  mat-form-field {
+    width: 80%;
+    margin: 15px 0;
+  }
+  #form-date-somme {
+    display: flex;
+    justify-content: center;
+    #form-date, #form-somme {
+      width: 44%;
+    }
+  }
+}

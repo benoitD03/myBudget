@@ -38,6 +38,9 @@ export class MyCategoriesComponent implements OnInit{
 
   }
 
+  /**
+   * Méthode au clic sur le bouton d'ajout de catégorie
+   */
   openDialogCreateCategorie() {
     const dialogRef = this.dialog.open(DialogCreateCategorieComponent, {
       maxWidth: '100vw',

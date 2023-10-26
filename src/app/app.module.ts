@@ -18,7 +18,7 @@ import { LoginComponent } from './pages/login/login.component';
 import {ReactiveFormsModule} from "@angular/forms";
 import {MatInputModule} from "@angular/material/input";
 import {MatCardModule} from "@angular/material/card";
-import {CommonModule} from "@angular/common";
+import {CommonModule, DatePipe} from "@angular/common";
 import {AccountService} from "./services/account.service";
 import {HttpClientModule} from "@angular/common/http";
 import { MyCategoriesComponent } from './pages/my-categories/my-categories.component';
@@ -31,6 +31,9 @@ import { DialogCreateCategorieComponent } from './Component/dialog-create-catego
 import {MatDialogModule} from "@angular/material/dialog";
 import {MatCheckboxModule} from "@angular/material/checkbox";
 import {MatRadioModule} from "@angular/material/radio";
+import { DialogCreateSousCategorieComponent } from './Component/dialog-create-sous-categorie/dialog-create-sous-categorie.component';
+import {MatDatepickerModule} from "@angular/material/datepicker";
+import {MatNativeDateModule} from "@angular/material/core";
 
 @NgModule({
   declarations: [
@@ -43,6 +46,7 @@ import {MatRadioModule} from "@angular/material/radio";
     CategorieCardComponent,
     SousCategorieCardComponent,
     DialogCreateCategorieComponent,
+    DialogCreateSousCategorieComponent,
   ],
     imports: [
         BrowserModule,
@@ -65,9 +69,11 @@ import {MatRadioModule} from "@angular/material/radio";
         MatTableModule,
         MatDialogModule,
         MatCheckboxModule,
-        MatRadioModule
+        MatRadioModule,
+        MatDatepickerModule,
+        MatNativeDateModule
     ],
-  providers: [AccountService],
+  providers: [AccountService, DatePipe],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -1,0 +1,68 @@
+<form [formGroup]="createSousCategorieForm" (ngSubmit)="onSubmit()">
+  <div id="title">
+    <h2>Ajout d'une transaction</h2>
+  </div>
+  <div id="form">
+
+    <div id="form-Nom">
+      <mat-form-field appearance="fill">
+        <mat-label>Nom</mat-label>
+        <input matInput formControlName="Nom" type="text" placeholder="Nom" required>
+        <mat-error *ngIf="createSousCategorieForm.get('Nom')?.hasError('required')">Le nom est requis</mat-error>
+      </mat-form-field>
+    </div>
+
+    <div id="form-Image">
+      <mat-form-field appearance="fill">
+        <mat-label>Image</mat-label>
+        <input matInput formControlName="Image" type="text" placeholder="Image" required>
+        <mat-error *ngIf="createSousCategorieForm.get('Image')?.hasError('required')">L'image est requise</mat-error>
+      </mat-form-field>
+    </div>
+
+<!--    <div id="form-Description">-->
+<!--      <mat-form-field appearance="fill">-->
+<!--        <mat-label>Description</mat-label>-->
+<!--        <input matInput formControlName="Description" type="text" placeholder="Description">-->
+<!--      </mat-form-field>-->
+<!--    </div>-->
+
+<!--    <mat-radio-group formControlName="Depense" aria-label="Select an option">-->
+<!--      <mat-radio-button [value]="true">Dépense</mat-radio-button>-->
+<!--      <mat-radio-button [value]="false">Revenu</mat-radio-button>-->
+<!--    </mat-radio-group>-->
+
+    <div id="form-date-somme">
+      <div id="form-date">
+        <mat-form-field>
+          <mat-label>Date</mat-label>
+          <input matInput [matDatepicker]="picker">
+          <mat-hint>MM/DD/YYYY</mat-hint>
+          <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+          <mat-datepicker #picker></mat-datepicker>
+        </mat-form-field>
+      </div>
+      <div id="form-somme">
+        <mat-form-field appearance="fill">
+          <mat-label>Somme</mat-label>
+          <input matInput formControlName="Somme" type="number" placeholder="Somme" required>
+          <mat-error *ngIf="createSousCategorieForm.get('Somme')?.hasError('required')">La somme est requise</mat-error>
+        </mat-form-field>
+      </div>
+    </div>
+
+    <div id="form-Couleur">
+      <mat-form-field appearance="fill">
+        <mat-label>Couleur</mat-label>
+        <input matInput formControlName="Couleur" type="text" placeholder="Couleur" required>
+      </mat-form-field>
+    </div>
+
+
+    <div id="form-button">
+      <button mat-raised-button color="primary" type="submit">Ajouter</button>
+    </div>
+
+  </div>
+</form>
+

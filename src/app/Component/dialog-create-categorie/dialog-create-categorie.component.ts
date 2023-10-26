@@ -15,7 +15,7 @@ import {Categorie} from "../../class/categorie";
 export class DialogCreateCategorieComponent {
   createCategorieForm: FormGroup;
 
-  constructor(private fb: FormBuilder, private accountService: AccountService, private router: Router, private categorieService: CategorieService, public dialogRef: MatDialogRef<DialogCreateCategorieComponent>) {
+  constructor( private fb: FormBuilder, private accountService: AccountService, private router: Router, private categorieService: CategorieService, public dialogRef: MatDialogRef<DialogCreateCategorieComponent>) {
     this.createCategorieForm = this.fb.group({
       Nom: ['', Validators.required],
       Image: ['', Validators.required],
@@ -23,6 +23,7 @@ export class DialogCreateCategorieComponent {
       Depense: [true, Validators.required],
       Couleur: ['', Validators.required]
     });
+
   }
   onSubmit() {
      if (this.createCategorieForm.valid) {
@@ -43,9 +44,5 @@ export class DialogCreateCategorieComponent {
         }
       )
     }
-  }
-
-  test() {
-    console.log(this.createCategorieForm.get('Depense')?.value)
   }
 }
