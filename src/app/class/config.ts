@@ -11,4 +11,5 @@ export class Config {
   static URL_CATEGORIES = Config.URL_API + '/categories/all';
   static URL_CREATE_CATEGORIE = Config.URL_API + '/categories';
   static URL_SOUS_CATEGORIES = Config.URL_API + '/sous-categories/all';
+  static URL_CREATE_SOUS_CATEGORIES = Config.URL_API + '/sous-categories';
 }

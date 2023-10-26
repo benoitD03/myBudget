@@ -26,4 +26,23 @@ export class SousCategorieService {
     return this.http.get<SousCategorie[]>(Config.URL_SOUS_CATEGORIES+'?id_Categorie='+categorieId, { headers });
   }
 
+  createSousCategorie(nom: string, image: string, depense: boolean, date: any, somme: number, userId: any, categorieId: any, couleur: string): Observable<any> {
+    const token = this.accountService.getToken();
+
+    const headers = token ? new HttpHeaders({ Authorization: `Bearer ${token}` }) : new HttpHeaders();
+
+    const sousCategorieData = {
+      Nom: nom,
+      Image: image,
+      Depense: depense,
+      Date: date,
+      Somme: somme,
+      categorie: categorieId,
+      user: userId,
+      Couleur: couleur
+    };
+
+    return this.http.post(Config.URL_CREATE_SOUS_CATEGORIES, sousCategorieData, { headers });
+  }
+
 }
