@@ -1,40 +1,53 @@
-<div style="height: 80vh;">
-  <mat-toolbar class="header" *ngIf="!isLoginPage()">
-    <mat-toolbar-row class="menu">
-      <div>
-        <button mat-icon-button (click)="sidenav.toggle()" fxShow="true" fxHide.gt-sm>
-          <mat-icon>menu</mat-icon>
-        </button>
-        <span>My Budget</span>
-      </div>
-      <div fxShow="true" fxHide.lt-md>
-        <a routerLink="/dashboard" mat-button>Tableau de bord</a>
-        <a routerLink="/last-month" mat-button>Mois dernier</a>
-        <a routerLink="/full-year" mat-button>Année complète</a>
-      </div>
-      <div class="button-container">
-        <div id="switch-theme">
-          <mat-slide-toggle (change)="onThemeSwitchChange()">{{ isLightTheme ? 'dark' : 'light' }} theme</mat-slide-toggle>
-        </div>
-        <button mat-mini-fab color="warn" (click)="onClickLogout()">
-          <mat-icon>power_settings_new</mat-icon>
-        </button>
-      </div>
-    </mat-toolbar-row>
-  </mat-toolbar>
+<mat-toolbar class="mat-elevation-z8">
+  <div id="top-bar-left">
+    <button mat-icon-button *ngIf="sidenav.mode === 'over'" (click)="sidenav.toggle()">
+      <mat-icon *ngIf="!sidenav.opened"> menu </mat-icon>
+      <mat-icon *ngIf="sidenav.opened"> close </mat-icon>
+    </button>
+    myBudget
+  </div>
+  <div id="top-bar-right">
+    <button mat-mini-fab color="warn" (click)="onClickLogout()">
+      <mat-icon>power_settings_new</mat-icon>
+    </button>
+  </div>
+</mat-toolbar>
 
-  <mat-sidenav-container fxFlexFill>
-    <mat-sidenav #sidenav class="sidenav">
-      <mat-nav-list class="sidenav-list">
-          <a class="sidenav-list-item" routerLink="/dashboard" mat-list-item>Tableau de bord</a>
-        <a class="sidenav-list-item" routerLink="/my-categories" mat-list-item>Mes catégories</a>
-          <a class="sidenav-list-item" routerLink="/last-month" mat-list-item>Mois dernier</a>
-          <a class="sidenav-list-item" routerLink="/full-year" mat-list-item>Année complète</a>
-      </mat-nav-list>
-    </mat-sidenav>
-    <mat-sidenav-content fxFlexFill class="main">
-<!--      <h1>My Budget</h1>-->
+<mat-sidenav-container>
+  <mat-sidenav #sidenav="matSidenav" class="mat-elevation-z8 sidenav">
+
+    <img class="avatar mat-elevation-z8" src="https://avatars.githubusercontent.com/u/72392406?v=4"/>
+    <h4 class="name">Benoit Durand</h4>
+
+    <mat-divider></mat-divider>
+
+    <button mat-button class="menu-button" routerLink="/dashboard">
+      <mat-icon>home</mat-icon>
+      <span>Tableau de bord</span>
+    </button>
+    <button mat-button class="menu-button" routerLink="/my-categories">
+      <mat-icon>person</mat-icon>
+      <span>Mes catégories</span>
+    </button>
+    <button mat-button class="menu-button" routerLink="/full-year">
+      <mat-icon>info</mat-icon>
+      <span>Année complète</span>
+    </button>
+
+    <mat-divider></mat-divider>
+
+    <button mat-button class="menu-button" routerLink="/help">
+      <mat-icon>help</mat-icon>
+      <span>Help</span>
+    </button>
+    <div id="switch-theme">
+      <mat-slide-toggle (change)="onThemeSwitchChange()">{{ isLightTheme ? 'dark' : 'light' }} theme</mat-slide-toggle>
+    </div>
+
+  </mat-sidenav>
+  <mat-sidenav-content>
+    <div class="content mat-elevation-z8 main">
       <router-outlet></router-outlet>
-    </mat-sidenav-content>
-  </mat-sidenav-container>
-</div>
+    </div>
+  </mat-sidenav-content>
+</mat-sidenav-container>
