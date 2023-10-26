@@ -34,6 +34,11 @@ import {MatRadioModule} from "@angular/material/radio";
 import { DialogCreateSousCategorieComponent } from './Component/dialog-create-sous-categorie/dialog-create-sous-categorie.component';
 import {MatDatepickerModule} from "@angular/material/datepicker";
 import {MatNativeDateModule} from "@angular/material/core";
+import {
+  MAT_COLOR_FORMATS,
+  NGX_MAT_COLOR_FORMATS,
+  NgxMatColorPickerModule
+} from "@angular-material-components/color-picker";
 
 @NgModule({
   declarations: [
@@ -71,9 +76,14 @@ import {MatNativeDateModule} from "@angular/material/core";
         MatCheckboxModule,
         MatRadioModule,
         MatDatepickerModule,
-        MatNativeDateModule
+        MatNativeDateModule,
+        NgxMatColorPickerModule
     ],
-  providers: [AccountService, DatePipe],
+  providers: [
+    AccountService,
+    DatePipe,
+    { provide: MAT_COLOR_FORMATS, useValue: NGX_MAT_COLOR_FORMATS }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

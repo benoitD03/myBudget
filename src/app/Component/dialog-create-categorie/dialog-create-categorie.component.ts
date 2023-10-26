@@ -21,19 +21,21 @@ export class DialogCreateCategorieComponent {
       Image: ['', Validators.required],
       Description: [''],
       Depense: [true, Validators.required],
-      Couleur: ['', Validators.required]
+      Couleur: [null, Validators.required]
     });
 
   }
   onSubmit() {
+
      if (this.createCategorieForm.valid) {
       const nom = this.createCategorieForm.get('Nom')?.value;
       const image = this.createCategorieForm.get('Image')?.value;
       const description = this.createCategorieForm.get('Description')?.value;
       const depense = this.createCategorieForm.get('Depense')?.value;
-      const couleur = this.createCategorieForm.get('Couleur')?.value;
+      const couleurValue = this.createCategorieForm.get('Couleur')?.value;
+      const couleur = "#" + couleurValue.hex;
       const idUser = this.accountService.getIdUser();
-    //
+
       this.categorieService.createCategorie(nom, image, description, depense, couleur, Number(idUser)).subscribe(
         (response: any) => {
           console.log(response)
