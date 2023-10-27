@@ -33,10 +33,6 @@
     </mat-radio-group>
 
     <div id="form-Couleur">
-<!--      <mat-form-field appearance="fill">-->
-<!--        <mat-label>Couleur</mat-label>-->
-<!--        <input matInput formControlName="Couleur" type="text" placeholder="Couleur" required>-->
-<!--      </mat-form-field>-->
       <mat-form-field>
         <input formControlName="Couleur" matInput [ngxMatColorPicker]="picker">
         <ngx-mat-color-toggle matSuffix [for]="picker"></ngx-mat-color-toggle>

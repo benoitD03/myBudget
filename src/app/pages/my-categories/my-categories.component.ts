@@ -45,7 +45,7 @@ export class MyCategoriesComponent implements OnInit{
     const dialogRef = this.dialog.open(DialogCreateCategorieComponent, {
       maxWidth: '100vw',
        maxHeight: '100vh',
-       height: '80%',
+       height: '70%',
        width: '80%',
     });
 

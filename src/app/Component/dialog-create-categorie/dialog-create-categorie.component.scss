@@ -1,6 +1,14 @@
+form{
+  //height: 100%;
+  padding-bottom: 25px;
+  margin: 0;
+  background: var(--main-content-background-color);
+  color: var(--main-content-text-color);
+}
 #title {
   text-align: center;
-  margin: 40px 0;
+  margin: 0 0 40px 0;
+  padding-top: 20px;
 }
 #form {
   text-align: center;

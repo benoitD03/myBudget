@@ -52,7 +52,7 @@ export class CategorieCardComponent {
     const dialogRef = this.dialog.open(DialogCreateSousCategorieComponent, {
       maxWidth: '100vw',
       maxHeight: '100vh',
-      height: '80%',
+      height: '70%',
       width: '80%',
       data: {categorie: this.categorie}
     });

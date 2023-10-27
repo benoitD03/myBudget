@@ -34,7 +34,8 @@ export class DialogCreateSousCategorieComponent {
       const somme = this.createSousCategorieForm.get('Somme')?.value;
       const idCategorie = this.data.categorie.id_Categorie;
       const idUser = this.accountService.getIdUser();
-      const couleur = this.createSousCategorieForm.get('Couleur')?.value;
+      const couleurValue = this.createSousCategorieForm.get('Couleur')?.value;
+      const couleur = "#" + couleurValue.hex;
       //
       this.sousCategorieService.createSousCategorie(nom, image, depense, date, somme, Number(idUser), Number(idCategorie), couleur).subscribe(
         (response: any) => {
