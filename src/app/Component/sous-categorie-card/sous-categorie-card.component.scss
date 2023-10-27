@@ -1,10 +1,20 @@
 #card-content {
-  //width: 350px;
-  //background-color: var(--card-content-background-color);
-  //color: var(--card-content-text-color);
+  //position: relative;
+  #delete-button {
+    position: absolute;
+    top: 4px;
+    right: 4px;
+    border-radius: 3%;
+    button {
+      border-radius: 23%;
+      background-color: red;
+      color: white;
+      cursor: pointer;
+    }
+  }
   #header {
     display: flex;
-    justify-content: space-between;
+    //justify-content: space-between;
     #header-icon {
       background-color: orange;
       width: 80px !important;
@@ -23,8 +33,9 @@
       }
     }
     #header-name {
-      text-align: right;
-      max-width: 250px;
+      margin: 10px 15px 0 0;
+      width: 75%;
+      text-align: center;
       h3 {
         margin-top: 0;
       }

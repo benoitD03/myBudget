@@ -26,6 +26,17 @@ export class SousCategorieService {
     return this.http.get<SousCategorie[]>(Config.URL_SOUS_CATEGORIES+'?id_Categorie='+categorieId, { headers });
   }
 
+  /**
+   * Méthode de création d'une sous catégorie
+   * @param nom
+   * @param image
+   * @param depense
+   * @param date
+   * @param somme
+   * @param userId
+   * @param categorieId
+   * @param couleur
+   */
   createSousCategorie(nom: string, image: string, depense: boolean, date: any, somme: number, userId: any, categorieId: any, couleur: string): Observable<any> {
     const token = this.accountService.getToken();
 
@@ -43,6 +54,18 @@ export class SousCategorieService {
     };
 
     return this.http.post(Config.URL_CREATE_SOUS_CATEGORIES, sousCategorieData, { headers });
+  }
+
+  /**
+   * Méthode de suppression d'un sous catégorie
+   * @param sousCategorieId
+   */
+  deleteSousCategorie(sousCategorieId: number): Observable<void> {
+    const token = this.accountService.getToken();
+
+    const headers = token ? new HttpHeaders({ Authorization: `Bearer ${token}` }) : new HttpHeaders();
+
+    return this.http.delete<void>(`${Config.URL_DELETE_SOUS_CATEGORIES}/${sousCategorieId}` , { headers });
   }
 
 }

@@ -39,6 +39,7 @@ import {
   NGX_MAT_COLOR_FORMATS,
   NgxMatColorPickerModule
 } from "@angular-material-components/color-picker";
+import { DialogConfirmationComponent } from './Component/dialog-confirmation/dialog-confirmation.component';
 
 @NgModule({
   declarations: [
@@ -52,6 +53,7 @@ import {
     SousCategorieCardComponent,
     DialogCreateCategorieComponent,
     DialogCreateSousCategorieComponent,
+    DialogConfirmationComponent,
   ],
     imports: [
         BrowserModule,
