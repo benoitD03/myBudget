@@ -40,6 +40,15 @@ mat-card {
     }
   }
 }
+.mat-expansion-panel-body, .mat-expansion-panel-header, .mat-expansion-panel {
+  background-color: var(--main-content-background-color) !important;
+  .mat-expansion-panel-header-title {
+    color: var(--main-content-text-color) !important;
+  }
+  &:hover {
+    background-color: var(--main-content-background-color) !important;
+  }
+}
 
 
 

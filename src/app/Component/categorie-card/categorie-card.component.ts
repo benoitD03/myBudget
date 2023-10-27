@@ -1,4 +1,4 @@
-import {Component, EventEmitter, Input, Output} from '@angular/core';
+import {Component, EventEmitter, Input, Output, ViewEncapsulation} from '@angular/core';
 import {SousCategorie} from "../../class/sous-categorie";
 import {AccountService} from "../../services/account.service";
 import {SousCategorieService} from "../../services/sous-categorie.service";
@@ -11,7 +11,8 @@ import {
 @Component({
   selector: 'app-categorie-card',
   templateUrl: './categorie-card.component.html',
-  styleUrls: ['./categorie-card.component.scss']
+  styleUrls: ['./categorie-card.component.scss'],
+  encapsulation: ViewEncapsulation.None
 })
 export class CategorieCardComponent {
 
