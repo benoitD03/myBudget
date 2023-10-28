@@ -1,5 +1,6 @@
 #card-content {
   //position: relative;
+  height: 90px;
   #delete-button {
     position: absolute;
     top: 4px;
@@ -16,20 +17,21 @@
     display: flex;
     //justify-content: space-between;
     #header-icon {
-      background-color: orange;
-      width: 80px !important;
-      height: 80px;
+      background-color: var(--main-content-text-color);
+      width: 50px !important;
+      height: 50px;
       display: flex;
       align-items: center;
       justify-content: center;
-      border-radius: 3%;
-      margin-top: -40px;
+      border-radius: 10%;
+      margin-top: -20px;
       box-shadow: 5px 5px 15px 5px rgba(0,0,0,0.3);
       .mat-icon {
         color: white;
-        width: 40px;
-        height: 40px;
-        font-size: 40px !important;
+        width: 25px;
+        height: 25px;
+        font-size: 25px !important;
+        color: var(--main-content-background-color);;
       }
     }
     #header-name {
@@ -45,8 +47,12 @@
   #footer {
     display: flex;
     justify-content: space-between;
+    margin-top: -20px;
     #footer-somme {
       font-weight: bold;
     }
+  }
+  mat-divider {
+    margin-top: -15px;
   }
 }

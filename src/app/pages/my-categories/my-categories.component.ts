@@ -15,7 +15,7 @@ import {
 })
 export class MyCategoriesComponent implements OnInit{
   categories: Categorie[] = []
-  Columns: string[] = ['Nom', 'Image', 'Description', 'Depense', 'Revenu', 'Couleur'];
+  Columns: string[] = ['Nom', 'Image', 'Description', 'Depense', 'Revenu', 'Couleur', 'Actions'];
   // categorie: Categorie;
 
 
@@ -33,11 +33,6 @@ export class MyCategoriesComponent implements OnInit{
       }
     )
   }
-
-  removeData() {
-
-  }
-
   /**
    * Méthode au clic sur le bouton d'ajout de catégorie
    */
@@ -52,5 +47,14 @@ export class MyCategoriesComponent implements OnInit{
     dialogRef.afterClosed().subscribe(result => {
       // this.categorie = result;
     });
+  }
+
+  deleteCategorie(categorie:Categorie) {
+    console.log(categorie.id_Categorie)
+    const id_Categorie = categorie.id_Categorie
+    if (id_Categorie !== 0) {
+      // this.categories.splice(index, 1);
+
+    }
   }
 }

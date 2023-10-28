@@ -12,6 +12,7 @@
 </div>
 
 <table mat-table [dataSource]="categories" class="mat-elevation-z8">
+
   <!-- Position Column -->
   <ng-container matColumnDef="Nom">
     <th mat-header-cell *matHeaderCellDef>Nom</th>
@@ -46,6 +47,16 @@
     <td mat-cell *matCellDef="let categorie">
       <div id="color-container" [style.background-color]="categorie.Couleur">
       </div>
+    </td>
+  </ng-container>
+
+  <!-- Supprimer Column -->
+  <ng-container matColumnDef="Actions">
+    <th mat-header-cell *matHeaderCellDef>Actions</th>
+    <td mat-cell *matCellDef="let categorie">
+      <button mat-icon-button (click)="deleteCategorie(categorie)">
+        <mat-icon>delete</mat-icon>
+      </button>
     </td>
   </ng-container>
 
