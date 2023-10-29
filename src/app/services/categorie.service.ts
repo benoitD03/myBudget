@@ -24,7 +24,10 @@ export class CategorieService {
     return this.http.get<Categorie[]>(Config.URL_CATEGORIES+'?id_User='+userId, { headers });
   }
 
-
+  /**
+   * Méthode de création d'une catégorie
+   * @param categorieId
+   */
   createCategorie(nom: string, image: string, description: string, depense: boolean, couleur: string, userId: any): Observable<any> {
     const token = this.accountService.getToken();
 
@@ -39,7 +42,19 @@ export class CategorieService {
       user: userId
     };
 
-    return this.http.post(Config.URL_CREATE_CATEGORIE, categorieData, { headers });
+    return this.http.post(Config.URL_CREATE_CATEGORIES, categorieData, { headers });
+  }
+
+  /**
+   * Méthode de suppression d'une catégorie
+   * @param categorieId
+   */
+  deleteCategorie(categorieId: number): Observable<void> {
+    const token = this.accountService.getToken();
+
+    const headers = token ? new HttpHeaders({ Authorization: `Bearer ${token}` }) : new HttpHeaders();
+
+    return this.http.delete<void>(`${Config.URL_DELETE_CATEGORIES}/${categorieId}` , { headers });
   }
 
 }

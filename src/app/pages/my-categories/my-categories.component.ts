@@ -7,6 +7,7 @@ import {MatDialog} from "@angular/material/dialog";
 import {
   DialogCreateCategorieComponent
 } from "../../Component/dialog-create-categorie/dialog-create-categorie.component";
+import {DialogConfirmationComponent} from "../../Component/dialog-confirmation/dialog-confirmation.component";
 
 @Component({
   selector: 'app-my-categories',
@@ -49,12 +50,30 @@ export class MyCategoriesComponent implements OnInit{
     });
   }
 
-  deleteCategorie(categorie:Categorie) {
-    console.log(categorie.id_Categorie)
-    const id_Categorie = categorie.id_Categorie
-    if (id_Categorie !== 0) {
-      // this.categories.splice(index, 1);
+  onConfirmDeleteCategorie(categorie:Categorie) {
+    const dialogRef = this.dialog.open(DialogConfirmationComponent, {
+      width: '250px',
+      data: 'Supprimer cette catégorie entrainera la suppression de toutes les transactions qui lui sont associées. Souhaitez vous continuer ? ?'
+    });
 
+    dialogRef.afterClosed().subscribe(result => {
+      if (result) {
+        this.deleteCategorie(categorie);
+      }
+    });
+  }
+
+  deleteCategorie(categorie:Categorie) {
+    const categorieId = categorie.id_Categorie;
+    if (categorieId !== 0) {
+      this.categorieService.deleteCategorie(categorieId).subscribe(
+        () => {
+          alert("Catégorie supprimée !")
+        },
+        (error) => {
+          console.error('Erreur lors de la suppression de la catégorie :', error);
+        }
+      );
     }
   }
 }
