@@ -15,36 +15,68 @@ import {Categorie} from "../../class/categorie";
 export class DialogCreateCategorieComponent {
   createCategorieForm: FormGroup;
 
-  constructor( private fb: FormBuilder, private accountService: AccountService, private router: Router, private categorieService: CategorieService, public dialogRef: MatDialogRef<DialogCreateCategorieComponent>) {
+  constructor( private fb: FormBuilder, private accountService: AccountService, private router: Router, private categorieService: CategorieService, public dialogRef: MatDialogRef<DialogCreateCategorieComponent>, @Inject(MAT_DIALOG_DATA) public data: any) {
     this.createCategorieForm = this.fb.group({
-      Nom: ['', Validators.required],
-      Image: ['', Validators.required],
-      Description: [''],
-      Depense: [true, Validators.required],
-      Couleur: [null, Validators.required]
+      Nom: [data.isModif ? data.categorieToModify.Nom : '', Validators.required],
+      Image: [data.isModif ? data.categorieToModify.Image : '', Validators.required],
+      Description: [data.isModif ? data.categorieToModify.Description : ''],
+      Depense: [data.isModif ? data.categorieToModify.Depense : true, Validators.required],
+      Couleur: [data.isModif ? data.categorieToModify.Couleur.substring(1) : null, Validators.required]
     });
-
   }
+
+  /**
+   * Méthode de soumission du formaulaire
+   */
   onSubmit() {
+    //Création
+    if (!this.data.isModif) {
+      if (this.createCategorieForm.valid) {
+        const nom = this.createCategorieForm.get('Nom')?.value;
+        const image = this.createCategorieForm.get('Image')?.value;
+        const description = this.createCategorieForm.get('Description')?.value;
+        const depense = this.createCategorieForm.get('Depense')?.value;
+        const couleurValue = this.createCategorieForm.get('Couleur')?.value;
+        const couleur = "#" + couleurValue.hex;
+        const idUser = this.accountService.getIdUser();
 
-     if (this.createCategorieForm.valid) {
-      const nom = this.createCategorieForm.get('Nom')?.value;
-      const image = this.createCategorieForm.get('Image')?.value;
-      const description = this.createCategorieForm.get('Description')?.value;
-      const depense = this.createCategorieForm.get('Depense')?.value;
-      const couleurValue = this.createCategorieForm.get('Couleur')?.value;
-      const couleur = "#" + couleurValue.hex;
-      const idUser = this.accountService.getIdUser();
+        this.categorieService.createCategorie(nom, image, description, depense, couleur, Number(idUser)).subscribe(
+          (response: any) => {
+            console.log(response)
+            this.dialogRef.close();
+          },
+          (error: any) => {
+            console.error(error)
+          }
+        )
+      }
+    } else {
+      //Modification
+      const updatedCategorieData: any = {};
+      const formControls = this.createCategorieForm.controls;
 
-      this.categorieService.createCategorie(nom, image, description, depense, couleur, Number(idUser)).subscribe(
-        (response: any) => {
-          console.log(response)
-          this.dialogRef.close();
-        },
-        (error: any) => {
-          console.error(error)
+      if (this.createCategorieForm.valid) {
+
+      for (const key in formControls) {
+        if (formControls.hasOwnProperty(key)) {
+          updatedCategorieData[key] = formControls[key].value;
         }
-      )
+      }
+
+      const couleurValue = this.createCategorieForm.get('Couleur')?.value;
+      updatedCategorieData.Couleur = "#" + couleurValue.hex;
+
+        this.categorieService
+          .updateCategorie(this.data.categorieToModify.id_Categorie, updatedCategorieData)
+          .subscribe(
+            (response: any) => {
+              this.dialogRef.close();
+            },
+            (error: any) => {
+              console.log(error)
+            }
+          );
+      }
     }
   }
 }

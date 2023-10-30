@@ -57,4 +57,17 @@ export class CategorieService {
     return this.http.delete<void>(`${Config.URL_DELETE_CATEGORIES}/${categorieId}` , { headers });
   }
 
+  /**
+   * Méthode de modification d'une catégorie
+   * @param categorieId
+   * @param updatedData ==> Catégories avec les données modifiées
+   */
+  updateCategorie(categorieId: number, updatedData: Categorie): Observable<any> {
+    const token = this.accountService.getToken();
+
+    const headers = token ? new HttpHeaders({ Authorization: `Bearer ${token}` }) : new HttpHeaders();
+
+    return this.http.put(`${Config.URL_UPDATE_CATEGORIES}/${categorieId}`, updatedData, { headers });
+  }
+
 }

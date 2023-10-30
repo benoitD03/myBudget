@@ -37,12 +37,13 @@ export class MyCategoriesComponent implements OnInit{
   /**
    * Méthode au clic sur le bouton d'ajout de catégorie
    */
-  openDialogCreateCategorie() {
+  openDialogCreateCategorie(isModif: Boolean) {
     const dialogRef = this.dialog.open(DialogCreateCategorieComponent, {
       maxWidth: '100vw',
        maxHeight: '100vh',
        height: '70%',
        width: '80%',
+      data: {isModif: isModif}
     });
 
     dialogRef.afterClosed().subscribe(result => {
@@ -75,5 +76,22 @@ export class MyCategoriesComponent implements OnInit{
         }
       );
     }
+  }
+
+  openDialogModifyCategorie(categorie: Categorie, isModif: Boolean) {
+    const dialogRef = this.dialog.open(DialogCreateCategorieComponent, {
+      maxWidth: '100vw',
+      maxHeight: '100vh',
+      height: '70%',
+      width: '80%',
+      data:
+      { categorieToModify: categorie,
+        isModif: isModif
+      },
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+
+    });
   }
 }
