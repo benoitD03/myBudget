@@ -1,4 +1,4 @@
-import {Component, OnInit, ViewChild} from '@angular/core';
+import {ChangeDetectorRef, Component, OnInit, ViewChild} from '@angular/core';
 import {Categorie} from "../../class/categorie";
 import {CategorieService} from "../../services/categorie.service";
 import {AccountService} from "../../services/account.service";
@@ -23,11 +23,14 @@ export class MyCategoriesComponent implements OnInit{
   constructor(private categorieService: CategorieService, private accountService: AccountService, public dialog: MatDialog) {
   }
   ngOnInit() {
+    this.loadList();
+  }
+
+  loadList() {
     const id_User = this.accountService.getIdUser();
     this.categorieService.getCategoriesByUserId(Number(id_User)).subscribe(
       (data) => {
         this.categories=data;
-        console.log(this.categories)
       },
       (error) => {
         console.error('Erreur lors de la récupération des catégories :', error);
@@ -47,7 +50,7 @@ export class MyCategoriesComponent implements OnInit{
     });
 
     dialogRef.afterClosed().subscribe(result => {
-      // this.categorie = result;
+        this.loadList();
     });
   }
 
@@ -70,6 +73,7 @@ export class MyCategoriesComponent implements OnInit{
       this.categorieService.deleteCategorie(categorieId).subscribe(
         () => {
           alert("Catégorie supprimée !")
+          this.loadList();
         },
         (error) => {
           console.error('Erreur lors de la suppression de la catégorie :', error);
@@ -91,7 +95,7 @@ export class MyCategoriesComponent implements OnInit{
     });
 
     dialogRef.afterClosed().subscribe(result => {
-
+      this.loadList();
     });
   }
 }

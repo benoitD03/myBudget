@@ -25,6 +25,10 @@ export class CategorieCardComponent {
   constructor(private sousCategorieService: SousCategorieService, private accountService: AccountService, public dialog: MatDialog) {
   }
   ngOnInit() {
+    this.loadSousCategories();
+  }
+
+  loadSousCategories() {
     const id_Categorie = this.categorie.id_Categorie;
 
     this.sousCategorieService.getSousCategoriesByCategorieId(id_Categorie).subscribe(
@@ -41,7 +45,6 @@ export class CategorieCardComponent {
       }
     )
   }
-
   /**
    * Méthode qui permet de notifier au composant parent (Dashboard) lorsque le total d'une catégorie changera.
    */
@@ -59,6 +62,7 @@ export class CategorieCardComponent {
     });
 
     dialogRef.afterClosed().subscribe(result => {
+      this.loadSousCategories();
     });
   }
 }
