@@ -1,4 +1,4 @@
-import {Component, Input} from '@angular/core';
+import {Component, EventEmitter, Input, Output} from '@angular/core';
 import {SousCategorieService} from "../../services/sous-categorie.service";
 import {MatDialog} from "@angular/material/dialog";
 import {DialogConfirmationComponent} from "../dialog-confirmation/dialog-confirmation.component";
@@ -10,6 +10,7 @@ import {DialogConfirmationComponent} from "../dialog-confirmation/dialog-confirm
 })
 export class SousCategorieCardComponent {
   @Input() sousCategorie: any;
+  @Output() deleteSuccess = new EventEmitter<void>();
 
   constructor(private sousCategorieService: SousCategorieService, private dialog: MatDialog) { }
 
@@ -22,6 +23,7 @@ export class SousCategorieCardComponent {
     dialogRef.afterClosed().subscribe(result => {
       if (result) {
         this.deleteSousCategorie();
+        this.deleteSuccess.emit();
       }
     });
   }
@@ -30,7 +32,7 @@ export class SousCategorieCardComponent {
     const sousCategorieId = this.sousCategorie.id_Sous_Categorie;
     this.sousCategorieService.deleteSousCategorie(sousCategorieId).subscribe(
       () => {
-        alert("Transaction supprimée !")
+        this.deleteSuccess.emit();
       },
       (error) => {
         console.error('Erreur lors de la suppression de la sous-catégorie :', error);

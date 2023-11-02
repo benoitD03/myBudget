@@ -34,9 +34,13 @@ export class CategorieCardComponent {
     this.sousCategorieService.getSousCategoriesByCategorieId(id_Categorie).subscribe(
       (data) => {
         this.sousCategories=data;
-
-        for (const sousCategorie of this.sousCategories) {
-          this.totalCategorie += sousCategorie.Somme;
+        this.totalCategorie=0;
+        if (this.sousCategories) {
+          for (const sousCategorie of this.sousCategories) {
+            this.totalCategorie += sousCategorie.Somme;
+          }
+        } else {
+          this.totalCategorie = 0;
         }
         this.onAddToTotalDepense();
       },
