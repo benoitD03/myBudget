@@ -1,5 +1,5 @@
 import {Component, Inject} from '@angular/core';
-import {FormBuilder, FormGroup, Validators} from "@angular/forms";
+import {FormBuilder, FormControl, FormGroup, Validators} from "@angular/forms";
 import {AccountService} from "../../services/account.service";
 import {Router} from "@angular/router";
 import {MAT_DIALOG_DATA, MatDialogRef} from "@angular/material/dialog";
@@ -13,11 +13,12 @@ import {DatePipe} from "@angular/common";
 })
 export class DialogCreateSousCategorieComponent {
   createSousCategorieForm: FormGroup;
+  Image = new FormControl();
 
   constructor(@Inject(MAT_DIALOG_DATA) public data: any,private fb: FormBuilder, private accountService: AccountService, private router: Router, private sousCategorieService: SousCategorieService, public dialogRef: MatDialogRef<DialogCreateSousCategorieComponent>, private datePipe: DatePipe) {
     this.createSousCategorieForm = this.fb.group({
       Nom: ['', Validators.required],
-      Image: ['', Validators.required],
+      Image: [this.Image],
       Date: [this.datePipe.transform(Date.now(), 'yyyy-MM-ddTHH:mm:ssZ'), Validators.required],
       Somme: [0, Validators.required],
       Couleur: ['', Validators.required]
@@ -27,7 +28,7 @@ export class DialogCreateSousCategorieComponent {
   onSubmit() {
     if (this.createSousCategorieForm.valid) {
       const nom = this.createSousCategorieForm.get('Nom')?.value;
-      const image = this.createSousCategorieForm.get('Image')?.value;
+      const image = this.Image.value;
       const depense = this.data.categorie.Depense;
       const dateValue = this.createSousCategorieForm.get('Date')?.value;
       const date = this.datePipe.transform(dateValue, 'yyyy-MM-ddTHH:mm:ssZ');
@@ -50,5 +51,10 @@ export class DialogCreateSousCategorieComponent {
       alert("Formulaire non valide.")
       console.log(this.createSousCategorieForm.valid);
     }
+  }
+
+  onIconPickerSelect(icon: string): void {
+    this.Image.setValue(icon);
+    console.log(this.Image.value);
   }
 }

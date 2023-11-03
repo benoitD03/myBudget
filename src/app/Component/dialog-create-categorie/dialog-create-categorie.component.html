@@ -13,11 +13,10 @@
     </div>
 
     <div id="form-Image">
-      <mat-form-field appearance="fill">
-        <mat-label>Image</mat-label>
-        <input matInput formControlName="Image" type="text" placeholder="Image" required>
-        <mat-error *ngIf="createCategorieForm.get('Image')?.hasError('required')">L'image est requise</mat-error>
-      </mat-form-field>
+      <button mat-raised-button color="primary" type="button" formControlName="Image" [ipIconPack]="['mat']" [iconPicker]="Image.value" (iconPickerSelect)="onIconPickerSelect($event)">Choix Image</button>
+      <div id="form-Image-icon">
+        <mat-icon>{{Image.value}}</mat-icon>
+      </div>
     </div>
 
     <div id="form-Description">

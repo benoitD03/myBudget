@@ -18,9 +18,26 @@ form{
   }
   #form-date-somme {
     display: flex;
-    justify-content: center;
+    justify-content: space-around;
     #form-date, #form-somme {
       width: 44%;
     }
   }
+  #form-Image-Couleur {
+    display: flex;
+    //justify-content: center;
+    #form-Image {
+      display: flex;
+      justify-content: center;
+      margin-top: 25px;
+      width: 44%;
+      #form-Image-icon {
+        margin: 5px 0 0 20px;
+      }
+    }
+    #form-Couleur {
+      width: 44%;
+    }
+  }
+
 }

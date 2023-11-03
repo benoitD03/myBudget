@@ -12,13 +12,22 @@
       </mat-form-field>
     </div>
 
-    <div id="form-Image">
-      <mat-form-field appearance="fill">
-        <mat-label>Image</mat-label>
-        <input matInput formControlName="Image" type="text" placeholder="Image" required>
-        <mat-error *ngIf="createSousCategorieForm.get('Image')?.hasError('required')">L'image est requise</mat-error>
-      </mat-form-field>
+    <div id="form-Image-Couleur">
+      <div id="form-Image">
+        <button mat-raised-button color="primary" type="button" formControlName="Image" [ipIconPack]="['mat']" [iconPicker]="Image.value" (iconPickerSelect)="onIconPickerSelect($event)">Choix Image</button>
+        <div id="form-Image-icon">
+          <mat-icon>{{Image.value}}</mat-icon>
+        </div>
+      </div>
+      <div id="form-Couleur">
+        <mat-form-field>
+          <input formControlName="Couleur" matInput [ngxMatColorPicker]="colorPicker">
+          <ngx-mat-color-toggle matSuffix [for]="colorPicker"></ngx-mat-color-toggle>
+          <ngx-mat-color-picker #colorPicker ></ngx-mat-color-picker>
+        </mat-form-field>
+      </div>
     </div>
+
 
     <div id="form-date-somme">
       <div id="form-date">
@@ -38,15 +47,6 @@
         </mat-form-field>
       </div>
     </div>
-
-    <div id="form-Couleur">
-      <mat-form-field>
-        <input formControlName="Couleur" matInput [ngxMatColorPicker]="colorPicker">
-        <ngx-mat-color-toggle matSuffix [for]="colorPicker"></ngx-mat-color-toggle>
-        <ngx-mat-color-picker #colorPicker ></ngx-mat-color-picker>
-      </mat-form-field>
-    </div>
-
 
     <div id="form-button">
       <button mat-raised-button color="primary" type="submit">Ajouter</button>

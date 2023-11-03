@@ -40,6 +40,7 @@ import {
   NgxMatColorPickerModule
 } from "@angular-material-components/color-picker";
 import { DialogConfirmationComponent } from './Component/dialog-confirmation/dialog-confirmation.component';
+import {IconPickerModule} from "ngx-icon-picker";
 
 @NgModule({
   declarations: [
@@ -79,7 +80,8 @@ import { DialogConfirmationComponent } from './Component/dialog-confirmation/dia
         MatRadioModule,
         MatDatepickerModule,
         MatNativeDateModule,
-        NgxMatColorPickerModule
+        NgxMatColorPickerModule,
+        IconPickerModule
     ],
   providers: [
     AccountService,

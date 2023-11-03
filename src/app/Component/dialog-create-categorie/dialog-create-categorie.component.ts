@@ -1,5 +1,5 @@
 import {Component, Inject} from '@angular/core';
-import {FormBuilder, FormGroup, Validators} from "@angular/forms";
+import {FormBuilder, FormControl, FormGroup, Validators} from "@angular/forms";
 import {Config} from "../../class/config";
 import {AccountService} from "../../services/account.service";
 import {Router} from "@angular/router";
@@ -14,14 +14,15 @@ import {Categorie} from "../../class/categorie";
 })
 export class DialogCreateCategorieComponent {
   createCategorieForm: FormGroup;
+  Image = new FormControl();
 
   constructor( private fb: FormBuilder, private accountService: AccountService, private router: Router, private categorieService: CategorieService, public dialogRef: MatDialogRef<DialogCreateCategorieComponent>, @Inject(MAT_DIALOG_DATA) public data: any) {
     this.createCategorieForm = this.fb.group({
       Nom: [data.isModif ? data.categorieToModify.Nom : '', Validators.required],
-      Image: [data.isModif ? data.categorieToModify.Image : '', Validators.required],
+      Image: [this.Image],
       Description: [data.isModif ? data.categorieToModify.Description : ''],
       Depense: [data.isModif ? data.categorieToModify.Depense : true, Validators.required],
-      Couleur: [data.isModif ? data.categorieToModify.Couleur.substring(1) : null, Validators.required]
+      Couleur: [data.isModif ? data.categorieToModify.Couleur.substring(1) : null, Validators.required],
     });
   }
 
@@ -31,9 +32,10 @@ export class DialogCreateCategorieComponent {
   onSubmit() {
     //Création
     if (!this.data.isModif) {
+      console.log(this.createCategorieForm)
       if (this.createCategorieForm.valid) {
         const nom = this.createCategorieForm.get('Nom')?.value;
-        const image = this.createCategorieForm.get('Image')?.value;
+        const image = this.Image.value;
         const description = this.createCategorieForm.get('Description')?.value;
         const depense = this.createCategorieForm.get('Depense')?.value;
         const couleurValue = this.createCategorieForm.get('Couleur')?.value;
@@ -78,5 +80,9 @@ export class DialogCreateCategorieComponent {
           );
       }
     }
+  }
+  onIconPickerSelect(icon: string): void {
+    this.Image.setValue(icon);
+    console.log(this.Image.value);
   }
 }
