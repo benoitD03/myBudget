@@ -1,7 +1,7 @@
 <mat-card>
-  <mat-card-content id="card-content" [ngStyle]="{ 'background-color': categorie.Couleur }">
+  <mat-card-content id="card-content">
     <div id="header">
-      <div id="header-icon">
+      <div id="header-icon" [ngStyle]="{ 'background-color': categorie.Couleur }">
         <button [matTooltip]="categorie.Description" [color]="categorie.Couleur" mat-fab aria-label="Example icon button with a home icon" (click)="panelOpenState = !panelOpenState">
           <mat-icon>{{categorie.Image}}</mat-icon>
         </button>

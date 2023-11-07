@@ -16,28 +16,19 @@ form{
     width: 80%;
     margin: 15px 0;
   }
-  #form-date-somme {
+  #form-date, #form-somme {
+    width: 44%;
+  }
+  #form-Image {
     display: flex;
-    justify-content: space-around;
-    #form-date, #form-somme {
-      width: 44%;
+    justify-content: center;
+    margin-top: 25px;
+    width: 44%;
+    #form-Image-icon {
+      margin: 5px 0 0 20px;
     }
   }
-  #form-Image-Couleur {
-    display: flex;
-    //justify-content: center;
-    #form-Image {
-      display: flex;
-      justify-content: center;
-      margin-top: 25px;
-      width: 44%;
-      #form-Image-icon {
-        margin: 5px 0 0 20px;
-      }
-    }
-    #form-Couleur {
-      width: 44%;
-    }
+  #form-Couleur {
+    width: 44%;
   }
-
 }

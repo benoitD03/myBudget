@@ -12,7 +12,6 @@
       </mat-form-field>
     </div>
 
-    <div id="form-Image-Couleur">
       <div id="form-Image">
         <button mat-raised-button color="primary" type="button" formControlName="Image" [ipIconPack]="['mat']" [iconPicker]="Image.value" (iconPickerSelect)="onIconPickerSelect($event)">Choix Image</button>
         <div id="form-Image-icon">
@@ -26,10 +25,8 @@
           <ngx-mat-color-picker #colorPicker ></ngx-mat-color-picker>
         </mat-form-field>
       </div>
-    </div>
 
 
-    <div id="form-date-somme">
       <div id="form-date">
         <mat-form-field>
           <mat-label>Date</mat-label>
@@ -46,7 +43,6 @@
           <mat-error *ngIf="createSousCategorieForm.get('Somme')?.hasError('required')">La somme est requise</mat-error>
         </mat-form-field>
       </div>
-    </div>
 
     <div id="form-button">
       <button mat-raised-button color="primary" type="submit">Ajouter</button>

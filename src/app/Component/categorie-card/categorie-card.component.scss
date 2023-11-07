@@ -4,9 +4,7 @@ mat-card {
 }
 #card-content{
     max-width: 600px;
-  //width: 500px;
-  background-color: orange;
-
+    background: var(--card-content-background-color) !important;
   #header {
     display: flex;
     justify-content: space-between;

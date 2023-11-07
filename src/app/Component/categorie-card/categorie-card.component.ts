@@ -61,7 +61,7 @@ export class CategorieCardComponent {
       maxWidth: '100vw',
       maxHeight: '100vh',
       height: '70%',
-      width: '80%',
+      width: '400px',
       data: {categorie: this.categorie}
     });
 

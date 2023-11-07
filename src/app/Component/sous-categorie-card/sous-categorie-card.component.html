@@ -4,7 +4,7 @@
   </div>
   <mat-card-content >
     <div id="header">
-      <div id="header-icon">
+      <div id="header-icon" [ngStyle]="{ 'background-color': sousCategorie.Couleur }">
         <mat-icon class="mat-icon">{{ sousCategorie.Image }}</mat-icon>
       </div>
       <div id="header-name">
