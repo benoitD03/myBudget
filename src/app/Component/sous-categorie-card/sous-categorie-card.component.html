@@ -1,6 +1,6 @@
-<mat-card id="card-content" [ngStyle]="{ 'background-color': sousCategorie.Couleur }">
+<mat-card id="sub-card-content" [ngStyle]="{ 'background-color': sousCategorie.Couleur }">
   <div id="delete-button">
-    <button (click)="onConfirmDeleteSousCategorie()">x</button>
+    <button mat-icon-button (click)="onConfirmDeleteSousCategorie()"><mat-icon>close</mat-icon></button>
   </div>
   <mat-card-content >
     <div id="header">

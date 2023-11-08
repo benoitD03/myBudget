@@ -1,16 +1,20 @@
-#card-content {
-  //position: relative;
+mat-card-content {
+  background: var(--card-content-background-color) !important;
+  border-radius: 15px !important;
+}
+#sub-card-content {
+  background: var(--card-content-background-color) !important;
   height: 90px;
   #delete-button {
     position: absolute;
-    top: 4px;
-    right: 4px;
-    border-radius: 3%;
+    top: 0px;
+    right: 2px;
+    border-radius: 10px !important;
     button {
-      border-radius: 23%;
-      background-color: red;
-      color: white;
-      cursor: pointer;
+      border-radius: 10px !important;
+      .mat-icon {
+        margin-bottom: 5px;
+      }
     }
   }
   #header {

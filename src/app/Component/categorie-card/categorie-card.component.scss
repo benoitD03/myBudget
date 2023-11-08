@@ -1,10 +1,12 @@
 mat-card {
   max-width: 600px !important;
   margin: 20px;
+  border-radius: 15px !important;
 }
 #card-content{
     max-width: 600px;
     background: var(--card-content-background-color) !important;
+    border-radius: 15px !important;
   #header {
     display: flex;
     justify-content: space-between;
@@ -40,6 +42,10 @@ mat-card {
 }
 .mat-expansion-panel-body, .mat-expansion-panel-header, .mat-expansion-panel {
   background-color: var(--main-content-background-color) !important;
+  mat-panel-title {
+    display: flex;
+    justify-content: space-between;
+  }
   .mat-expansion-panel-header-title {
     color: var(--main-content-text-color) !important;
   }

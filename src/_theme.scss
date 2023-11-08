@@ -1,29 +1,29 @@
 [data-theme="light"] {
-  --header-background-color: #ffffff;
+  --header-background-color: #F1F4F5;
   --header-border-color: #e5e8ea;
   --header-menu-item-color: #231f20;
   --header-theme-switch-background-color: #cccccc;
-  --header-theme-switch-before-background-color: #ffffff;
+  --header-theme-switch-before-background-color: #F1F4F5;
   --header-theme-switch-checked-background-color: #2196f3;
 
-  --main-content-background-color: #ffffff;
+  --main-content-background-color: #F1F4F5;
   --main-content-text-color: #231f20;
 
-  --card-content-background-color: rgba(2, 58, 253, 0.16);
+  --card-content-background-color: rgba(255, 255, 255, 0.86);
   --card-content-text-color: #231f20;
 }
 
 [data-theme="dark"] {
-  --header-background-color: #231f20;
+  --header-background-color: #0F1F38;
   --header-border-color: #e5e8ea;
   --header-menu-item-color: #ffffff;
   --header-theme-switch-background-color: #cccccc;
   --header-theme-switch-before-background-color: #ffffff;
   --header-theme-switch-checked-background-color: #2196f3;
 
-  --main-content-background-color: #231f20;
+  --main-content-background-color: #0F1F38;
   --main-content-text-color: #ffffff;
 
-  --card-content-background-color: rgba(35, 31, 32, 0.21);
+  --card-content-background-color: rgb(165, 165, 165);
   --card-content-text-color: #ffffff;
 }

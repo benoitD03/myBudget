@@ -13,22 +13,14 @@ form{
 #form {
   text-align: center;
   mat-form-field {
-    width: 80%;
+    width: 80% !important;
     margin: 15px 0;
-  }
-  #form-date, #form-somme {
-    width: 44%;
   }
   #form-Image {
     display: flex;
     justify-content: center;
-    margin-top: 25px;
-    width: 44%;
     #form-Image-icon {
       margin: 5px 0 0 20px;
     }
-  }
-  #form-Couleur {
-    width: 44%;
   }
 }
