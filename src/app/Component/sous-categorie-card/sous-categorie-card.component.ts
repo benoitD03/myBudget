@@ -2,6 +2,12 @@ import {Component, EventEmitter, Input, Output} from '@angular/core';
 import {SousCategorieService} from "../../services/sous-categorie.service";
 import {MatDialog} from "@angular/material/dialog";
 import {DialogConfirmationComponent} from "../dialog-confirmation/dialog-confirmation.component";
+import {Categorie} from "../../class/categorie";
+import {DialogCreateCategorieComponent} from "../dialog-create-categorie/dialog-create-categorie.component";
+import {SousCategorie} from "../../class/sous-categorie";
+import {
+  DialogCreateSousCategorieComponent
+} from "../dialog-create-sous-categorie/dialog-create-sous-categorie.component";
 
 @Component({
   selector: 'app-sous-categorie-card',
@@ -38,5 +44,27 @@ export class SousCategorieCardComponent {
         console.error('Erreur lors de la suppression de la sous-catégorie :', error);
       }
     );
+  }
+
+  /**
+   * Méthode au clic sur le bouton modifier de sous Catégorie
+   * @param sousCategorie
+   * @param isModif
+   */
+  openDialogModifySousCategorie(sousCategorie: SousCategorie, isModif: Boolean) {
+    const dialogRef = this.dialog.open(DialogCreateSousCategorieComponent, {
+      maxWidth: '100vw',
+      maxHeight: '100vh',
+      height: '70%',
+      width: '400px',
+      data:
+        { sousCategorieToModify: sousCategorie,
+          isModif: isModif
+        },
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      // this.loadlist();
+    });
   }
 }

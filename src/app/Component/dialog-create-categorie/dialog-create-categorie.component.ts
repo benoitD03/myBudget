@@ -32,7 +32,6 @@ export class DialogCreateCategorieComponent {
   onSubmit() {
     //Création
     if (!this.data.isModif) {
-      console.log(this.createCategorieForm)
       if (this.createCategorieForm.valid) {
         const nom = this.createCategorieForm.get('Nom')?.value;
         const image = this.Image.value;

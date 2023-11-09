@@ -28,6 +28,9 @@ export class CategorieCardComponent {
     this.loadSousCategories();
   }
 
+  /**
+   * Méthode de chargement des sous catégories
+   */
   loadSousCategories() {
     const id_Categorie = this.categorie.id_Categorie;
 
@@ -56,6 +59,9 @@ export class CategorieCardComponent {
     this.totalCategorieChange.emit({value: this.totalCategorie, isDepense: this.categorie.Depense});
   }
 
+  /**
+   * Méthode à l'ouverture du formulaire de création de sous catégorie
+   */
   openDialogCreateSousCategorie() {
     const dialogRef = this.dialog.open(DialogCreateSousCategorieComponent, {
       maxWidth: '100vw',
@@ -66,7 +72,9 @@ export class CategorieCardComponent {
     });
 
     dialogRef.afterClosed().subscribe(result => {
-      this.loadSousCategories();
+      if (result === 'valid') {
+        this.loadSousCategories();
+      }
     });
   }
 }

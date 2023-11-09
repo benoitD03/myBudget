@@ -68,4 +68,16 @@ export class SousCategorieService {
     return this.http.delete<void>(`${Config.URL_DELETE_SOUS_CATEGORIES}/${sousCategorieId}` , { headers });
   }
 
+  /**
+   * Méthode de modification d'une sous- catégorie
+   * @param sousCategorieId
+   * @param updatedData ==> Sous Catégories avec les données modifiées
+   */
+  updateSousCategorie(sousCategorieId: number, updatedData: SousCategorie): Observable<any> {
+    const token = this.accountService.getToken();
+
+    const headers = token ? new HttpHeaders({ Authorization: `Bearer ${token}` }) : new HttpHeaders();
+
+    return this.http.put(`${Config.URL_UPDATE_SOUS_CATEGORIES}/${sousCategorieId}`, updatedData, { headers });
+  }
 }

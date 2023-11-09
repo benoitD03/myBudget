@@ -82,6 +82,11 @@ export class MyCategoriesComponent implements OnInit{
     }
   }
 
+  /**
+   * Méthode au clic sur le bouton modifier Catégorie
+   * @param categorie
+   * @param isModif
+   */
   openDialogModifyCategorie(categorie: Categorie, isModif: Boolean) {
     const dialogRef = this.dialog.open(DialogCreateCategorieComponent, {
       maxWidth: '100vw',

@@ -17,39 +17,69 @@ export class DialogCreateSousCategorieComponent {
 
   constructor(@Inject(MAT_DIALOG_DATA) public data: any,private fb: FormBuilder, private accountService: AccountService, private router: Router, private sousCategorieService: SousCategorieService, public dialogRef: MatDialogRef<DialogCreateSousCategorieComponent>, private datePipe: DatePipe) {
     this.createSousCategorieForm = this.fb.group({
-      Nom: ['', Validators.required],
+      Nom: [data.isModif ? data.sousCategorieToModify.Nom : '', Validators.required],
       Image: [this.Image],
-      Date: [this.datePipe.transform(Date.now(), 'yyyy-MM-ddTHH:mm:ssZ'), Validators.required],
-      Somme: [0, Validators.required],
-      Couleur: ['', Validators.required]
+      Date: [data.isModif ? data.sousCategorieToModify.Date : this.datePipe.transform(Date.now(), 'yyyy-MM-ddTHH:mm:ssZ'), Validators.required],
+      Somme: [data.isModif ? data.sousCategorieToModify.Somme : 0, Validators.required],
+      Couleur: [data.isModif ? data.sousCategorieToModify.Couleur.substring(1) : null, Validators.required]
     });
   }
 
   onSubmit() {
-    if (this.createSousCategorieForm.valid) {
-      const nom = this.createSousCategorieForm.get('Nom')?.value;
-      const image = this.Image.value;
-      const depense = this.data.categorie.Depense;
-      const dateValue = this.createSousCategorieForm.get('Date')?.value;
-      const date = this.datePipe.transform(dateValue, 'yyyy-MM-ddTHH:mm:ssZ');
-      const somme = this.createSousCategorieForm.get('Somme')?.value;
-      const idCategorie = this.data.categorie.id_Categorie;
-      const idUser = this.accountService.getIdUser();
-      const couleurValue = this.createSousCategorieForm.get('Couleur')?.value;
-      const couleur = "#" + couleurValue.hex;
-      //
-      this.sousCategorieService.createSousCategorie(nom, image, depense, date, somme, Number(idUser), Number(idCategorie), couleur).subscribe(
-        (response: any) => {
-          console.log(response)
-          this.dialogRef.close();
-        },
-        (error: any) => {
-          console.error(error)
-        }
-      )
+    if (!this.data.isModif) {
+      if (this.createSousCategorieForm.valid) {
+        const nom = this.createSousCategorieForm.get('Nom')?.value;
+        const image = this.Image.value;
+        const depense = this.data.categorie.Depense;
+        const dateValue = this.createSousCategorieForm.get('Date')?.value;
+        const date = this.datePipe.transform(dateValue, 'yyyy-MM-ddTHH:mm:ssZ');
+        const somme = this.createSousCategorieForm.get('Somme')?.value;
+        const idCategorie = this.data.categorie.id_Categorie;
+        const idUser = this.accountService.getIdUser();
+        const couleurValue = this.createSousCategorieForm.get('Couleur')?.value;
+        const couleur = "#" + couleurValue.hex;
+        //
+        this.sousCategorieService.createSousCategorie(nom, image, depense, date, somme, Number(idUser), Number(idCategorie), couleur).subscribe(
+          (response: any) => {
+            console.log(response)
+            this.dialogRef.close();
+          },
+          (error: any) => {
+            console.error(error)
+          }
+        )
+        this.dialogRef.close('valid');
+      } else {
+        alert("Formulaire non valide.")
+        console.log(this.createSousCategorieForm.valid);
+      }
     } else {
-      alert("Formulaire non valide.")
-      console.log(this.createSousCategorieForm.valid);
+      //Modification
+      const updatedSousCategorieData: any = {};
+      const formControls = this.createSousCategorieForm.controls;
+
+      if (this.createSousCategorieForm.valid) {
+
+        for (const key in formControls) {
+          if (formControls.hasOwnProperty(key)) {
+            updatedSousCategorieData[key] = formControls[key].value;
+          }
+        }
+
+        const couleurValue = this.createSousCategorieForm.get('Couleur')?.value;
+        updatedSousCategorieData.Couleur = "#" + couleurValue.hex;
+
+        this.sousCategorieService
+          .updateSousCategorie(this.data.sousCategorieToModify.id_Sous_Categorie, updatedSousCategorieData)
+          .subscribe(
+            (response: any) => {
+              this.dialogRef.close();
+            },
+            (error: any) => {
+              console.log(error)
+            }
+          );
+      }
     }
   }
 

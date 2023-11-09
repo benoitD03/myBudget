@@ -1,5 +1,6 @@
 <mat-card id="sub-card-content" [ngStyle]="{ 'background-color': sousCategorie.Couleur }">
   <div id="delete-button">
+    <button mat-icon-button (click)="openDialogModifySousCategorie(sousCategorie, true)"><mat-icon>edit</mat-icon></button>
     <button mat-icon-button (click)="onConfirmDeleteSousCategorie()"><mat-icon>close</mat-icon></button>
   </div>
   <mat-card-content >
