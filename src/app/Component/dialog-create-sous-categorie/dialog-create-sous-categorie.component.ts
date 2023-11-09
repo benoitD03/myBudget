@@ -18,7 +18,7 @@ export class DialogCreateSousCategorieComponent {
   constructor(@Inject(MAT_DIALOG_DATA) public data: any,private fb: FormBuilder, private accountService: AccountService, private router: Router, private sousCategorieService: SousCategorieService, public dialogRef: MatDialogRef<DialogCreateSousCategorieComponent>, private datePipe: DatePipe) {
     this.createSousCategorieForm = this.fb.group({
       Nom: [data.isModif ? data.sousCategorieToModify.Nom : '', Validators.required],
-      Image: [this.Image],
+      Image: [data.isModif ? data.sousCategorieToModify.Image : this.Image],
       Date: [data.isModif ? data.sousCategorieToModify.Date : this.datePipe.transform(Date.now(), 'yyyy-MM-ddTHH:mm:ssZ'), Validators.required],
       Somme: [data.isModif ? data.sousCategorieToModify.Somme : 0, Validators.required],
       Couleur: [data.isModif ? data.sousCategorieToModify.Couleur.substring(1) : null, Validators.required]
@@ -68,6 +68,9 @@ export class DialogCreateSousCategorieComponent {
 
         const couleurValue = this.createSousCategorieForm.get('Couleur')?.value;
         updatedSousCategorieData.Couleur = "#" + couleurValue.hex;
+        updatedSousCategorieData.Image = this.Image.value;
+        const dateValue = this.createSousCategorieForm.get('Date')?.value;
+        updatedSousCategorieData.Date = this.datePipe.transform(dateValue, 'yyyy-MM-ddTHH:mm:ssZ');
 
         this.sousCategorieService
           .updateSousCategorie(this.data.sousCategorieToModify.id_Sous_Categorie, updatedSousCategorieData)

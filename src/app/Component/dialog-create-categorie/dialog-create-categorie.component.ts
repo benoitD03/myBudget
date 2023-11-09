@@ -19,7 +19,7 @@ export class DialogCreateCategorieComponent {
   constructor( private fb: FormBuilder, private accountService: AccountService, private router: Router, private categorieService: CategorieService, public dialogRef: MatDialogRef<DialogCreateCategorieComponent>, @Inject(MAT_DIALOG_DATA) public data: any) {
     this.createCategorieForm = this.fb.group({
       Nom: [data.isModif ? data.categorieToModify.Nom : '', Validators.required],
-      Image: [this.Image],
+      Image: [data.isModif ? data.categorieToModify.Image : this.Image],
       Description: [data.isModif ? data.categorieToModify.Description : ''],
       Depense: [data.isModif ? data.categorieToModify.Depense : true, Validators.required],
       Couleur: [data.isModif ? data.categorieToModify.Couleur.substring(1) : null, Validators.required],
@@ -66,6 +66,7 @@ export class DialogCreateCategorieComponent {
 
       const couleurValue = this.createCategorieForm.get('Couleur')?.value;
       updatedCategorieData.Couleur = "#" + couleurValue.hex;
+      updatedCategorieData.Image = this.Image.value;
 
         this.categorieService
           .updateCategorie(this.data.categorieToModify.id_Categorie, updatedCategorieData)

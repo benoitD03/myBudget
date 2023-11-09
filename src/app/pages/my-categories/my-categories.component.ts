@@ -88,6 +88,7 @@ export class MyCategoriesComponent implements OnInit{
    * @param isModif
    */
   openDialogModifyCategorie(categorie: Categorie, isModif: Boolean) {
+    console.log(categorie.Couleur)
     const dialogRef = this.dialog.open(DialogCreateCategorieComponent, {
       maxWidth: '100vw',
       maxHeight: '100vh',
