@@ -1,6 +1,10 @@
+mat-card {
+  margin: 50px 0 !important;
+}
 mat-card-content {
   background: var(--card-content-background-color) !important;
-  border-radius: 15px !important;
+  border-radius: 5px !important;
+  color: var(--main-content-text-color) !important;
 }
 #sub-card-content {
   background: var(--card-content-background-color) !important;
@@ -14,28 +18,25 @@ mat-card-content {
       border-radius: 10px !important;
       .mat-icon {
         margin-bottom: 5px;
+        color: var(--main-content-text-color) !important;
       }
     }
   }
   #header {
     display: flex;
-    //justify-content: space-between;
     #header-icon {
-      background-color: var(--main-content-text-color);
       width: 50px !important;
       height: 50px;
       display: flex;
       align-items: center;
       justify-content: center;
       border-radius: 10%;
-      margin-top: -20px;
-      box-shadow: 5px 5px 15px 5px rgba(0,0,0,0.3);
+      box-shadow: 5px 5px 15px 5px rgba(0, 0, 0, 0.3);
+      margin-top: -20px !important;
       .mat-icon {
-        color: white;
-        width: 25px;
-        height: 25px;
-        font-size: 25px !important;
-        color: var(--main-content-background-color);;
+        width: 30px;
+        height: 30px;
+        font-size: 30px !important;
       }
     }
     #header-name {

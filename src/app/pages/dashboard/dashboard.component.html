@@ -1,9 +1,15 @@
 <header>
   <div id="title">Mois en cours</div>
   <div id="infos">
-    <p>Revenu Total: {{ totalRevenu }} €</p>
-    <p>Dépenses Totales: {{ totalDepense }} €</p>
-    <p>Epargne possible: {{ epargnePossible }} €</p>
+    <mat-card class="totaux">
+      <mat-card-content>Revenu Total: {{ totalRevenu }} €</mat-card-content>
+    </mat-card>
+    <mat-card class="totaux">
+      <mat-card-content>Dépenses Totales: {{ totalDepense }} €</mat-card-content>
+    </mat-card>
+    <mat-card class="totaux">
+      <mat-card-content>Epargne possible: {{ epargnePossible }} €</mat-card-content>
+    </mat-card>
   </div>
 </header>
 
