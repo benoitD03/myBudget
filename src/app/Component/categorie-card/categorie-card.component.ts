@@ -7,6 +7,8 @@ import {MatDialog} from "@angular/material/dialog";
 import {
   DialogCreateSousCategorieComponent
 } from "../dialog-create-sous-categorie/dialog-create-sous-categorie.component";
+import {Router} from "@angular/router";
+import {Location} from "@angular/common";
 
 @Component({
   selector: 'app-categorie-card',
@@ -22,7 +24,7 @@ export class CategorieCardComponent {
   sousCategories: SousCategorie[] = [];
   totalCategorie: number = 0;
 
-  constructor(private sousCategorieService: SousCategorieService, private accountService: AccountService, public dialog: MatDialog) {
+  constructor(private sousCategorieService: SousCategorieService, private accountService: AccountService, public dialog: MatDialog, private router: Router) {
   }
   ngOnInit() {
     this.loadSousCategories();
@@ -75,6 +77,8 @@ export class CategorieCardComponent {
       if (result === 'valid') {
         this.loadSousCategories();
       }
+      this.router.routeReuseStrategy.shouldReuseRoute = () => false;
+      this.router.navigate(['.']);
     });
   }
 }

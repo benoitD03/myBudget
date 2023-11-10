@@ -8,6 +8,7 @@ import {SousCategorie} from "../../class/sous-categorie";
 import {
   DialogCreateSousCategorieComponent
 } from "../dialog-create-sous-categorie/dialog-create-sous-categorie.component";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-sous-categorie-card',
@@ -18,7 +19,7 @@ export class SousCategorieCardComponent {
   @Input() sousCategorie: any;
   @Output() deleteSuccess = new EventEmitter<void>();
 
-  constructor(private sousCategorieService: SousCategorieService, private dialog: MatDialog) { }
+  constructor(private sousCategorieService: SousCategorieService, private dialog: MatDialog, private router: Router) { }
 
   onConfirmDeleteSousCategorie() {
     const dialogRef = this.dialog.open(DialogConfirmationComponent, {
@@ -31,6 +32,8 @@ export class SousCategorieCardComponent {
         this.deleteSousCategorie();
         this.deleteSuccess.emit();
       }
+      this.router.routeReuseStrategy.shouldReuseRoute = () => false;
+      this.router.navigate(['.']);
     });
   }
 
@@ -64,7 +67,7 @@ export class SousCategorieCardComponent {
     });
 
     dialogRef.afterClosed().subscribe(result => {
-      // this.loadlist();
+      this.router.navigate(['.']);
     });
   }
 }
