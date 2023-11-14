@@ -1,32 +1,31 @@
-<mat-card>
-  <mat-card-header>
-    <mat-card-title>Connexion</mat-card-title>
-  </mat-card-header>
-  <mat-card-content>
-    <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
-      <div id="form">
+<div id="container">
+  <div id="title">
+    <h1>Connexion</h1>
+  </div>
 
-        <div id="form-email">
-          <mat-form-field appearance="fill">
-            <mat-label>Email</mat-label>
-            <input matInput formControlName="email" type="email" placeholder="Adresse email" required>
-            <mat-error *ngIf="loginForm.get('email')?.hasError('required')">L'email est requis</mat-error>
-            <mat-error *ngIf="loginForm.get('email')?.hasError('email')">L'email n'est pas valide</mat-error>
-          </mat-form-field>
-        </div>
+  <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+    <mat-card id="form">
 
-        <div id="form-password">
-          <mat-form-field appearance="fill">
-            <mat-label>Mot de passe</mat-label>
-            <input matInput formControlName="password" type="password" placeholder="Mot de passe" required>
-            <mat-error *ngIf="loginForm.get('password')?.hasError('required')">Le mot de passe est requis</mat-error>
-          </mat-form-field>
-        </div>
-        <div id="form-button">
-          <button mat-raised-button color="primary" type="submit">Connexion</button>
-        </div>
-
+      <div id="form-email">
+        <mat-form-field appearance="fill">
+          <mat-label>Email</mat-label>
+          <input matInput formControlName="email" type="email" placeholder="Adresse email" required>
+          <mat-error *ngIf="loginForm.get('email')?.hasError('required')">L'email est requis</mat-error>
+          <mat-error *ngIf="loginForm.get('email')?.hasError('email')">L'email n'est pas valide</mat-error>
+        </mat-form-field>
       </div>
-    </form>
-  </mat-card-content>
-</mat-card>
+
+      <div id="form-password">
+        <mat-form-field appearance="fill">
+          <mat-label>Mot de passe</mat-label>
+          <input matInput formControlName="password" type="password" placeholder="Mot de passe" required>
+          <mat-error *ngIf="loginForm.get('password')?.hasError('required')">Le mot de passe est requis</mat-error>
+        </mat-form-field>
+      </div>
+      <div id="form-button">
+        <button mat-raised-button color="primary" type="submit">Connexion</button>
+      </div>
+
+    </mat-card>
+  </form>
+</div>
