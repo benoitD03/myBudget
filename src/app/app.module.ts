@@ -15,7 +15,7 @@ import { DashboardComponent } from './pages/dashboard/dashboard.component';
 import { FullYearComponent } from './pages/full-year/full-year.component';
 import { LastMonthComponent } from './pages/last-month/last-month.component';
 import { LoginComponent } from './pages/login/login.component';
-import {ReactiveFormsModule} from "@angular/forms";
+import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {MatInputModule} from "@angular/material/input";
 import {MatCardModule} from "@angular/material/card";
 import {CommonModule, DatePipe} from "@angular/common";
@@ -33,7 +33,7 @@ import {MatCheckboxModule} from "@angular/material/checkbox";
 import {MatRadioModule} from "@angular/material/radio";
 import { DialogCreateSousCategorieComponent } from './Component/dialog-create-sous-categorie/dialog-create-sous-categorie.component';
 import {MatDatepickerModule} from "@angular/material/datepicker";
-import {MatNativeDateModule} from "@angular/material/core";
+import {MatNativeDateModule, MatRippleModule} from "@angular/material/core";
 import {
   MAT_COLOR_FORMATS,
   NGX_MAT_COLOR_FORMATS,
@@ -41,6 +41,7 @@ import {
 } from "@angular-material-components/color-picker";
 import { DialogConfirmationComponent } from './Component/dialog-confirmation/dialog-confirmation.component';
 import {IconPickerModule} from "ngx-icon-picker";
+import {MatFormFieldModule} from "@angular/material/form-field";
 
 @NgModule({
   declarations: [
@@ -81,7 +82,11 @@ import {IconPickerModule} from "ngx-icon-picker";
         MatDatepickerModule,
         MatNativeDateModule,
         NgxMatColorPickerModule,
-        IconPickerModule
+        IconPickerModule,
+        MatRippleModule,
+        FormsModule,
+        MatInputModule,
+        MatFormFieldModule,
     ],
   providers: [
     AccountService,

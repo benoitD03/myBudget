@@ -30,10 +30,10 @@
       <div id="form-date">
         <mat-form-field>
           <mat-label>Date</mat-label>
-          <input matInput [matDatepicker]="picker">
+          <input formControlName="Date" matInput [matDatepicker]="picker">
           <mat-hint>MM/DD/YYYY</mat-hint>
           <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
-          <mat-datepicker #picker></mat-datepicker>
+          <mat-datepicker #picker ></mat-datepicker>
         </mat-form-field>
       </div>
       <div id="form-somme">

@@ -38,10 +38,8 @@ export class DialogCreateSousCategorieComponent {
         const idUser = this.accountService.getIdUser();
         const couleurValue = this.createSousCategorieForm.get('Couleur')?.value;
         const couleur = "#" + couleurValue.hex;
-        //
         this.sousCategorieService.createSousCategorie(nom, image, depense, date, somme, Number(idUser), Number(idCategorie), couleur).subscribe(
           (response: any) => {
-            console.log(response)
             this.dialogRef.close();
           },
           (error: any) => {
@@ -51,7 +49,6 @@ export class DialogCreateSousCategorieComponent {
         this.dialogRef.close('valid');
       } else {
         alert("Formulaire non valide.")
-        console.log(this.createSousCategorieForm.valid);
       }
     } else {
       //Modification
