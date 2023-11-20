@@ -13,6 +13,7 @@ export class Config {
   static URL_DELETE_CATEGORIES= Config.URL_API + '/categories';
   static URL_UPDATE_CATEGORIES= Config.URL_API + '/categories';
   static URL_SOUS_CATEGORIES = Config.URL_API + '/sous-categories/all';
+  static URL_SOUS_CATEGORIES_BY_MONTH = Config.URL_API + '/sous-categories/by-month';
   static URL_CREATE_SOUS_CATEGORIES = Config.URL_API + '/sous-categories';
   static URL_DELETE_SOUS_CATEGORIES = Config.URL_API + '/sous-categories';
   static URL_UPDATE_SOUS_CATEGORIES = Config.URL_API + '/sous-categories';

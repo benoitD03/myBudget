@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import {Observable} from "rxjs";
 import {Categorie} from "../class/categorie";
-import {HttpClient, HttpHeaders} from "@angular/common/http";
+import {HttpClient, HttpHeaders, HttpParams} from "@angular/common/http";
 import {Config} from "../class/config";
 import {AccountService} from "./account.service";
 import {SousCategorie} from "../class/sous-categorie";
@@ -24,6 +24,21 @@ export class SousCategorieService {
     const headers = token ? new HttpHeaders({ Authorization: `Bearer ${token}` }) : new HttpHeaders();
 
     return this.http.get<SousCategorie[]>(Config.URL_SOUS_CATEGORIES+'?id_Categorie='+categorieId, { headers });
+  }
+
+  /**
+   * Méthode de récuperation des sous catégories d'une catégorie en fonction d'un mois donné
+   * @param categorieId
+   * @param year
+   * @param month
+   */
+  getAllByCategorieAndMonth(categorieId: number, year: number, month: number): Observable<any> {
+    const params = new HttpParams()
+      .set('categorieId', categorieId.toString())
+      .set('year', year.toString())
+      .set('month', month.toString());
+
+    return this.http.get<any>(Config.URL_SOUS_CATEGORIES_BY_MONTH, { params });
   }
 
   /**
