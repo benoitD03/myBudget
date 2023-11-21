@@ -33,12 +33,15 @@ export class SousCategorieService {
    * @param month
    */
   getAllByCategorieAndMonth(categorieId: number, year: number, month: number): Observable<any> {
+    const token = this.accountService.getToken();
+
+    const headers = token ? new HttpHeaders({ Authorization: `Bearer ${token}` }) : new HttpHeaders();
     const params = new HttpParams()
       .set('categorieId', categorieId.toString())
       .set('year', year.toString())
       .set('month', month.toString());
 
-    return this.http.get<any>(Config.URL_SOUS_CATEGORIES_BY_MONTH, { params });
+    return this.http.get<any>(Config.URL_SOUS_CATEGORIES_BY_MONTH, { headers, params });
   }
 
   /**

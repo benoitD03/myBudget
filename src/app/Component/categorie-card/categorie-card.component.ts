@@ -8,7 +8,7 @@ import {
   DialogCreateSousCategorieComponent
 } from "../dialog-create-sous-categorie/dialog-create-sous-categorie.component";
 import {Router} from "@angular/router";
-import {Location} from "@angular/common";
+import * as moment from "moment";
 
 @Component({
   selector: 'app-categorie-card',
@@ -36,7 +36,9 @@ export class CategorieCardComponent {
   loadSousCategories() {
     const id_Categorie = this.categorie.id_Categorie;
 
-    this.sousCategorieService.getSousCategoriesByCategorieId(id_Categorie).subscribe(
+    const year = moment().year();
+    const month = moment().month() + 1;
+    this.sousCategorieService.getAllByCategorieAndMonth(id_Categorie, year, month).subscribe(
       (data) => {
         this.sousCategories=data;
         this.totalCategorie=0;
@@ -50,9 +52,10 @@ export class CategorieCardComponent {
         this.onAddToTotalDepense();
       },
       (error) => {
-        console.error('Erreur lors de la récupération des sous catégories :', error);
+        console.error('Erreur lors de la récupération des sous-catégories:', error);
       }
-    )
+    );
+
   }
   /**
    * Méthode qui permet de notifier au composant parent (Dashboard) lorsque le total d'une catégorie changera.
