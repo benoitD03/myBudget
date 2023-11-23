@@ -1,5 +1,9 @@
 <header>
-  <mat-card id="title"><mat-card-content>Mois en cours</mat-card-content></mat-card>
+  <mat-card id="title"><mat-card-content>
+    <button mat-raised-button (click)="changeMonth()">{{ isPreviousMonth ? "Mois en cours" : "Mois précédent" }}</button>
+    {{ isPreviousMonth ? "Le mois dernier" : "Mois en cours" }}
+  </mat-card-content></mat-card>
+
   <div id="infos">
     <mat-card class="totaux totaux-number">
       <mat-card-content>Revenu Total: <span>{{ totalRevenu }} €</span></mat-card-content>
@@ -20,13 +24,13 @@
   <div id="depenses" class="categorie-container">
     <div class="categorie-container-title"><h2>Dépenses</h2></div>
     <div *ngFor="let categorie of categories; index as i">
-      <app-categorie-card *ngIf="categorie.Depense" [categorie]="categorie" (totalCategorieChange)="updateTotalCategory($event)"></app-categorie-card>
+      <app-categorie-card *ngIf="categorie.Depense" [categorie]="categorie" [month]="month" (totalCategorieChange)="updateTotalCategory($event)"></app-categorie-card>
     </div>
   </div>
   <div id="revenus" class="categorie-container">
     <div class="categorie-container-title"><h2>Revenus</h2></div>
     <div *ngFor="let categorie of categories; index as i">
-      <app-categorie-card *ngIf="!categorie.Depense" [categorie]="categorie" (totalCategorieChange)="updateTotalCategory($event)"></app-categorie-card>
+      <app-categorie-card *ngIf="!categorie.Depense" [categorie]="categorie" [month]="month" (totalCategorieChange)="updateTotalCategory($event)"></app-categorie-card>
     </div>
   </div>
 </section>

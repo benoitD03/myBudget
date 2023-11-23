@@ -5,7 +5,11 @@ header{
     text-align: center;
     margin: 30px 0 15px 0;
     max-width: 100% !important;
-    mat-card-content {
+    position: relative;
+    button {
+      position: absolute;
+      top: 15px;
+      left: 10px;
     }
   }
   #infos {

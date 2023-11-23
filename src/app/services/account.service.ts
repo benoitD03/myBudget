@@ -31,6 +31,8 @@ export class AccountService {
     this.router.navigate([Config.ROUTE_LOGIN])
     localStorage.removeItem('token');
     localStorage.removeItem('id_User');
+    localStorage.removeItem('month');
+    localStorage.removeItem('isPreviousMonth');
   }
 
   /**
