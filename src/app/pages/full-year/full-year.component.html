@@ -1,1 +1,67 @@
-<p>full-year works!</p>
+
+<h2>Liste des dépenses</h2>
+<table mat-table [dataSource]="sousCategoriesDepenses" class="mat-elevation-z8">
+
+  <ng-container matColumnDef="Categorie">
+    <th mat-header-cell *matHeaderCellDef>Catégorie</th>
+    <td mat-cell *matCellDef="let sousCategorie">{{sousCategorie.categorie.Nom}}</td>
+  </ng-container>
+
+  <!-- Position Column -->
+  <ng-container matColumnDef="Nom">
+    <th mat-header-cell *matHeaderCellDef>Nom</th>
+    <td mat-cell  *matCellDef="let sousCategorie">{{sousCategorie.Nom}}</td>
+  </ng-container>
+
+  <!-- Name Column -->
+  <ng-container matColumnDef="Image">
+    <th mat-header-cell *matHeaderCellDef>Image</th>
+    <td mat-cell *matCellDef="let sousCategorie"><mat-icon>{{sousCategorie.Image}}</mat-icon></td>
+  </ng-container>
+
+  <ng-container matColumnDef="Date">
+    <th mat-header-cell *matHeaderCellDef>Date</th>
+    <td mat-cell *matCellDef="let sousCategorie">{{sousCategorie.Date}}</td>
+  </ng-container>
+
+  <ng-container matColumnDef="Somme">
+    <th mat-header-cell *matHeaderCellDef>Somme</th>
+    <td mat-cell *matCellDef="let sousCategorie">{{sousCategorie.Somme}}</td>
+  </ng-container>
+
+  <tr mat-header-row *matHeaderRowDef="Columns"></tr>
+  <tr mat-row *matRowDef="let row; columns: Columns;"></tr>
+</table>
+
+<h2>Liste des Revenus</h2>
+<table mat-table [dataSource]="sousCategoriesRevenus" class="mat-elevation-z8">
+
+  <ng-container matColumnDef="Categorie">
+    <th mat-header-cell *matHeaderCellDef>Catégorie</th>
+    <td mat-cell *matCellDef="let sousCategorie">{{sousCategorie.categorie.Nom}}</td>
+  </ng-container>
+  <!-- Position Column -->
+  <ng-container matColumnDef="Nom">
+    <th mat-header-cell *matHeaderCellDef>Nom</th>
+    <td mat-cell  *matCellDef="let sousCategorie">{{sousCategorie.Nom}}</td>
+  </ng-container>
+
+  <!-- Name Column -->
+  <ng-container matColumnDef="Image">
+    <th mat-header-cell *matHeaderCellDef>Image</th>
+    <td mat-cell *matCellDef="let sousCategorie"><mat-icon>{{sousCategorie.Image}}</mat-icon></td>
+  </ng-container>
+
+  <ng-container matColumnDef="Date">
+    <th mat-header-cell *matHeaderCellDef>Date</th>
+    <td mat-cell *matCellDef="let sousCategorie">{{sousCategorie.Date}}</td>
+  </ng-container>
+
+  <ng-container matColumnDef="Somme">
+    <th mat-header-cell *matHeaderCellDef>Somme</th>
+    <td mat-cell *matCellDef="let sousCategorie">{{sousCategorie.Somme}}</td>
+  </ng-container>
+
+  <tr mat-header-row *matHeaderRowDef="Columns"></tr>
+  <tr mat-row *matRowDef="let row; columns: Columns;"></tr>
+</table>

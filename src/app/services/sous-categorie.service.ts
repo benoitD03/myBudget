@@ -45,6 +45,22 @@ export class SousCategorieService {
   }
 
   /**
+   * Méthode de récuperation des sous catégories d'une catégorie en fonction d'une année
+   * @param categorieId
+   * @param year
+   * @param month
+   */
+  getAllByYear(year: number): Observable<any> {
+    const token = this.accountService.getToken();
+
+    const headers = token ? new HttpHeaders({ Authorization: `Bearer ${token}` }) : new HttpHeaders();
+    const params = new HttpParams()
+      .set('year', year.toString())
+
+    return this.http.get<any>(Config.URL_SOUS_CATEGORIES_BY_YEAR, { headers, params });
+  }
+
+  /**
    * Méthode de création d'une sous catégorie
    * @param nom
    * @param image
