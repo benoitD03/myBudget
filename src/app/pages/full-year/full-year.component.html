@@ -1,3 +1,9 @@
+<div>
+  <div *ngIf="depensesCategories.length > 0">
+    <canvas id="expenseChart" width="400" height="200"></canvas>
+  </div>
+  <div *ngIf="depensesCategories.length === 0">Aucune dépense disponible.</div>
+</div>
 
 <h2>Liste des dépenses</h2>
 <table mat-table [dataSource]="sousCategoriesDepenses" class="mat-elevation-z8">

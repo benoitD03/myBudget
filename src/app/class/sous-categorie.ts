@@ -6,6 +6,6 @@ export class SousCategorie {
   Date: any = "";
   Somme: number = 0;
   userIdUser!: number;
-  categorieIdCategorie!: number;
+  categorie!: any;
   Couleur: string = '';
 }
