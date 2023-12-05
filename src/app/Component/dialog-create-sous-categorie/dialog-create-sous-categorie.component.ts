@@ -18,10 +18,8 @@ export class DialogCreateSousCategorieComponent {
   constructor(@Inject(MAT_DIALOG_DATA) public data: any,private fb: FormBuilder, private accountService: AccountService, private router: Router, private sousCategorieService: SousCategorieService, public dialogRef: MatDialogRef<DialogCreateSousCategorieComponent>, private datePipe: DatePipe) {
     this.createSousCategorieForm = this.fb.group({
       Nom: [data.isModif ? data.sousCategorieToModify.Nom : '', Validators.required],
-      Image: [data.isModif ? data.sousCategorieToModify.Image : this.Image],
       Date: [data.isModif ? data.sousCategorieToModify.Date : this.datePipe.transform(Date.now(), 'yyyy-MM-ddTHH:mm:ssZ'), Validators.required],
       Somme: [data.isModif ? data.sousCategorieToModify.Somme : 0, Validators.required],
-      Couleur: [data.isModif ? data.sousCategorieToModify.Couleur.substring(1) : null, Validators.required]
     });
   }
 
@@ -29,15 +27,14 @@ export class DialogCreateSousCategorieComponent {
     if (!this.data.isModif) {
       if (this.createSousCategorieForm.valid) {
         const nom = this.createSousCategorieForm.get('Nom')?.value;
-        const image = this.Image.value;
+        const image = this.data.categorie.Image;
         const depense = this.data.categorie.Depense;
         const dateValue = this.createSousCategorieForm.get('Date')?.value;
         const date = this.datePipe.transform(dateValue, 'yyyy-MM-ddTHH:mm:ssZ');
         const somme = this.createSousCategorieForm.get('Somme')?.value;
         const idCategorie = this.data.categorie.id_Categorie;
         const idUser = this.accountService.getIdUser();
-        const couleurValue = this.createSousCategorieForm.get('Couleur')?.value;
-        const couleur = "#" + couleurValue.hex;
+        const couleur = this.data.categorie.Couleur;
         this.sousCategorieService.createSousCategorie(nom, image, depense, date, somme, Number(idUser), Number(idCategorie), couleur).subscribe(
           (response: any) => {
             this.dialogRef.close();
@@ -63,9 +60,6 @@ export class DialogCreateSousCategorieComponent {
           }
         }
 
-        const couleurValue = this.createSousCategorieForm.get('Couleur')?.value;
-        updatedSousCategorieData.Couleur = "#" + couleurValue.hex;
-        updatedSousCategorieData.Image = this.Image.value;
         const dateValue = this.createSousCategorieForm.get('Date')?.value;
         updatedSousCategorieData.Date = this.datePipe.transform(dateValue, 'yyyy-MM-ddTHH:mm:ssZ');
 

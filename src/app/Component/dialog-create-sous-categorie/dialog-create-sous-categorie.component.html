@@ -4,28 +4,13 @@
   </div>
   <div id="form">
 
-    <div id="form-Nom">
-      <mat-form-field appearance="fill">
-        <mat-label>Nom</mat-label>
-        <input matInput formControlName="Nom" type="text" placeholder="Nom" required>
-        <mat-error *ngIf="createSousCategorieForm.get('Nom')?.hasError('required')">Le nom est requis</mat-error>
-      </mat-form-field>
-    </div>
-
-      <div id="form-Image">
-        <button mat-raised-button color="primary" type="button" formControlName="Image" [ipIconPack]="['mat']" [iconPicker]="Image.value" (iconPickerSelect)="onIconPickerSelect($event)">Choix Image</button>
-        <div id="form-Image-icon">
-          <mat-icon>{{Image.value}}</mat-icon>
-        </div>
-      </div>
-      <div id="form-Couleur">
-        <mat-form-field>
-          <input formControlName="Couleur" matInput [ngxMatColorPicker]="colorPicker">
-          <ngx-mat-color-toggle matSuffix [for]="colorPicker"></ngx-mat-color-toggle>
-          <ngx-mat-color-picker #colorPicker ></ngx-mat-color-picker>
+      <div id="form-Nom">
+        <mat-form-field appearance="fill">
+          <mat-label>Nom</mat-label>
+          <input matInput formControlName="Nom" type="text" placeholder="Nom" required>
+          <mat-error *ngIf="createSousCategorieForm.get('Nom')?.hasError('required')">Le nom est requis</mat-error>
         </mat-form-field>
       </div>
-
 
       <div id="form-date">
         <mat-form-field>
@@ -36,6 +21,7 @@
           <mat-datepicker #picker ></mat-datepicker>
         </mat-form-field>
       </div>
+
       <div id="form-somme">
         <mat-form-field appearance="fill">
           <mat-label>Somme</mat-label>

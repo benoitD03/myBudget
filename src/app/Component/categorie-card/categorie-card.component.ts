@@ -2,7 +2,6 @@ import {Component, EventEmitter, Input, Output, ViewEncapsulation} from '@angula
 import {SousCategorie} from "../../class/sous-categorie";
 import {AccountService} from "../../services/account.service";
 import {SousCategorieService} from "../../services/sous-categorie.service";
-import {DialogCreateCategorieComponent} from "../dialog-create-categorie/dialog-create-categorie.component";
 import {MatDialog} from "@angular/material/dialog";
 import {
   DialogCreateSousCategorieComponent
@@ -72,7 +71,7 @@ export class CategorieCardComponent {
     const dialogRef = this.dialog.open(DialogCreateSousCategorieComponent, {
       maxWidth: '100vw',
       maxHeight: '100vh',
-      height: '70%',
+      height: '60%',
       width: '400px',
       data: {categorie: this.categorie}
     });
