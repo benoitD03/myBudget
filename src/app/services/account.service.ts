@@ -31,6 +31,7 @@ export class AccountService {
     this.router.navigate([Config.ROUTE_LOGIN])
     localStorage.removeItem('token');
     localStorage.removeItem('id_User');
+    localStorage.removeItem('name');
     localStorage.removeItem('month');
     localStorage.removeItem('isPreviousMonth');
   }
@@ -47,6 +48,13 @@ export class AccountService {
    */
   getIdUser(): string | null {
     return localStorage.getItem('id_User');
+  }
+
+  /**
+   * Methode pour récupérer l'id de l'utilisateur connecté
+   */
+  getUserName(): string | null {
+    return localStorage.getItem('name');
   }
 
   /**

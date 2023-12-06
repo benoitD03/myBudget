@@ -31,9 +31,11 @@ export class LoginComponent {
         (response: any) => {
           let token = response.access_token;
           let id_User = response.id_User;
+          let name = response.name
           if (token) {
             localStorage.setItem('token', token);
             localStorage.setItem('id_User', id_User);
+            localStorage.setItem('name', name);
             this.router.navigate([Config.ROUTE_DASHBOARD])
           }
         },

@@ -12,12 +12,14 @@ export class AppComponent implements OnInit, AfterViewInit{
 
   constructor(private observer: BreakpointObserver,private router: Router, private accountService: AccountService) {
   }
-
+  userName: string | null = '';
   isLightTheme = true
   @ViewChild(MatSidenav)
   sidenav!: MatSidenav;
 
   ngOnInit() {
+    this.userName = this.accountService.getUserName();
+
     const storedTheme = localStorage.getItem('theme');
 
     document.body.setAttribute('data-theme', storedTheme || 'light');
