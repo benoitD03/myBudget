@@ -73,6 +73,7 @@ export class FullYearComponent implements OnInit, AfterViewInit{
 
   private initializeChart() {
     const ctx = document.getElementById('expenseChart') as HTMLCanvasElement;
+    const ctx2 = document.getElementById('expenseChart2') as HTMLCanvasElement;
 
     new Chart(ctx, {
       type: 'bar',
@@ -81,7 +82,39 @@ export class FullYearComponent implements OnInit, AfterViewInit{
         datasets: [{
           label: 'Dépenses par catégories',
           data: this.depensesCategories.map((expense) => expense.total),
-          borderWidth: 1
+          borderWidth: 1,
+        }]
+      },
+      options: {
+        scales: {
+          y: {
+            beginAtZero: true
+          }
+        }
+      }
+    });
+
+    new Chart(ctx2, {
+      type: 'doughnut',
+      data: {
+        labels: this.depensesCategories.map((expense) => expense.categoryName),
+        datasets: [{
+          label: 'Dépenses par catégories',
+          data: this.depensesCategories.map((expense) => expense.total),
+          borderWidth: 1,
+          backgroundColor: [
+            '#5AF3AA',
+            '#FFA96A',
+            '#1879F3',
+            '#815E2E',
+            '#95DC44',
+            '#D1A293',
+            '#E13C02',
+            '#E38DCD',
+            '#32403F',
+            '#3D3E9B'
+
+          ],
         }]
       },
       options: {

@@ -1,11 +1,26 @@
+<mat-card class="title">
+  <mat-card-content>
+    Année complète
+  </mat-card-content>
+</mat-card>
+
 <div id="graphique">
-  <div *ngIf="depensesCategories.length > 0">
-    <canvas id="expenseChart" width="400" height="200"></canvas>
+  <div id="graphique-container" *ngIf="depensesCategories.length > 0">
+    <div id="graphique-bar">
+      <canvas id="expenseChart"></canvas>
+    </div>
+    <div id="graphique-doughnut">
+      <canvas id="expenseChart2"></canvas>
+    </div>
   </div>
   <div *ngIf="depensesCategories.length === 0">Aucune dépense disponible.</div>
 </div>
 
-<h2>Liste des dépenses</h2>
+<mat-card class="title">
+  <mat-card-content>
+    Liste des dépenses
+  </mat-card-content>
+</mat-card>
 <table mat-table [dataSource]="sousCategoriesDepenses" class="mat-elevation-z8">
 
   <ng-container matColumnDef="Categorie">
@@ -37,7 +52,11 @@
   <tr mat-row *matRowDef="let row; columns: Columns;"></tr>
 </table>
 
-<h2>Liste des Revenus</h2>
+<mat-card class="title">
+  <mat-card-content>
+    Liste des revenus
+  </mat-card-content>
+</mat-card>
 <table mat-table [dataSource]="sousCategoriesRevenus" class="mat-elevation-z8">
 
   <ng-container matColumnDef="Categorie">
