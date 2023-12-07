@@ -22,7 +22,7 @@ export class DialogCreateCategorieComponent {
       Image: [data.isModif ? data.categorieToModify.Image : this.Image],
       Description: [data.isModif ? data.categorieToModify.Description : ''],
       Depense: [data.isModif ? data.categorieToModify.Depense : true, Validators.required],
-      Couleur: [data.isModif ? data.categorieToModify.Couleur.substring(1) : null, Validators.required],
+      Couleur: [data.isModif ? data.categorieToModify.Couleur : null, Validators.required],
     });
   }
 
@@ -64,8 +64,11 @@ export class DialogCreateCategorieComponent {
         }
       }
 
-      const couleurValue = this.createCategorieForm.get('Couleur')?.value;
-      updatedCategorieData.Couleur = "#" + couleurValue.hex;
+      if (this.data.categorieToModify.Couleur !== this.createCategorieForm.get('Couleur')?.value) {
+        const couleurValue = this.createCategorieForm.get('Couleur')?.value;
+        updatedCategorieData.Couleur = "#" + couleurValue.hex;
+      }
+
       updatedCategorieData.Image = this.Image.value;
 
         this.categorieService
