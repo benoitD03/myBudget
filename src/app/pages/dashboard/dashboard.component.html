@@ -23,13 +23,13 @@
 <section id="main">
   <div id="depenses" class="categorie-container">
     <div class="categorie-container-title"><h2>Dépenses</h2></div>
-    <div *ngFor="let categorie of categories; index as i">
+    <div *ngFor="let categorie of categories">
       <app-categorie-card *ngIf="categorie.Depense" [categorie]="categorie" [month]="month" (totalCategorieChange)="updateTotalCategory($event)"></app-categorie-card>
     </div>
   </div>
   <div id="revenus" class="categorie-container">
     <div class="categorie-container-title"><h2>Revenus</h2></div>
-    <div *ngFor="let categorie of categories; index as i">
+    <div *ngFor="let categorie of categories">
       <app-categorie-card *ngIf="!categorie.Depense" [categorie]="categorie" [month]="month" (totalCategorieChange)="updateTotalCategory($event)"></app-categorie-card>
     </div>
   </div>

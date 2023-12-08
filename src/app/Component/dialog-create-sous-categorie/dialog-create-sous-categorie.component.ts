@@ -37,13 +37,13 @@ export class DialogCreateSousCategorieComponent {
         const couleur = this.data.categorie.Couleur;
         this.sousCategorieService.createSousCategorie(nom, image, depense, date, somme, Number(idUser), Number(idCategorie), couleur).subscribe(
           (response: any) => {
-            this.dialogRef.close();
+            this.dialogRef.close('valid');
           },
           (error: any) => {
             console.error(error)
           }
         )
-        this.dialogRef.close('valid');
+        // this.dialogRef.close('valid');
       } else {
         alert("Formulaire non valide.")
       }

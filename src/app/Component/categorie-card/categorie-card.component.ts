@@ -1,4 +1,4 @@
-import {Component, EventEmitter, Input, Output, ViewEncapsulation} from '@angular/core';
+import {ChangeDetectorRef, Component, EventEmitter, Input, Output, ViewEncapsulation} from '@angular/core';
 import {SousCategorie} from "../../class/sous-categorie";
 import {AccountService} from "../../services/account.service";
 import {SousCategorieService} from "../../services/sous-categorie.service";
@@ -79,9 +79,10 @@ export class CategorieCardComponent {
     dialogRef.afterClosed().subscribe(result => {
       if (result === 'valid') {
         this.loadSousCategories();
+        window.location.reload()
       }
-      this.router.routeReuseStrategy.shouldReuseRoute = () => false;
-      this.router.navigate(['.']);
+      // this.router.routeReuseStrategy.shouldReuseRoute = () => false;
+      // this.router.navigate(['.']);
     });
   }
 }

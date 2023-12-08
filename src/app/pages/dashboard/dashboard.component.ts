@@ -72,11 +72,10 @@ export class DashboardComponent implements OnInit{
   updateTotalCategory(event: { value: number; isDepense: boolean }) {
     if (event.isDepense) {
       this.totalDepense += event.value;
-      this.epargnePossible = this.totalRevenu - this.totalDepense;
     } else {
       this.totalRevenu += event.value;
-      this.epargnePossible = this.totalRevenu - this.totalDepense;
     }
+    this.epargnePossible = this.totalRevenu - this.totalDepense;
     setTimeout(() => {
       this.createChart(this.totalRevenu, this.totalDepense, this.epargnePossible);
     }, 100);
