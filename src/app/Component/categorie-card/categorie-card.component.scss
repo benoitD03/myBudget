@@ -1,12 +1,10 @@
 mat-card {
-  max-width: 600px !important;
   margin: 50px 20px;
   border-radius: 15px !important;
   box-shadow: 5px 5px 15px 5px rgba(0, 0, 0, 0.2) !important;
   background: var(--card-content-background-color) !important;
 }
 #card-content{
-    max-width: 600px;
     background: var(--card-content-background-color) !important;
     border-radius: 15px !important;
     color: var(--main-content-text-color) !important;

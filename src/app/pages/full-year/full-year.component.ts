@@ -6,6 +6,7 @@ import { Chart, ChartConfiguration, ChartData } from 'chart.js';
 import {MatPaginator} from "@angular/material/paginator";
 import {MatTableDataSource} from "@angular/material/table";
 import {MatSort} from "@angular/material/sort";
+import {AccountService} from "../../services/account.service";
 
 
 @Component({
@@ -23,7 +24,7 @@ export class FullYearComponent implements OnInit, AfterViewInit{
   @ViewChild(MatSort) sort: MatSort | null = null;
 
 
-  constructor(private sousCategorieService: SousCategorieService) {
+  constructor(private sousCategorieService: SousCategorieService, private accountService : AccountService) {
 
   }
 
@@ -35,10 +36,10 @@ export class FullYearComponent implements OnInit, AfterViewInit{
   }
 
   loadList() {
-    const year = moment().year()
-    this.sousCategorieService.getAllByYear(year).subscribe(
+    const year = moment().year();
+    const id_User: string | null = this.accountService.getIdUser();
+    this.sousCategorieService.getAllByYear(year, Number(id_User)).subscribe(
       (data) => {
-        console.log(data)
         this.sousCategoriesDepenses=data.filter((sousCategorie : SousCategorie )=> sousCategorie.Depense);
         this.sousCategoriesRevenus=data.filter((sousCategorie : SousCategorie )=> !sousCategorie.Depense);
         this.depensesCategories = this.depensesTotalesParCategories(this.sousCategoriesDepenses);

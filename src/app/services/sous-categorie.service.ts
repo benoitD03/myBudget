@@ -50,12 +50,13 @@ export class SousCategorieService {
    * @param year
    * @param month
    */
-  getAllByYear(year: number): Observable<any> {
+  getAllByYear(year: number, userId: number): Observable<any> {
     const token = this.accountService.getToken();
 
     const headers = token ? new HttpHeaders({ Authorization: `Bearer ${token}` }) : new HttpHeaders();
     const params = new HttpParams()
       .set('year', year.toString())
+      .set('id_User', userId)
 
     return this.http.get<any>(Config.URL_SOUS_CATEGORIES_BY_YEAR, { headers, params });
   }

@@ -10,6 +10,8 @@ header{
       position: absolute;
       top: 15px;
       left: 10px;
+      background-color: var(--button-content-background-color);
+      color: var(--button-content-text-color);
     }
   }
   #infos {
@@ -18,7 +20,9 @@ header{
     font-size: 20px;
     .totaux {
       padding: 15px;
+      flex: 1;
       background-color: var(--totaux-background-color);
+      text-align: center;
     }
     .totaux-number {
       mat-card-content {
