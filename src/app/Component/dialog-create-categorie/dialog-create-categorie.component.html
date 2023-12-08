@@ -4,6 +4,13 @@
   </div>
   <div id="form">
 
+    <div id="form-depense-revenu">
+      <mat-radio-group formControlName="Depense" aria-label="Select an option">
+        <mat-radio-button [value]="true">Dépense</mat-radio-button>
+        <mat-radio-button [value]="false">Revenu</mat-radio-button>
+      </mat-radio-group>
+    </div>
+
     <div id="form-Nom">
       <mat-form-field appearance="fill">
         <mat-label>Nom</mat-label>
@@ -25,11 +32,6 @@
         <input matInput formControlName="Description" type="text" placeholder="Description">
       </mat-form-field>
     </div>
-
-    <mat-radio-group formControlName="Depense" aria-label="Select an option">
-      <mat-radio-button [value]="true">Dépense</mat-radio-button>
-      <mat-radio-button [value]="false">Revenu</mat-radio-button>
-    </mat-radio-group>
 
     <div id="form-Couleur">
       <mat-form-field>

@@ -1,4 +1,4 @@
-import {Component, Inject} from '@angular/core';
+import {Component, Inject, OnInit} from '@angular/core';
 import {FormBuilder, FormControl, FormGroup, Validators} from "@angular/forms";
 import {Config} from "../../class/config";
 import {AccountService} from "../../services/account.service";
@@ -19,7 +19,7 @@ export class DialogCreateCategorieComponent {
   constructor( private fb: FormBuilder, private accountService: AccountService, private router: Router, private categorieService: CategorieService, public dialogRef: MatDialogRef<DialogCreateCategorieComponent>, @Inject(MAT_DIALOG_DATA) public data: any) {
     this.createCategorieForm = this.fb.group({
       Nom: [data.isModif ? data.categorieToModify.Nom : '', Validators.required],
-      Image: [data.isModif ? data.categorieToModify.Image : this.Image],
+      Image: [data.isModif ? data.categorieToModify.Image : this.Image.value],
       Description: [data.isModif ? data.categorieToModify.Description : ''],
       Depense: [data.isModif ? data.categorieToModify.Depense : true, Validators.required],
       Couleur: [data.isModif ? data.categorieToModify.Couleur : null, Validators.required],
@@ -86,6 +86,5 @@ export class DialogCreateCategorieComponent {
   }
   onIconPickerSelect(icon: string): void {
     this.Image.setValue(icon);
-    console.log(this.Image.value);
   }
 }
