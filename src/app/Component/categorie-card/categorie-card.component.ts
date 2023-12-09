@@ -43,11 +43,7 @@ export class CategorieCardComponent {
         this.sousCategories=data;
         this.totalCategorie=0;
         if (this.sousCategories) {
-          for (const sousCategorie of this.sousCategories) {
-            this.totalCategorie += sousCategorie.Somme;
-          }
-        } else {
-          this.totalCategorie = 0;
+          this.totalCategorie = this.sousCategories.reduce((total, sousCategorie) => total + sousCategorie.Somme, 0);
         }
         this.onAddToTotalDepense();
       },
@@ -79,10 +75,9 @@ export class CategorieCardComponent {
     dialogRef.afterClosed().subscribe(result => {
       if (result === 'valid') {
         this.loadSousCategories();
+        // TROUVER UN MOYEN DE RAFRAICHIR LES TOTAUX PAGE DASHBOARD PLUTOT QUE DE RAFRAICHIR LA PAGE
         window.location.reload()
       }
-      // this.router.routeReuseStrategy.shouldReuseRoute = () => false;
-      // this.router.navigate(['.']);
     });
   }
 }
