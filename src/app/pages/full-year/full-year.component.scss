@@ -1,6 +1,9 @@
-.mat-mdc-header-row, .mdc-data-table__header-row, .cdk-header-row, .ng-star-inserted {
-  background-color: var(--card-content-background-color);
+.mat-mdc-header-row, .mdc-data-table__header-row, .cdk-header-row, .ng-star-inserted, .mat-mdc-paginator-container {
+  background-color: var(--card-content-background-color) !important;
   color: var(--main-content-text-color) !important;
+}
+mat-paginator{
+  background-color: rgba(234, 232, 232, 0.3) !important;
 }
 .title {
   font-weight: bold;
