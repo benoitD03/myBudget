@@ -23,7 +23,7 @@
             </mat-panel-title>
           </mat-expansion-panel-header >
           <div class="sous-categorie-container" *ngFor="let sousCategorie of sousCategories; index as i">
-            <app-sous-categorie-card (deleteSuccess)="loadSousCategories()" [sousCategorie]="sousCategorie"></app-sous-categorie-card>
+            <app-sous-categorie-card (deleteSuccess)="loadSousCategories()" (modifySuccess)="loadSousCategories()" [sousCategorie]="sousCategorie"></app-sous-categorie-card>
           </div>
         </mat-expansion-panel>
       </mat-accordion>

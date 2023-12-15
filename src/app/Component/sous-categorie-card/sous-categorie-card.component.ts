@@ -19,6 +19,7 @@ import {TotauxService} from "../../services/totaux.service";
 export class SousCategorieCardComponent {
   @Input() sousCategorie: any;
   @Output() deleteSuccess = new EventEmitter<void>();
+  @Output() modifySuccess = new EventEmitter<void>();
 
   constructor(private sousCategorieService: SousCategorieService, private dialog: MatDialog, private router: Router, private totauxService : TotauxService) { }
 
@@ -71,7 +72,7 @@ export class SousCategorieCardComponent {
     });
 
     dialogRef.afterClosed().subscribe(result => {
-      // this.router.navigate(['.']);
+      this.modifySuccess.emit();
     });
   }
 }
