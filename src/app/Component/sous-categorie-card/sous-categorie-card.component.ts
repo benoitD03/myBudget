@@ -9,6 +9,7 @@ import {
   DialogCreateSousCategorieComponent
 } from "../dialog-create-sous-categorie/dialog-create-sous-categorie.component";
 import {Router} from "@angular/router";
+import {TotauxService} from "../../services/totaux.service";
 
 @Component({
   selector: 'app-sous-categorie-card',
@@ -19,7 +20,7 @@ export class SousCategorieCardComponent {
   @Input() sousCategorie: any;
   @Output() deleteSuccess = new EventEmitter<void>();
 
-  constructor(private sousCategorieService: SousCategorieService, private dialog: MatDialog, private router: Router) { }
+  constructor(private sousCategorieService: SousCategorieService, private dialog: MatDialog, private router: Router, private totauxService : TotauxService) { }
 
   onConfirmDeleteSousCategorie() {
     const dialogRef = this.dialog.open(DialogConfirmationComponent, {
@@ -30,10 +31,7 @@ export class SousCategorieCardComponent {
     dialogRef.afterClosed().subscribe(result => {
       if (result) {
         this.deleteSousCategorie();
-        this.deleteSuccess.emit();
       }
-      this.router.routeReuseStrategy.shouldReuseRoute = () => false;
-      this.router.navigate(['.']);
     });
   }
 
@@ -41,6 +39,12 @@ export class SousCategorieCardComponent {
     const sousCategorieId = this.sousCategorie.id_Sous_Categorie;
     this.sousCategorieService.deleteSousCategorie(sousCategorieId).subscribe(
       () => {
+        if (this.sousCategorie.Depense) {
+          this.totauxService.totalDepense -= this.sousCategorie.Somme
+        } else {
+          this.totauxService.totalRevenu -= this.sousCategorie.Somme
+        }
+        this.totauxService.epargnePossible = this.totauxService.totalRevenu - this.totauxService.totalDepense;
         this.deleteSuccess.emit();
       },
       (error) => {
@@ -67,7 +71,7 @@ export class SousCategorieCardComponent {
     });
 
     dialogRef.afterClosed().subscribe(result => {
-      this.router.navigate(['.']);
+      // this.router.navigate(['.']);
     });
   }
 }

@@ -45,8 +45,24 @@ export class SousCategorieService {
   }
 
   /**
+   * Méthode de récuperation des sous catégories en fonction d'un mois donné
+   * @param year
+   * @param month
+   */
+  getAllByMonth(year: number, month: number, userId: number): Observable<any> {
+    const token = this.accountService.getToken();
+
+    const headers = token ? new HttpHeaders({ Authorization: `Bearer ${token}` }) : new HttpHeaders();
+    const params = new HttpParams()
+      .set('year', year.toString())
+      .set('month', month.toString())
+      .set('id_User', userId);
+
+    return this.http.get<any>(Config.URL_SOUS_CATEGORIES_ALL_BY_MONTH, { headers, params });
+  }
+
+  /**
    * Méthode de récuperation des sous catégories d'une catégorie en fonction d'une année
-   * @param categorieId
    * @param year
    * @param month
    */

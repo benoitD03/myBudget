@@ -1,26 +1,36 @@
-import {Component, Inject} from '@angular/core';
+import {Component, Inject, OnInit} from '@angular/core';
 import {FormBuilder, FormControl, FormGroup, Validators} from "@angular/forms";
 import {AccountService} from "../../services/account.service";
 import {Router} from "@angular/router";
 import {MAT_DIALOG_DATA, MatDialogRef} from "@angular/material/dialog";
 import {SousCategorieService} from "../../services/sous-categorie.service";
 import {DatePipe} from "@angular/common";
+import {TotauxService} from "../../services/totaux.service";
 
 @Component({
   selector: 'app-dialog-create-sous-categorie',
   templateUrl: './dialog-create-sous-categorie.component.html',
   styleUrls: ['./dialog-create-sous-categorie.component.scss']
 })
-export class DialogCreateSousCategorieComponent {
+export class DialogCreateSousCategorieComponent implements OnInit{
   createSousCategorieForm: FormGroup;
   Image = new FormControl();
+  oldSommme!: number;
 
-  constructor(@Inject(MAT_DIALOG_DATA) public data: any,private fb: FormBuilder, private accountService: AccountService, private router: Router, private sousCategorieService: SousCategorieService, public dialogRef: MatDialogRef<DialogCreateSousCategorieComponent>, private datePipe: DatePipe) {
+  constructor(@Inject(MAT_DIALOG_DATA) public data: any,private fb: FormBuilder, private accountService: AccountService,
+              private router: Router, private sousCategorieService: SousCategorieService, public dialogRef: MatDialogRef<DialogCreateSousCategorieComponent>,
+              private datePipe: DatePipe, private totauxService : TotauxService) {
     this.createSousCategorieForm = this.fb.group({
       Nom: [data.isModif ? data.sousCategorieToModify.Nom : '', Validators.required],
       Date: [data.isModif ? data.sousCategorieToModify.Date : this.datePipe.transform(Date.now(), 'yyyy-MM-ddTHH:mm:ssZ'), Validators.required],
       Somme: [data.isModif ? data.sousCategorieToModify.Somme : 0, Validators.required],
     });
+  }
+
+  ngOnInit(): void {
+    if (this.data.isModif) {
+      this.oldSommme = this.data.sousCategorieToModify.Somme;
+    }
   }
 
   onSubmit() {
@@ -37,6 +47,12 @@ export class DialogCreateSousCategorieComponent {
         const couleur = this.data.categorie.Couleur;
         this.sousCategorieService.createSousCategorie(nom, image, depense, date, somme, Number(idUser), Number(idCategorie), couleur).subscribe(
           (response: any) => {
+            if (depense) {
+              this.totauxService.totalDepense += somme;
+            } else {
+              this.totauxService.totalRevenu += somme;
+            }
+            this.totauxService.epargnePossible = this.totauxService.totalRevenu - this.totauxService.totalDepense;
             this.dialogRef.close('valid');
           },
           (error: any) => {
@@ -67,6 +83,16 @@ export class DialogCreateSousCategorieComponent {
           .updateSousCategorie(this.data.sousCategorieToModify.id_Sous_Categorie, updatedSousCategorieData)
           .subscribe(
             (response: any) => {
+              if (this.oldSommme !== updatedSousCategorieData.Somme) {
+                if (updatedSousCategorieData.Depense) {
+                  this.totauxService.totalDepense -= this.oldSommme;
+                  this.totauxService.totalDepense += updatedSousCategorieData.Somme;
+                } else {
+                  this.totauxService.totalRevenu -= this.oldSommme;
+                  this.totauxService.totalRevenu += updatedSousCategorieData.Somme;
+                }
+                this.totauxService.epargnePossible = this.totauxService.totalRevenu - this.totauxService.totalDepense;
+              }
               this.dialogRef.close();
             },
             (error: any) => {
@@ -81,4 +107,5 @@ export class DialogCreateSousCategorieComponent {
     this.Image.setValue(icon);
     console.log(this.Image.value);
   }
+
 }

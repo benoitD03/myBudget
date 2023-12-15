@@ -62,7 +62,7 @@ export class FullYearComponent implements OnInit, AfterViewInit{
       const categoryName = sousCategorie.categorie.Nom;
 
       if (depensesMap.has(categoryName)) {
-        //Si le nom de la sous catégorie existe déjà, on incrémente notre somme totale
+        //Si le nom de la catégorie existe déjà, on incrémente notre somme totale
         depensesMap.set(categoryName, depensesMap.get(categoryName)! + sousCategorie.Somme);
       } else {
         //Sinon on créer une nouvelle paire Nom / Somme

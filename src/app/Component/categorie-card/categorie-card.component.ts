@@ -75,8 +75,6 @@ export class CategorieCardComponent {
     dialogRef.afterClosed().subscribe(result => {
       if (result === 'valid') {
         this.loadSousCategories();
-        // TROUVER UN MOYEN DE RAFRAICHIR LES TOTAUX PAGE DASHBOARD PLUTOT QUE DE RAFRAICHIR LA PAGE
-        window.location.reload()
       }
     });
   }

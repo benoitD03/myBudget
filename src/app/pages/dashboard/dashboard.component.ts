@@ -5,6 +5,7 @@ import {AccountService} from "../../services/account.service";
 import { Chart } from "chart.js/auto";
 import * as moment from "moment";
 import {Router} from "@angular/router";
+import {TotauxService} from "../../services/totaux.service";
 
 @Component({
   selector: 'app-dashboard',
@@ -15,13 +16,10 @@ export class DashboardComponent implements OnInit{
 
   categories: Categorie[] = []
   month: number = 0;
-  totalDepense: number = 0;
-  totalRevenu: number = 0;
-  epargnePossible: number = 0;
   isPreviousMonth: boolean = localStorage.getItem("isPreviousMonth") === "true";
 
 
-  constructor(private categorieService: CategorieService, private accountService: AccountService, private router: Router) {
+  constructor(private categorieService: CategorieService, private accountService: AccountService, private router: Router, public totauxService : TotauxService) {
   }
 
   ngOnInit() {
@@ -50,7 +48,6 @@ export class DashboardComponent implements OnInit{
         data: {
           labels: ['Revenus', 'Dépenses', 'Epargne possible'],
           datasets: [{
-            // label: '# of Votes',
             data: [revenu, depense, epargne],
             backgroundColor: [
               '#5AF3AA',
@@ -70,14 +67,8 @@ export class DashboardComponent implements OnInit{
    * @param event
    */
   updateTotalCategory(event: { value: number; isDepense: boolean }) {
-    if (event.isDepense) {
-      this.totalDepense += event.value;
-    } else {
-      this.totalRevenu += event.value;
-    }
-    this.epargnePossible = this.totalRevenu - this.totalDepense;
     setTimeout(() => {
-      this.createChart(this.totalRevenu, this.totalDepense, this.epargnePossible);
+      this.createChart(this.totauxService.totalRevenu, this.totauxService.totalDepense, this.totauxService.epargnePossible);
     }, 100);
   }
 
