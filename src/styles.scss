@@ -34,6 +34,8 @@ $myBudget-theme: mat.define-light-theme((
 @include mat.all-component-themes($myBudget-theme);
 
 @import "theme";
+@import url('https://fonts.googleapis.com/css2?family=Exo+2&display=swap');
+
 
 html,
 body {
@@ -42,4 +44,4 @@ body {
 }
 
 html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+body { margin: 0; font-family: 'Exo 2', Roboto, "Helvetica Neue", sans-serif; }

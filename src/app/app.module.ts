@@ -44,6 +44,7 @@ import {IconPickerModule} from "ngx-icon-picker";
 import {MatFormFieldModule} from "@angular/material/form-field";
 import {MatPaginatorModule} from "@angular/material/paginator";
 import {MatSortModule} from "@angular/material/sort";
+import { TotalsGraphComponent } from './Component/totals-graph/totals-graph.component';
 
 @NgModule({
   declarations: [
@@ -58,6 +59,7 @@ import {MatSortModule} from "@angular/material/sort";
     DialogCreateCategorieComponent,
     DialogCreateSousCategorieComponent,
     DialogConfirmationComponent,
+    TotalsGraphComponent,
   ],
   imports: [
     BrowserModule,

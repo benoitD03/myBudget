@@ -1,8 +1,7 @@
-import {AfterViewInit, Component, OnInit} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {Categorie} from "../../class/categorie";
 import {CategorieService} from "../../services/categorie.service";
 import {AccountService} from "../../services/account.service";
-import { Chart } from "chart.js/auto";
 import * as moment from "moment";
 import {Router} from "@angular/router";
 import {TotauxService} from "../../services/totaux.service";
@@ -32,44 +31,6 @@ export class DashboardComponent implements OnInit{
         console.error('Erreur lors de la récupération des catégories :', error);
       }
     )
-  }
-
-  /**
-   * Méthode de création du graphique
-   * @param revenu
-   * @param depense
-   * @param epargne
-   */
-  createChart(revenu: number, depense: number, epargne: number) {
-    const ctx = document.getElementById("myChart");
-    if (ctx instanceof HTMLCanvasElement){
-      new Chart(ctx, {
-        type: 'doughnut',
-        data: {
-          labels: ['Revenus', 'Dépenses', 'Epargne possible'],
-          datasets: [{
-            data: [revenu, depense, epargne],
-            backgroundColor: [
-              '#5AF3AA',
-              '#FFA96A',
-              '#1879F3'
-            ],
-            borderWidth: 0
-          }]
-        },
-        options: {}
-      });
-    }
-  }
-
-  /**
-   * Méthode de mise à jours des totaux (Dépenses et Revenus) et d'epargne
-   * @param event
-   */
-  updateTotalCategory(event: { value: number; isDepense: boolean }) {
-    setTimeout(() => {
-      this.createChart(this.totauxService.totalRevenu, this.totauxService.totalDepense, this.totauxService.epargnePossible);
-    }, 100);
   }
 
   /**
