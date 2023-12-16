@@ -1,8 +1,8 @@
-import {Injectable, OnInit} from '@angular/core';
+import {Injectable} from '@angular/core';
 import {SousCategorieService} from "./sous-categorie.service";
 import {AccountService} from "./account.service";
 import * as moment from "moment";
-import {SousCategorie} from "../class/sous-categorie";
+import {Chart} from "chart.js/auto";
 
 @Injectable({
   providedIn: 'root'
@@ -16,9 +16,12 @@ export class TotauxService {
   totalDepense!: number;
   totalRevenu!: number;
   epargnePossible!: number;
+  chart!: any;
 
-
-  private calculateTotals(): void {
+  /**
+   * Méthode permettant de calculer les totaux présent dans la page Dashboard
+   */
+  calculateTotals(): void {
     const id_User: string | null = this.accountService.getIdUser();
     const stockedMonth = localStorage.getItem("month");
     const month = stockedMonth ? Number(stockedMonth) : moment().month() + 1;
@@ -31,9 +34,46 @@ export class TotauxService {
         this.totalDepense = depenses.reduce((total : number, depense : any) => total + depense.Somme, 0);
         this.totalRevenu = revenus.reduce((total : number, revenu : any) => total + revenu.Somme, 0);
         this.epargnePossible = this.totalRevenu - this.totalDepense;
+        this.updatedChart();
       }
     )
-
   }
+
+  /**
+   * Méthode de création du graphique
+   * @param revenu
+   * @param depense
+   * @param epargne
+   */
+  createChart(revenu: number, depense: number, epargne: number) {
+    const ctx = document.getElementById("myChart");
+    if (ctx instanceof HTMLCanvasElement){
+      this.chart = new Chart(ctx, {
+        type: 'pie',
+        data: {
+          labels: ['Revenus', 'Dépenses', 'Epargne possible'],
+          datasets: [{
+            data: [revenu, depense, epargne],
+            backgroundColor: [
+              '#5AF3AA',
+              '#FFA96A',
+              '#1879F3'
+            ],
+            borderWidth: 0,
+            // hoverOffset: 10
+          }]
+        },
+        options: {}
+      });
+    }
+  }
+
+  /**
+   * Méthode permettant de mettre à jours le graphique lorsqu'une valeur a changée
+   */
+  updatedChart(): void {
+    this.chart.data.datasets[0].data= [this.totalRevenu, this.totalDepense, this.epargnePossible];
+    this.chart.update();
+}
 
 }

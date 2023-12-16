@@ -40,12 +40,8 @@ export class SousCategorieCardComponent {
     const sousCategorieId = this.sousCategorie.id_Sous_Categorie;
     this.sousCategorieService.deleteSousCategorie(sousCategorieId).subscribe(
       () => {
-        if (this.sousCategorie.Depense) {
-          this.totauxService.totalDepense -= this.sousCategorie.Somme
-        } else {
-          this.totauxService.totalRevenu -= this.sousCategorie.Somme
-        }
-        this.totauxService.epargnePossible = this.totauxService.totalRevenu - this.totauxService.totalDepense;
+        this.totauxService.calculateTotals();
+        this.totauxService.updatedChart();
         this.deleteSuccess.emit();
       },
       (error) => {

@@ -47,19 +47,13 @@ export class DialogCreateSousCategorieComponent implements OnInit{
         const couleur = this.data.categorie.Couleur;
         this.sousCategorieService.createSousCategorie(nom, image, depense, date, somme, Number(idUser), Number(idCategorie), couleur).subscribe(
           (response: any) => {
-            if (depense) {
-              this.totauxService.totalDepense += somme;
-            } else {
-              this.totauxService.totalRevenu += somme;
-            }
-            this.totauxService.epargnePossible = this.totauxService.totalRevenu - this.totauxService.totalDepense;
+            this.totauxService.calculateTotals();
             this.dialogRef.close('valid');
           },
           (error: any) => {
             console.error(error)
           }
         )
-        // this.dialogRef.close('valid');
       } else {
         alert("Formulaire non valide.")
       }
@@ -84,14 +78,8 @@ export class DialogCreateSousCategorieComponent implements OnInit{
           .subscribe(
             (response: any) => {
               if (this.oldSommme !== updatedSousCategorieData.Somme) {
-                if (updatedSousCategorieData.Depense) {
-                  this.totauxService.totalDepense -= this.oldSommme;
-                  this.totauxService.totalDepense += updatedSousCategorieData.Somme;
-                } else {
-                  this.totauxService.totalRevenu -= this.oldSommme;
-                  this.totauxService.totalRevenu += updatedSousCategorieData.Somme;
-                }
-                this.totauxService.epargnePossible = this.totauxService.totalRevenu - this.totauxService.totalDepense;
+                //On recalcul les totaux uniquement si la somme a changée
+                this.totauxService.calculateTotals();
               }
               this.dialogRef.close();
             },
@@ -105,7 +93,6 @@ export class DialogCreateSousCategorieComponent implements OnInit{
 
   onIconPickerSelect(icon: string): void {
     this.Image.setValue(icon);
-    console.log(this.Image.value);
   }
 
 }
