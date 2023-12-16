@@ -19,7 +19,7 @@
           <mat-expansion-panel-header>
             <mat-panel-title>
               {{panelOpenState ? 'Cacher' : 'Voir'}} les {{ categorie.Depense ? 'dépenses' : 'revenus' }}
-              <button mat-icon-button (click)="openDialogCreateSousCategorie()"><mat-icon>add_box</mat-icon></button>
+              <button [disabled]="previousMonth" mat-icon-button (click)="openDialogCreateSousCategorie()"><mat-icon>add_box</mat-icon></button>
             </mat-panel-title>
           </mat-expansion-panel-header >
           <div class="sous-categorie-container" *ngFor="let sousCategorie of sousCategories; index as i">

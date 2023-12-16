@@ -19,7 +19,7 @@ export class CategorieCardComponent {
 
   panelOpenState = false;
   @Input() categorie: any;
-  @Input() month: any;
+  @Input() previousMonth: any;
   @Output() totalCategorieChange = new EventEmitter<{ value: number; isDepense: boolean }>();
   sousCategories: SousCategorie[] = [];
   totalCategorie: number = 0;
@@ -35,9 +35,9 @@ export class CategorieCardComponent {
    */
   loadSousCategories() {
     const id_Categorie = this.categorie.id_Categorie;
-    this.month=localStorage.getItem("month");
+    this.previousMonth=localStorage.getItem("month");
     const year = moment().year();
-    const month = this.month ? this.month : moment().month() + 1;
+    const month = this.previousMonth ? this.previousMonth : moment().month() + 1;
     this.sousCategorieService.getAllByCategorieAndMonth(id_Categorie, year, month).subscribe(
       (data) => {
         this.sousCategories=data;
