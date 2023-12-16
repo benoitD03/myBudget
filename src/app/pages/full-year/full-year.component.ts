@@ -2,7 +2,7 @@ import {AfterViewInit, Component, OnInit, ViewChild} from '@angular/core';
 import {SousCategorie} from "../../class/sous-categorie";
 import * as moment from "moment";
 import {SousCategorieService} from "../../services/sous-categorie.service";
-import { Chart, ChartConfiguration, ChartData } from 'chart.js';
+import {Chart, ChartConfiguration, ChartData, ChartOptions} from 'chart.js';
 import {MatPaginator} from "@angular/material/paginator";
 import {MatTableDataSource} from "@angular/material/table";
 import {MatSort} from "@angular/material/sort";
@@ -96,6 +96,11 @@ export class FullYearComponent implements OnInit, AfterViewInit{
         }]
       },
       options: {
+        plugins : {
+          legend: {
+            display: false
+          },
+        },
         scales: {
           y: {
             beginAtZero: true
@@ -128,6 +133,11 @@ export class FullYearComponent implements OnInit, AfterViewInit{
         }]
       },
       options: {
+        plugins : {
+          legend: {
+            display: false
+          },
+        },
         scales: {
           y: {
             beginAtZero: true
