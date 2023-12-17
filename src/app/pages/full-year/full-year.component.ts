@@ -116,7 +116,7 @@ export class FullYearComponent implements OnInit, AfterViewInit{
         datasets: [{
           label: 'Dépenses par catégories',
           data: this.depensesCategories.map((expense) => expense.total),
-          borderWidth: 1,
+          borderWidth: 0,
           backgroundColor: [
             '#5AF3AA',
             '#FFA96A',

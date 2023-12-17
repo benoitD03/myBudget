@@ -4,17 +4,17 @@
   </mat-card-content>
 </mat-card>
 
-<div id="graphique">
-  <div id="graphique-container" *ngIf="depensesCategories.length > 0">
-    <div id="graphique-bar">
-      <canvas id="expenseChart"></canvas>
-    </div>
-    <div id="graphique-doughnut">
-      <canvas id="expenseChart2"></canvas>
-    </div>
-  </div>
-  <div *ngIf="depensesCategories.length === 0">Aucune dépense disponible.</div>
+
+<div id="graphique-container" *ngIf="depensesCategories.length > 0">
+  <mat-card id="graphique-bar">
+    <canvas id="expenseChart"></canvas>
+  </mat-card>
+  <mat-card id="graphique-doughnut">
+    <canvas id="expenseChart2"></canvas>
+  </mat-card>
 </div>
+<div *ngIf="depensesCategories.length === 0">Aucune dépense disponible.</div>
+
 
 <mat-card class="title">
   <mat-card-content>
