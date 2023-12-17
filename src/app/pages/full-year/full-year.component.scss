@@ -22,18 +22,20 @@ mat-paginator{
   #graphique-bar {
     width: 68%;
     background-color: var(--card-content-background-color);
-    max-height: 370px !important;
     #expenseChart {
       width: 100% !important;
       padding: 15px;
     }
   }
   #graphique-doughnut {
-    width: 30%;
+    width: 34%;
     margin-left: 20px;
     text-align: center;
     background-color: var(--card-content-background-color);
-    max-height: 370px !important;
+    #expenseChart2 {
+      width: 100% !important;
+      padding: 15px;
+    }
   }
 }
 
