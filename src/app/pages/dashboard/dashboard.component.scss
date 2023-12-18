@@ -6,23 +6,36 @@ header{
     margin: 30px 0 15px 0;
     max-width: 100% !important;
     position: relative;
+    @media (max-width:768px) {
+      margin-top: 40px;
+    }
     button {
       position: absolute;
       top: 15px;
       left: 10px;
       background-color: var(--button-content-background-color);
       color: var(--button-content-text-color);
+      @media (max-width:768px) {
+        top: -45px;
+        left: -10px;
+      }
     }
   }
   #infos {
     display: flex;
     justify-content: space-around;
     font-size: 20px;
+    @media (max-width:768px) {
+      flex-direction: column;
+    }
     .totaux {
       padding: 15px;
       flex: 1;
       background-color: var(--totaux-background-color);
       text-align: center;
+      @media (max-width:768px) {
+        margin: 10px;
+      }
     }
     .totaux-number {
       mat-card-content {
@@ -40,6 +53,12 @@ header{
   display: flex;
   width: 100%;
   justify-content: space-between;
+  @media (max-width:768px) {
+    flex-direction: column;
+    #revenus {
+      order: -1;
+    }
+  }
   .categorie-container {
     text-align: center;
     width: 100%;
