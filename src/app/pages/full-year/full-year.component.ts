@@ -37,9 +37,9 @@ export class FullYearComponent implements OnInit, AfterViewInit{
     const id_User: string | null = this.accountService.getIdUser();
     this.sousCategorieService.getAllByYear(year, Number(id_User)).subscribe(
       (data) => {
-        this.sousCategoriesDepenses=data.filter((sousCategorie : SousCategorie )=> sousCategorie.Depense);
-        this.sousCategoriesRevenus=data.filter((sousCategorie : SousCategorie )=> !sousCategorie.Depense);
-        this.depensesCategories = this.depensesTotalesParCategories(this.sousCategoriesDepenses);
+        this.sousCategoriesDepenses=data.filter((sousCategorie : SousCategorie )=> sousCategorie.Depense).sort((a : any, b: any) => (a.Date > b.Date) ? -1 : 1);
+        this.sousCategoriesRevenus=data.filter((sousCategorie : SousCategorie )=> !sousCategorie.Depense).sort((a : any, b: any) => (a.Date > b.Date) ? -1 : 1);
+        this.depensesCategories = this.depensesTotalesParCategories(this.sousCategoriesDepenses).sort((a, b) => b.total - a.total);;
         this.dataSource = new MatTableDataSource<SousCategorie>(this.sousCategoriesDepenses);
         this.dataSource.paginator = this.paginator;
       },
