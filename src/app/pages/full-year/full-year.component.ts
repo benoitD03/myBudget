@@ -18,7 +18,7 @@ export class FullYearComponent implements OnInit, AfterViewInit{
   sousCategoriesDepenses!: SousCategorie[];
   sousCategoriesRevenus!: SousCategorie[];
   depensesCategories: { categoryName: string; total: number }[] = [];
-  Columns: string[] = ['Categorie', 'Nom', 'Image', 'Date', 'Somme'];
+  Columns: string[] = this.accountService.isMobile() ? ['Image', 'Nom', 'Date', 'Somme'] : ['Image', 'Categorie', 'Nom', 'Date', 'Somme'];
   dataSource!: MatTableDataSource<SousCategorie>;
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort: MatSort | null = null;
@@ -102,6 +102,9 @@ export class FullYearComponent implements OnInit, AfterViewInit{
           },
         },
         scales: {
+          x: {
+            display: this.accountService.isMobile() ? false : true,
+          },
           y: {
             beginAtZero: true
           }
