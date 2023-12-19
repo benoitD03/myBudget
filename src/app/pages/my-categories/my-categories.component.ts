@@ -16,11 +16,11 @@ import {DialogConfirmationComponent} from "../../Component/dialog-confirmation/d
 })
 export class MyCategoriesComponent implements OnInit{
   categories: Categorie[] = []
-  Columns: string[] = ['Nom', 'Image', 'Description', 'Depense', 'Revenu', 'Couleur', 'Actions'];
+  Columns: string[] = this.accountService.isMobile() ? ['Nom', 'Depense', 'Couleur', 'Actions'] : ['Nom', 'Image', 'Description', 'Depense', 'Revenu', 'Couleur', 'Actions'];
   // categorie: Categorie;
 
 
-  constructor(private categorieService: CategorieService, private accountService: AccountService, public dialog: MatDialog) {
+  constructor(private categorieService: CategorieService, public accountService: AccountService, public dialog: MatDialog) {
   }
   ngOnInit() {
     this.loadList();

@@ -63,4 +63,9 @@ export class AccountService {
   isAuthenticated(): boolean {
     return !!this.getToken();
   }
+
+  //Defini une fonction qui permet de savoir si l'appareil est un mobile ou non
+  isMobile(): boolean {
+    return window.innerWidth <= 768;
+  }
 }
