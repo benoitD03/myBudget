@@ -27,8 +27,8 @@ export class LoginComponent {
       const email = this.loginForm.get('email')?.value;
       const password = this.loginForm.get('password')?.value;
 
-      this.accountService.login(email, password).subscribe(
-        (response: any) => {
+      this.accountService.login(email, password).subscribe({
+        next : (response: any) => {
           let token = response.access_token;
           let id_User = response.id_User;
           let name = response.name
@@ -39,10 +39,10 @@ export class LoginComponent {
             this.router.navigate([Config.ROUTE_DASHBOARD])
           }
         },
-        (error: any) => {
+        error : (error: any) => {
           console.error(error)
         }
-      )
+      });
 
     }
   }

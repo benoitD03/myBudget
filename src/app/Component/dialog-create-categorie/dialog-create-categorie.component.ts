@@ -41,15 +41,15 @@ export class DialogCreateCategorieComponent {
         const couleur = "#" + couleurValue.hex;
         const idUser = this.accountService.getIdUser();
 
-        this.categorieService.createCategorie(nom, image, description, depense, couleur, Number(idUser)).subscribe(
-          (response: any) => {
+        this.categorieService.createCategorie(nom, image, description, depense, couleur, Number(idUser)).subscribe({
+          next :(response: any) => {
             console.log(response)
             this.dialogRef.close();
           },
-          (error: any) => {
+          error : (error: any) => {
             console.error(error)
           }
-        )
+        });
       }
     } else {
       //Modification
@@ -73,14 +73,14 @@ export class DialogCreateCategorieComponent {
 
         this.categorieService
           .updateCategorie(this.data.categorieToModify.id_Categorie, updatedCategorieData)
-          .subscribe(
-            (response: any) => {
+          .subscribe({
+            next: (response: any) => {
               this.dialogRef.close();
             },
-            (error: any) => {
+            error: (error: any) => {
               console.log(error)
             }
-          );
+          });
       }
     }
   }

@@ -28,14 +28,14 @@ export class MyCategoriesComponent implements OnInit{
 
   loadList() {
     const id_User = this.accountService.getIdUser();
-    this.categorieService.getCategoriesByUserId(Number(id_User)).subscribe(
-      (data) => {
+    this.categorieService.getCategoriesByUserId(Number(id_User)).subscribe({
+      next : (data) => {
         this.categories=data;
       },
-      (error) => {
+      error : (error) => {
         console.error('Erreur lors de la récupération des catégories :', error);
       }
-    )
+    });
   }
   /**
    * Méthode au clic sur le bouton d'ajout de catégorie
@@ -70,15 +70,15 @@ export class MyCategoriesComponent implements OnInit{
   deleteCategorie(categorie:Categorie) {
     const categorieId = categorie.id_Categorie;
     if (categorieId !== 0) {
-      this.categorieService.deleteCategorie(categorieId).subscribe(
-        () => {
+      this.categorieService.deleteCategorie(categorieId).subscribe({
+        next : () => {
           alert("Catégorie supprimée !")
           this.loadList();
         },
-        (error) => {
+        error : (error) => {
           console.error('Erreur lors de la suppression de la catégorie :', error);
         }
-      );
+      });
     }
   }
 

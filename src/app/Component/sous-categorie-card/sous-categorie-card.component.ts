@@ -38,16 +38,16 @@ export class SousCategorieCardComponent {
 
   deleteSousCategorie() {
     const sousCategorieId = this.sousCategorie.id_Sous_Categorie;
-    this.sousCategorieService.deleteSousCategorie(sousCategorieId).subscribe(
-      () => {
+    this.sousCategorieService.deleteSousCategorie(sousCategorieId).subscribe({
+      next : () => {
         this.totauxService.calculateTotals();
         this.totauxService.updatedChart();
         this.deleteSuccess.emit();
       },
-      (error) => {
+      error : (error) => {
         console.error('Erreur lors de la suppression de la sous-catégorie :', error);
       }
-    );
+    });
   }
 
   /**

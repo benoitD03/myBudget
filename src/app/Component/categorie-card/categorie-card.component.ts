@@ -38,19 +38,19 @@ export class CategorieCardComponent {
     this.previousMonth=localStorage.getItem("month");
     const year = moment().year();
     const month = this.previousMonth ? this.previousMonth : moment().month() + 1;
-    this.sousCategorieService.getAllByCategorieAndMonth(id_Categorie, year, month).subscribe(
-      (data) => {
-        this.sousCategories=data;
-        this.totalCategorie=0;
+    this.sousCategorieService.getAllByCategorieAndMonth(id_Categorie, year, month).subscribe({
+      next: (data) => {
+        this.sousCategories = data;
+        this.totalCategorie = 0;
         if (this.sousCategories) {
           this.totalCategorie = this.sousCategories.reduce((total, sousCategorie) => total + sousCategorie.Somme, 0);
         }
         this.onAddToTotalDepense();
       },
-      (error) => {
+      error: (error) => {
         console.error('Erreur lors de la récupération des sous-catégories:', error);
       }
-    );
+    });
 
   }
   /**

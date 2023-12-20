@@ -35,18 +35,19 @@ export class FullYearComponent implements OnInit, AfterViewInit{
   loadList() {
     const year = moment().year();
     const id_User: string | null = this.accountService.getIdUser();
-    this.sousCategorieService.getAllByYear(year, Number(id_User)).subscribe(
-      (data) => {
+
+    this.sousCategorieService.getAllByYear(year, Number(id_User)).subscribe({
+      next : (data) => {
         this.sousCategoriesDepenses=data.filter((sousCategorie : SousCategorie )=> sousCategorie.Depense).sort((a : any, b: any) => (a.Date > b.Date) ? -1 : 1);
         this.sousCategoriesRevenus=data.filter((sousCategorie : SousCategorie )=> !sousCategorie.Depense).sort((a : any, b: any) => (a.Date > b.Date) ? -1 : 1);
         this.depensesCategories = this.depensesTotalesParCategories(this.sousCategoriesDepenses).sort((a, b) => b.total - a.total);;
         this.dataSource = new MatTableDataSource<SousCategorie>(this.sousCategoriesDepenses);
         this.dataSource.paginator = this.paginator;
       },
-      (error) => {
+      error : (error) => {
         console.error('Erreur lors de la récupération des transactions :', error);
       }
-    )
+    });
   }
 
   /**

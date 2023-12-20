@@ -23,14 +23,14 @@ export class DashboardComponent implements OnInit{
 
   ngOnInit() {
     let id_User: string | null = this.accountService.getIdUser();
-    this.categorieService.getCategoriesByUserId(Number(id_User)).subscribe(
-      (data) => {
+    this.categorieService.getCategoriesByUserId(Number(id_User)).subscribe({
+      next: (data) => {
         this.categories = data;
       },
-      (error) => {
+      error: (error) => {
         console.error('Erreur lors de la récupération des catégories :', error);
       }
-    )
+    })
   }
 
   /**

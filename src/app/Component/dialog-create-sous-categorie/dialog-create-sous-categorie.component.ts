@@ -45,15 +45,15 @@ export class DialogCreateSousCategorieComponent implements OnInit{
         const idCategorie = this.data.categorie.id_Categorie;
         const idUser = this.accountService.getIdUser();
         const couleur = this.data.categorie.Couleur;
-        this.sousCategorieService.createSousCategorie(nom, image, depense, date, somme, Number(idUser), Number(idCategorie), couleur).subscribe(
-          (response: any) => {
+        this.sousCategorieService.createSousCategorie(nom, image, depense, date, somme, Number(idUser), Number(idCategorie), couleur).subscribe({
+          next : (response: any) => {
             this.totauxService.calculateTotals();
             this.dialogRef.close('valid');
           },
-          (error: any) => {
+          error : (error: any) => {
             console.error(error)
           }
-        )
+        });
       } else {
         alert("Formulaire non valide.")
       }
@@ -75,18 +75,18 @@ export class DialogCreateSousCategorieComponent implements OnInit{
 
         this.sousCategorieService
           .updateSousCategorie(this.data.sousCategorieToModify.id_Sous_Categorie, updatedSousCategorieData)
-          .subscribe(
-            (response: any) => {
+          .subscribe({
+            next : (response: any) => {
               if (this.oldSommme !== updatedSousCategorieData.Somme) {
                 //On recalcul les totaux uniquement si la somme a changée
                 this.totauxService.calculateTotals();
               }
               this.dialogRef.close();
             },
-            (error: any) => {
+            error : (error: any) => {
               console.log(error)
             }
-          );
+          });
       }
     }
   }
