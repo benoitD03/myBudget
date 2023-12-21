@@ -66,6 +66,7 @@ export class DialogCreateSousCategorieComponent implements OnInit{
 
         for (const key in formControls) {
           if (formControls.hasOwnProperty(key)) {
+            //On copie les valeurs des propriétés de formControls dans updatedSousCategorieData
             updatedSousCategorieData[key] = formControls[key].value;
           }
         }

@@ -36,7 +36,7 @@ export class LoginComponent {
             localStorage.setItem('token', token);
             localStorage.setItem('id_User', id_User);
             localStorage.setItem('name', name);
-            this.router.navigate([Config.ROUTE_DASHBOARD])
+            this.router.navigate([Config.ROUTE_DASHBOARD], { state: { loginSuccess: true } })
           }
         },
         error : (error: any) => {

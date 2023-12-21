@@ -1,6 +1,6 @@
-<mat-toolbar class="mat-elevation-z8" *ngIf="!isLoginPage()">
+<mat-toolbar class="mat-elevation-z8" *ngIf="isUserAuthenticated()">
   <div id="top-bar-left">
-    <button mat-icon-button *ngIf="sidenav.mode === 'over'" (click)="sidenav.toggle()">
+    <button mat-icon-button *ngIf="sidenav && sidenav.mode === 'over'" (click)="sidenav.toggle()">
       <mat-icon *ngIf="!sidenav.opened"> menu </mat-icon>
       <mat-icon *ngIf="sidenav.opened"> close </mat-icon>
     </button>
@@ -14,8 +14,8 @@
 </mat-toolbar>
 
 <mat-sidenav-container>
-  <mat-sidenav #sidenav="matSidenav" class="mat-elevation-z8 sidenav" >
-    <div *ngIf="!isLoginPage()">
+  <mat-sidenav #sidenav="matSidenav" class="mat-elevation-z8 sidenav" *ngIf="isUserAuthenticated()">
+    <div *ngIf="isUserAuthenticated()">
       <img class="avatar mat-elevation-z8" src="https://avatars.githubusercontent.com/u/72392406?v=4"/>
       <h4 class="name">{{ userName }}</h4>
 
@@ -44,9 +44,6 @@
         <mat-slide-toggle color="primary" (change)="onThemeSwitchChange()">{{ isLightTheme ? 'dark' : 'light' }} theme</mat-slide-toggle>
       </div>
     </div>
-    <div *ngIf="isLoginPage()">
-      <h2>My Buget</h2>
-    </div>
   </mat-sidenav>
   <mat-sidenav-content>
     <div class="content mat-elevation-z8 main">
@@ -54,3 +51,4 @@
     </div>
   </mat-sidenav-content>
 </mat-sidenav-container>
+
