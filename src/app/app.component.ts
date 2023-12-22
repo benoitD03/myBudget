@@ -10,7 +10,7 @@ import {BreakpointObserver} from "@angular/cdk/layout";
 })
 export class AppComponent implements OnInit, AfterViewInit{
 
-  constructor(private observer: BreakpointObserver,private router: Router, private accountService: AccountService, private cdRef: ChangeDetectorRef) {
+  constructor(private observer: BreakpointObserver,private router: Router, public accountService: AccountService, private cdRef: ChangeDetectorRef) {
   }
   userName: string | null = '';
   isLightTheme = true

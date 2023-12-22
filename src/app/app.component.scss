@@ -8,6 +8,20 @@
    color: var(--main-content-text-color);
    #top-bar-left {
      width: 25%;
+     #top-bar-left-title {
+       display: flex;
+       font-size: 1.5rem;
+       font-weight: bold;
+       .logo {
+         width: 40px !important;
+         height: 40px !important;
+         margin: auto 0;
+       }
+       #logo-title {
+         margin-left: 8px;
+         margin-bottom: 25px;
+       }
+     }
    }
    #top-bar-right {
      text-align: right;
@@ -39,11 +53,10 @@
      margin-top: 16px;
      width: 100px;
      height: 100px;
-     border-radius: 50%;
    }
    .name {
      margin-top: 8px;
-     font-weight: normal;
+     font-weight: bold;
    }
  }
 

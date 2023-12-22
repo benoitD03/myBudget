@@ -4,7 +4,10 @@
       <mat-icon *ngIf="!sidenav.opened"> menu </mat-icon>
       <mat-icon *ngIf="sidenav.opened"> close </mat-icon>
     </button>
-    myBudget
+    <div id="top-bar-left-title" *ngIf="!accountService.isMobile()">
+      <img class="logo" src="assets/icon.png"/>
+      <p id="logo-title">myBudget</p>
+    </div>
   </div>
   <div id="top-bar-right">
     <button mat-mini-fab color="warn" (click)="onClickLogout()">
@@ -16,7 +19,9 @@
 <mat-sidenav-container>
   <mat-sidenav #sidenav="matSidenav" class="mat-elevation-z8 sidenav" *ngIf="isUserAuthenticated()">
     <div *ngIf="isUserAuthenticated()">
-      <img class="avatar mat-elevation-z8" src="https://avatars.githubusercontent.com/u/72392406?v=4"/>
+      <div id="avatar-container">
+        <img class="avatar" src="assets/icon-rounded.png"/>
+      </div>
       <h4 class="name">{{ userName }}</h4>
 
       <mat-divider></mat-divider>
