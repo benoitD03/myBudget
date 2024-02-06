@@ -18,10 +18,18 @@ export class DashboardComponent implements OnInit{
   isPreviousMonth: boolean = localStorage.getItem("isPreviousMonth") === "true";
 
 
-  constructor(private categorieService: CategorieService, private accountService: AccountService, private router: Router, public totauxService : TotauxService) {
+  constructor(private categorieService: CategorieService, private accountService: AccountService, private router: Router,
+              public totauxService : TotauxService){
   }
 
   ngOnInit() {
+    this.loadData();
+  }
+
+  /**
+   * Méthode permettant de récupérer les catégories de l'utilisateur
+   */
+  loadData() {
     let id_User: string | null = this.accountService.getIdUser();
     this.categorieService.getCategoriesByUserId(Number(id_User)).subscribe({
       next: (data) => {
@@ -32,7 +40,6 @@ export class DashboardComponent implements OnInit{
       }
     })
   }
-
   /**
    * Méthode permettant d'afficher le mois dernier ou le mois en cours
    */
@@ -47,6 +54,7 @@ export class DashboardComponent implements OnInit{
       localStorage.removeItem("month");
       localStorage.removeItem("isPreviousMonth");
     }
-    location.reload();
+      this.loadData();
+      this.totauxService.calculateTotals();
   }
 }
