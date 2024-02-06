@@ -54,6 +54,7 @@ export class DashboardComponent implements OnInit{
       localStorage.removeItem("month");
       localStorage.removeItem("isPreviousMonth");
     }
+      this.isPreviousMonth=!this.isPreviousMonth;
       this.loadData();
       this.totauxService.calculateTotals();
   }
