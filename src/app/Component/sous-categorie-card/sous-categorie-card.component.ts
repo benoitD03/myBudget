@@ -10,6 +10,7 @@ import {
 } from "../dialog-create-sous-categorie/dialog-create-sous-categorie.component";
 import {Router} from "@angular/router";
 import {TotauxService} from "../../services/totaux.service";
+import {AccountService} from "../../services/account.service";
 
 @Component({
   selector: 'app-sous-categorie-card',
@@ -21,7 +22,8 @@ export class SousCategorieCardComponent {
   @Output() deleteSuccess = new EventEmitter<void>();
   @Output() modifySuccess = new EventEmitter<void>();
 
-  constructor(private sousCategorieService: SousCategorieService, private dialog: MatDialog, private router: Router, private totauxService : TotauxService) { }
+  constructor(private sousCategorieService: SousCategorieService, private dialog: MatDialog, private router: Router, private totauxService : TotauxService,
+              public accountService: AccountService) { }
 
   onConfirmDeleteSousCategorie() {
     const dialogRef = this.dialog.open(DialogConfirmationComponent, {
