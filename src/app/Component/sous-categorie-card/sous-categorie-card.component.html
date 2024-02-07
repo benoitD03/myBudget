@@ -1,4 +1,6 @@
-<mat-card id="sub-card-content" [ngStyle]="{ 'background-color': sousCategorie.Couleur }">
+<!--TEMPLATE DESKTOP-->
+
+<mat-card *ngIf="!accountService.isMobile()" id="sub-card-content" [ngStyle]="{ 'background-color': sousCategorie.Couleur }">
   <div id="delete-button">
     <button mat-icon-button (click)="openDialogModifySousCategorie(sousCategorie, true)"><mat-icon>edit</mat-icon></button>
     <button mat-icon-button (click)="onConfirmDeleteSousCategorie()"><mat-icon>close</mat-icon></button>
@@ -22,4 +24,22 @@
     </div>
     <mat-divider></mat-divider>
   </mat-card-content>
+</mat-card>
+
+<!--TEMPLATE MOBILE-->
+<mat-card  *ngIf="accountService.isMobile()"class="mobile-card" >
+  <mat-card-header>
+    <div id="header-icon-mobile"  mat-card-avatar class="example-header-image" [ngStyle]="{ 'background-color': sousCategorie.Couleur }"><mat-icon class="mat-icon">{{ sousCategorie.Image }}</mat-icon></div>
+    <mat-card-title>{{sousCategorie.Nom}}</mat-card-title>
+    <mat-card-subtitle>{{ sousCategorie.Date | date: 'dd/MM/yyyy'}}</mat-card-subtitle>
+  </mat-card-header>
+  <mat-card-content>
+    <p>
+      {{ sousCategorie.Somme }} €
+    </p>
+  </mat-card-content>
+  <mat-card-actions>
+    <button mat-button (click)="openDialogModifySousCategorie(sousCategorie, true)">Modifier</button>
+    <button mat-button (click)="onConfirmDeleteSousCategorie()">Supprimer</button>
+  </mat-card-actions>
 </mat-card>
