@@ -24,7 +24,7 @@ export class FullYearComponent implements OnInit, AfterViewInit{
   @ViewChild(MatSort) sort: MatSort | null = null;
 
 
-  constructor(private sousCategorieService: SousCategorieService, private accountService : AccountService) {
+  constructor(private sousCategorieService: SousCategorieService, public accountService : AccountService) {
 
   }
 
