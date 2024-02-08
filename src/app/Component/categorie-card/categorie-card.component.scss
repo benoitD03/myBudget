@@ -12,10 +12,9 @@ mat-card {
     display: flex;
     justify-content: space-between;
     margin-bottom: 10px;
-    //color: black !important;
     #header-icon {
       background-color: var(--main-content-text-color);
-      width: 90px !important;
+      width: 90px;
       height: 90px;
       display: flex;
       align-items: center;
@@ -55,6 +54,22 @@ mat-card {
   }
   &:hover {
     background-color: var(--main-content-background-color) !important;
+  }
+}
+@media screen and (max-width: 768px) {
+  .truncate {
+    max-width: 150px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+  #header-icon {
+    width: 70px !important;
+    height: 70px!important;
+    .mat-icon {
+      width: 20px;
+      height: 20px;
+    }
   }
 }
 
