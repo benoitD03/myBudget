@@ -9,7 +9,7 @@
   <mat-card id="graphique-bar">
     <canvas id="expenseChart"></canvas>
   </mat-card>
-  <mat-card id="graphique-doughnut">
+  <mat-card *ngIf="!accountService.isMobile()" id="graphique-doughnut">
     <canvas id="expenseChart2"></canvas>
   </mat-card>
 </div>
