@@ -34,6 +34,7 @@ export class DashboardComponent implements OnInit{
     this.categorieService.getCategoriesByUserId(Number(id_User)).subscribe({
       next: (data) => {
         this.categories = data;
+        this.totauxService.calculateTotals();
       },
       error: (error) => {
         console.error('Erreur lors de la récupération des catégories :', error);

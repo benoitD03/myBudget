@@ -18,7 +18,7 @@
   </div>
 </header>
 
-<section id="main">
+<section id="main" *ngIf="categories.length>0">
   <div id="depenses" class="categorie-container">
     <div class="categorie-container-title"><h2>Dépenses</h2></div>
     <div *ngFor="let categorie of categories">
@@ -30,5 +30,10 @@
     <div *ngFor="let categorie of categories">
       <app-categorie-card *ngIf="!categorie.Depense" [categorie]="categorie" [previousMonth]="month" ></app-categorie-card>
     </div>
+  </div>
+</section>
+<section *ngIf="categories.length==0">
+  <div id="empty-categories">
+    <h2>Rendez-vous dans l'onglet <b>Mes catégories</b> pour commencer à classer vos dépenses !</h2>
   </div>
 </section>

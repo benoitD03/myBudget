@@ -60,3 +60,9 @@
   <tr mat-header-row *matHeaderRowDef="Columns"></tr>
   <tr mat-row *matRowDef="let row; columns: Columns;"></tr>
 </table>
+
+<section *ngIf="categories.length==0">
+  <div id="empty-categories">
+    <h2>Cliquez sur le bouton ci-dessus pour créer vos premières catégories</h2>
+  </div>
+</section>
