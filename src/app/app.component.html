@@ -1,4 +1,4 @@
-<mat-toolbar class="mat-elevation-z8" *ngIf="isUserAuthenticated()">
+<mat-toolbar class="mat-elevation-z8" *ngIf="isUserAuthenticated() && !isLoginPage()">
   <div id="top-bar-left">
     <button mat-icon-button *ngIf="sidenav && sidenav.mode === 'over'" (click)="sidenav.toggle()">
       <mat-icon *ngIf="!sidenav.opened"> menu </mat-icon>
@@ -17,7 +17,7 @@
 </mat-toolbar>
 
 <mat-sidenav-container>
-  <mat-sidenav #sidenav="matSidenav" class="mat-elevation-z8 sidenav" *ngIf="isUserAuthenticated()">
+  <mat-sidenav #sidenav="matSidenav" class="mat-elevation-z8 sidenav" *ngIf="isUserAuthenticated() && !isLoginPage()">
     <div *ngIf="isUserAuthenticated()">
       <div id="avatar-container">
         <img class="avatar" src="assets/icon-rounded.png"/>
