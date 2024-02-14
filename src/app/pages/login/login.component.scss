@@ -18,10 +18,10 @@
   }
 
   #form-container {
-    position: absolute; // Ajout de cette ligne
-    top: 50%; // Ajout de cette ligne
-    left: 50%; // Ajout de cette ligne
-    transform: translate(-50%, -50%); // Ajout de cette ligne
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -30,11 +30,12 @@
     padding: 0;
     #form-title {
       text-align: center;
+      color: black;
     }
     #form {
       text-align: center;
-      //margin: auto;
       padding: 20px;
+      background: white !important;
       #form-email, #form-password {
         margin-bottom: 15px;
         mat-form-field {
