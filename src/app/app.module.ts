@@ -20,7 +20,7 @@ import {MatInputModule} from "@angular/material/input";
 import {MatCardModule} from "@angular/material/card";
 import {CommonModule, DatePipe} from "@angular/common";
 import {AccountService} from "./services/account.service";
-import {HttpClientModule} from "@angular/common/http";
+import {HTTP_INTERCEPTORS, HttpClientModule} from "@angular/common/http";
 import { MyCategoriesComponent } from './pages/my-categories/my-categories.component';
 import { CategorieCardComponent } from './Component/categorie-card/categorie-card.component';
 import { SousCategorieCardComponent } from './Component/sous-categorie-card/sous-categorie-card.component';
@@ -45,6 +45,7 @@ import {MatFormFieldModule} from "@angular/material/form-field";
 import {MatPaginatorModule} from "@angular/material/paginator";
 import {MatSortModule} from "@angular/material/sort";
 import { TotalsGraphComponent } from './Component/totals-graph/totals-graph.component';
+import {AuthInterceptorService} from "./services/auth-interceptor.service";
 
 @NgModule({
   declarations: [
@@ -98,7 +99,8 @@ import { TotalsGraphComponent } from './Component/totals-graph/totals-graph.comp
     AccountService,
     DatePipe,
     Location,
-    { provide: MAT_COLOR_FORMATS, useValue: NGX_MAT_COLOR_FORMATS }
+    { provide: MAT_COLOR_FORMATS, useValue: NGX_MAT_COLOR_FORMATS },
+    { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptorService, multi: true }
   ],
   bootstrap: [AppComponent]
 })

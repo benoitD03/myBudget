@@ -36,10 +36,12 @@ export class AppComponent implements OnInit, AfterViewInit{
     this.router.events.subscribe((event) => {
       if (event instanceof NavigationStart) {
         const navigation = this.router.getCurrentNavigation();
-        const loginSuccess = navigation?.extras?.state?.['loginSuccess']; // On récupère la valeur de loginSuccess depuis le state de la navigation definie dans le login.component.ts
+        const loginSuccess = navigation?.extras?.state?.['loginSuccess'];
         if (loginSuccess) {
-          this.cdRef.detectChanges(); // Si on ne force pas la datection des changements, le sidenav ne s'ouvre pas
-          this.adjustSidenavMode();
+          setTimeout(() => {
+            this.cdRef.detectChanges(); // Si on ne force pas la datection des changements, le sidenav ne s'ouvre pas
+            this.adjustSidenavMode();
+          });
         }
       }
     });
@@ -88,6 +90,10 @@ export class AppComponent implements OnInit, AfterViewInit{
    */
   onClickLogout() {
     this.accountService.logout();
+  }
+
+  isLoginPage(): boolean {
+    return this.router.url === '/login';
   }
 }
 

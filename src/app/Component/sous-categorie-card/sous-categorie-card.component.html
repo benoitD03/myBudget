@@ -11,7 +11,7 @@
         <mat-icon class="mat-icon">{{ sousCategorie.Image }}</mat-icon>
       </div>
       <div id="header-name">
-        <h3>{{sousCategorie.Nom}}</h3>
+        <h3 >{{sousCategorie.Nom}}</h3>
       </div>
     </div>
     <div id="footer">
@@ -30,7 +30,7 @@
 <mat-card  *ngIf="accountService.isMobile()"class="mobile-card" >
   <mat-card-header>
     <div id="header-icon-mobile"  mat-card-avatar class="example-header-image" [ngStyle]="{ 'background-color': sousCategorie.Couleur }"><mat-icon class="mat-icon">{{ sousCategorie.Image }}</mat-icon></div>
-    <mat-card-title>{{sousCategorie.Nom}}</mat-card-title>
+    <mat-card-title class="truncate">{{sousCategorie.Nom}}</mat-card-title>
     <mat-card-subtitle>{{ sousCategorie.Date | date: 'dd/MM/yyyy'}}</mat-card-subtitle>
   </mat-card-header>
   <mat-card-content>
