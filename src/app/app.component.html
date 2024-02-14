@@ -16,7 +16,7 @@
   </div>
 </mat-toolbar>
 
-<mat-sidenav-container>
+<mat-sidenav-container [class.login-page]="isLoginPage()">
   <mat-sidenav #sidenav="matSidenav" class="mat-elevation-z8 sidenav" *ngIf="isUserAuthenticated() && !isLoginPage()">
     <div *ngIf="isUserAuthenticated()">
       <div id="avatar-container">
@@ -50,8 +50,8 @@
       </div>
     </div>
   </mat-sidenav>
-  <mat-sidenav-content>
-    <div class="content mat-elevation-z8 main">
+  <mat-sidenav-content [class.login-page]="isLoginPage()">
+    <div class="content mat-elevation-z8 main" [class.login-page]="isLoginPage()">
       <router-outlet></router-outlet>
     </div>
   </mat-sidenav-content>
