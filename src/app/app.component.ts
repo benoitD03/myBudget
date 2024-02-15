@@ -41,7 +41,7 @@ export class AppComponent implements OnInit, AfterViewInit{
           setTimeout(() => {
             this.cdRef.detectChanges(); // Si on ne force pas la datection des changements, le sidenav ne s'ouvre pas
             this.adjustSidenavMode();
-          });
+          },10);
         }
       }
     });
