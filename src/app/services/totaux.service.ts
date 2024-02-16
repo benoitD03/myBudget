@@ -55,12 +55,12 @@ export class TotauxService {
           datasets: [{
             data: [revenu, depense, epargne],
             backgroundColor: [
-              '#5AF3AA',
-              '#FFA96A',
-              '#1879F3'
+              '#34A952',
+              '#ED4334',
+              '#FBBC06'
             ],
             borderWidth: 0,
-            // hoverOffset: 10
+            hoverOffset: 10
           }]
         },
         options: {}

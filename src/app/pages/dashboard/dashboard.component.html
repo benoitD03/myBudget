@@ -5,13 +5,13 @@
   </mat-card-content></mat-card>
 
   <div id="infos">
-    <mat-card class="totaux totaux-number">
+    <mat-card class="totaux totaux-number" id="total-revenu">
       <mat-card-content>Revenu Total: <br><br><span>{{ totauxService.totalRevenu }} €</span></mat-card-content>
     </mat-card>
-    <mat-card class="totaux totaux-number">
+    <mat-card class="totaux totaux-number" id="total-depenses">
       <mat-card-content>Dépenses Totales: <br><br><span>{{ totauxService.totalDepense }} €</span></mat-card-content>
     </mat-card>
-    <mat-card class="totaux totaux-number">
+    <mat-card class="totaux totaux-number" id="total-epargne">
       <mat-card-content>Epargne possible: <br><br><span>{{ totauxService.epargnePossible }} €</span></mat-card-content>
     </mat-card>
     <app-totals-graph></app-totals-graph>

@@ -15,7 +15,7 @@
       <div id="form-date">
         <mat-form-field>
           <mat-label>Date</mat-label>
-          <input formControlName="Date" matInput [matDatepicker]="picker">
+          <input formControlName="Date" matInput [matDatepicker]="picker" readonly>
           <mat-hint>MM/DD/YYYY</mat-hint>
           <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
           <mat-datepicker #picker ></mat-datepicker>
@@ -25,7 +25,8 @@
       <div id="form-somme">
         <mat-form-field appearance="fill">
           <mat-label>Somme</mat-label>
-          <input matInput formControlName="Somme" type="number" placeholder="Somme" required>
+<!--          <input matInput formControlName="Somme" type="number" placeholder="Somme" required>-->
+          <input matInput formControlName="Somme" type="text" placeholder="Somme" pattern="^\d+(\.\d{1,2})?$" required>
           <mat-error *ngIf="createSousCategorieForm.get('Somme')?.hasError('required')">La somme est requise</mat-error>
         </mat-form-field>
       </div>
