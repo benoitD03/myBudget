@@ -151,4 +151,8 @@ export class FullYearComponent implements OnInit, AfterViewInit{
     });
   }
 
+  applyFilterSousCategories(event: Event) {
+    const filterValue = (event.target as HTMLInputElement).value;
+    this.dataSource.filter = filterValue.trim().toLowerCase();
+  }
 }

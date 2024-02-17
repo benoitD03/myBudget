@@ -21,6 +21,12 @@
     Liste des dépenses
   </mat-card-content>
 </mat-card>
+
+<mat-form-field id="sous-categories-filtre">
+  <mat-label>Filtre par nom</mat-label>
+  <input matInput (keyup)="applyFilterSousCategories($event)" placeholder="Ex. Loyer" #input>
+</mat-form-field>
+
 <table mat-table [dataSource]="dataSource" class="mat-elevation-z8" matSort>
 
   <ng-container matColumnDef="Image">
