@@ -46,6 +46,7 @@ import {MatPaginatorModule} from "@angular/material/paginator";
 import {MatSortModule} from "@angular/material/sort";
 import { TotalsGraphComponent } from './Component/totals-graph/totals-graph.component';
 import {AuthInterceptorService} from "./services/auth-interceptor.service";
+import {MatTabsModule} from "@angular/material/tabs";
 
 @NgModule({
   declarations: [
@@ -93,7 +94,8 @@ import {AuthInterceptorService} from "./services/auth-interceptor.service";
     MatInputModule,
     MatFormFieldModule,
     MatSortModule,
-    MatPaginatorModule
+    MatPaginatorModule,
+    MatTabsModule
   ],
   providers: [
     AccountService,
