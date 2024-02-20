@@ -17,7 +17,10 @@ header{
       color: var(--button-content-text-color);
       @media (max-width:768px) {
         top: -45px;
-        left: -10px;
+        left: 0;
+        right: 0;
+        margin: auto;
+        width: 100%;
       }
     }
   }
@@ -49,16 +52,10 @@ header{
   }
 }
 
-#main {
+.main {
   display: flex;
   width: 100%;
   justify-content: space-between;
-  @media (max-width:768px) {
-    flex-direction: column;
-    #revenus {
-      order: -1;
-    }
-  }
   .categorie-container {
     text-align: center;
     width: 100%;
@@ -80,4 +77,8 @@ header{
 #total-epargne {
   background-color: #FBBC06 !important;
   color: white !important;
+}
+
+.mat-mdc-tab-group, .mat-mdc-tab-nav-bar{
+  --mat-tab-header-inactive-label-text-color: var(--main-content-text-color) !important;
 }

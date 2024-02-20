@@ -18,20 +18,43 @@
   </div>
 </header>
 
-<section id="main" *ngIf="categories.length>0">
-  <div id="depenses" class="categorie-container">
+<section class="main" *ngIf="categories.length>0 && !accountService.isMobile()">
+  <div class="categorie-container depenses">
     <div class="categorie-container-title"><h2>Dépenses</h2></div>
     <div *ngFor="let categorie of categories">
       <app-categorie-card *ngIf="categorie.Depense" [categorie]="categorie" [previousMonth]="month" ></app-categorie-card>
     </div>
   </div>
-  <div id="revenus" class="categorie-container">
+  <div class="categorie-container revenus">
     <div class="categorie-container-title"><h2>Revenus</h2></div>
     <div *ngFor="let categorie of categories">
       <app-categorie-card *ngIf="!categorie.Depense" [categorie]="categorie" [previousMonth]="month" ></app-categorie-card>
     </div>
   </div>
 </section>
+
+<section class="main" *ngIf="accountService.isMobile()">
+  <mat-tab-group>
+    <mat-tab label="Dépenses" class="onglet">
+      <div class="categorie-container depenses">
+        <div class="categorie-container-title"><h2>Dépenses</h2></div>
+        <div *ngFor="let categorie of categories">
+          <app-categorie-card *ngIf="categorie.Depense" [categorie]="categorie" [previousMonth]="month" ></app-categorie-card>
+        </div>
+      </div>
+    </mat-tab>
+    <mat-tab label="Revenus" class="onglet">
+      <div class="categorie-container revenus">
+        <div class="categorie-container-title"><h2>Revenus</h2></div>
+        <div *ngFor="let categorie of categories">
+          <app-categorie-card *ngIf="!categorie.Depense" [categorie]="categorie" [previousMonth]="month" ></app-categorie-card>
+        </div>
+      </div>
+    </mat-tab>
+  </mat-tab-group>
+
+</section>
+
 <section *ngIf="categories.length==0">
   <div id="empty-categories">
     <h2>Rendez-vous dans l'onglet <b>Mes catégories</b> pour commencer à classer vos dépenses !</h2>

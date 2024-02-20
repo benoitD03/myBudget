@@ -18,7 +18,7 @@ export class DashboardComponent implements OnInit{
   isPreviousMonth: boolean = localStorage.getItem("isPreviousMonth") === "true";
 
 
-  constructor(private categorieService: CategorieService, private accountService: AccountService, private router: Router,
+  constructor(private categorieService: CategorieService, public accountService: AccountService, private router: Router,
               public totauxService : TotauxService){
   }
 
