@@ -13,7 +13,6 @@ import { MatIconModule } from "@angular/material/icon";
 import { FlexLayoutModule} from "@angular/flex-layout";
 import { DashboardComponent } from './pages/dashboard/dashboard.component';
 import { FullYearComponent } from './pages/full-year/full-year.component';
-import { LastMonthComponent } from './pages/last-month/last-month.component';
 import { LoginComponent } from './pages/login/login.component';
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {MatInputModule} from "@angular/material/input";
@@ -47,13 +46,13 @@ import {MatSortModule} from "@angular/material/sort";
 import { TotalsGraphComponent } from './Component/totals-graph/totals-graph.component';
 import {AuthInterceptorService} from "./services/auth-interceptor.service";
 import {MatTabsModule} from "@angular/material/tabs";
+import { HelpPageComponent } from './pages/help-page/help-page.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     DashboardComponent,
     FullYearComponent,
-    LastMonthComponent,
     LoginComponent,
     MyCategoriesComponent,
     CategorieCardComponent,
@@ -62,6 +61,7 @@ import {MatTabsModule} from "@angular/material/tabs";
     DialogCreateSousCategorieComponent,
     DialogConfirmationComponent,
     TotalsGraphComponent,
+    HelpPageComponent,
   ],
   imports: [
     BrowserModule,

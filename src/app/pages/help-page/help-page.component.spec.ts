@@ -1,16 +1,16 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { LastMonthComponent } from './last-month.component';
+import { HelpPageComponent } from './help-page.component';
 
-describe('LastMonthComponent', () => {
-  let component: LastMonthComponent;
-  let fixture: ComponentFixture<LastMonthComponent>;
+describe('HelpPageComponent', () => {
+  let component: HelpPageComponent;
+  let fixture: ComponentFixture<HelpPageComponent>;
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      declarations: [LastMonthComponent]
+      declarations: [HelpPageComponent]
     });
-    fixture = TestBed.createComponent(LastMonthComponent);
+    fixture = TestBed.createComponent(HelpPageComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
