@@ -22,4 +22,8 @@ export class Config {
   static URL_CREATE_SOUS_CATEGORIES = Config.URL_API + '/sous-categories';
   static URL_DELETE_SOUS_CATEGORIES = Config.URL_API + '/sous-categories';
   static URL_UPDATE_SOUS_CATEGORIES = Config.URL_API + '/sous-categories';
+  static URL_FAVORIS = Config.URL_API + '/favoris/all';
+  static URL_CREATE_FAVORIS  = Config.URL_API + '/favoris';
+  static URL_DELETE_FAVORIS= Config.URL_API + '/favoris';
+  static URL_UPDATE_FAVORIS= Config.URL_API + '/favoris';
 }
