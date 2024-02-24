@@ -3,7 +3,8 @@ import {AccountService} from "./account.service";
 import {HttpClient, HttpHeaders} from "@angular/common/http";
 import { Config } from "../class/config";
 import {Favori} from "../class/favori";
-import {Observable} from "rxjs";
+import {Observable, throwError} from "rxjs";
+import {catchError} from "rxjs/operators";
 
 @Injectable({
   providedIn: 'root'
@@ -16,12 +17,17 @@ export class FavoriService {
    * Méthode de récuperation des favoris de l'utilisateur connecté
    * @param userId : Id de l'utilisateur connecté
    */
-  getFavorisByUserId(userId: number): Observable<Favori[]> {
+  getFavorisByUserId(userId: number): Observable<Favori[] | []> {
     const token = this.accountService.getToken();
 
     const headers = token ? new HttpHeaders({ Authorization: `Bearer ${token}` }) : new HttpHeaders();
 
-    return this.http.get<Favori[]>(Config.URL_FAVORIS+'?id_User='+userId, { headers });
+    return this.http.get<Favori[] | []>(Config.URL_FAVORIS+'?id_User='+userId, { headers }).pipe(
+      catchError(error => {
+        console.error('Error occurred:', error);
+        return throwError(error);
+      })
+    );
   }
 
   /**
