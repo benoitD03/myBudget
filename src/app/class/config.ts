@@ -8,6 +8,7 @@ export class Config {
   static ROUTE_FULL_YEAR = 'full-year';
   static ROUTE_MY_CATEGORIES = 'my-categories';
   static ROUTE_HELP = 'help';
+  static ROUTE_FAVORIS = 'favoris';
 
   static URL_API = environment.apiURL;
   static URL_LOGIN = Config.URL_API + '/auth/login';

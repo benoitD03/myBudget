@@ -47,6 +47,7 @@ import { TotalsGraphComponent } from './Component/totals-graph/totals-graph.comp
 import {AuthInterceptorService} from "./services/auth-interceptor.service";
 import {MatTabsModule} from "@angular/material/tabs";
 import { HelpPageComponent } from './pages/help-page/help-page.component';
+import { FavorisComponent } from './pages/favoris/favoris.component';
 
 @NgModule({
   declarations: [
@@ -62,6 +63,7 @@ import { HelpPageComponent } from './pages/help-page/help-page.component';
     DialogConfirmationComponent,
     TotalsGraphComponent,
     HelpPageComponent,
+    FavorisComponent,
   ],
   imports: [
     BrowserModule,
