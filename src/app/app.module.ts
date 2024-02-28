@@ -48,6 +48,8 @@ import {AuthInterceptorService} from "./services/auth-interceptor.service";
 import {MatTabsModule} from "@angular/material/tabs";
 import { HelpPageComponent } from './pages/help-page/help-page.component';
 import { FavorisComponent } from './pages/favoris/favoris.component';
+import { DialogCreateFavoriComponent } from './Component/dialog-create-favori/dialog-create-favori.component';
+import {MatSelectModule} from "@angular/material/select";
 
 @NgModule({
   declarations: [
@@ -64,6 +66,7 @@ import { FavorisComponent } from './pages/favoris/favoris.component';
     TotalsGraphComponent,
     HelpPageComponent,
     FavorisComponent,
+    DialogCreateFavoriComponent,
   ],
   imports: [
     BrowserModule,
@@ -97,7 +100,8 @@ import { FavorisComponent } from './pages/favoris/favoris.component';
     MatFormFieldModule,
     MatSortModule,
     MatPaginatorModule,
-    MatTabsModule
+    MatTabsModule,
+    MatSelectModule
   ],
   providers: [
     AccountService,

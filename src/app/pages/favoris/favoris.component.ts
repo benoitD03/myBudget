@@ -7,6 +7,7 @@ import {
 import {DialogConfirmationComponent} from "../../Component/dialog-confirmation/dialog-confirmation.component";
 import {Favori} from "../../class/favori";
 import {FavoriService} from "../../services/favori.service";
+import {DialogCreateFavoriComponent} from "../../Component/dialog-create-favori/dialog-create-favori.component";
 
 @Component({
   selector: 'app-favoris',
@@ -40,19 +41,19 @@ export class FavorisComponent implements OnInit{
     });
   }
 
-  // openDialogCreateCategorie(isModif: Boolean) {
-  //   const dialogRef = this.dialog.open(DialogCreateCategorieComponent, {
-  //     maxWidth: '100vw',
-  //     maxHeight: '100vh',
-  //     height: '70%',
-  //     width: '400px',
-  //     data: {isModif: isModif}
-  //   });
-  //
-  //   dialogRef.afterClosed().subscribe(result => {
-  //     this.loadList();
-  //   });
-  // }
+  openDialogCreateFavori(isModif: Boolean) {
+    const dialogRef = this.dialog.open(DialogCreateFavoriComponent, {
+      maxWidth: '100vw',
+      maxHeight: '100vh',
+      height: '70%',
+      width: '400px',
+      data: {isModif: isModif}
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      this.loadList();
+    });
+  }
 
   onConfirmDeleteFavori(favori:Favori) {
     const dialogRef = this.dialog.open(DialogConfirmationComponent, {

@@ -4,6 +4,12 @@
   </mat-card-content>
 </mat-card>
 
+<div class="button-container">
+  <button mat-raised-button (click)="openDialogCreateFavori(false)">
+    <mat-icon>add_box</mat-icon>
+  </button>
+</div>
+
 <table mat-table [dataSource]="favoris" class="mat-elevation-z8">
 
   <ng-container matColumnDef="Nom">
