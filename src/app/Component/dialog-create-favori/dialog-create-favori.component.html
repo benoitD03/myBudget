@@ -1,0 +1,39 @@
+<form [formGroup]="createFavoriForm" (ngSubmit)="onSubmit()">
+
+  <div id="title">
+    <h2>Ajout d'un favori</h2>
+  </div>
+  <div id="form">
+
+    <div id="form-Nom">
+      <mat-form-field appearance="fill">
+        <mat-label>Nom</mat-label>
+        <input matInput formControlName="Nom" type="text" placeholder="Nom" required>
+        <mat-error *ngIf="createFavoriForm.get('Nom')?.hasError('required')">Le nom est requis</mat-error>
+      </mat-form-field>
+    </div>
+
+    <div id="form-Somme">
+      <mat-form-field appearance="fill">
+        <mat-label>Somme</mat-label>
+        <input matInput formControlName="Somme" type="text" placeholder="Somme">
+        <mat-error *ngIf="createFavoriForm.get('Somme')?.hasError('required')">La somme est requise</mat-error>
+      </mat-form-field>
+    </div>
+
+    <div id="form-cat">
+      <mat-form-field appearance="fill">
+        <mat-label>Catégorie</mat-label>
+        <mat-select formControlName="Categorie" required>
+          <mat-option *ngFor="let categorie of categories" [value]="categorie.id_Categorie">{{ categorie.Nom }}</mat-option>
+        </mat-select>
+        <mat-error *ngIf="createFavoriForm.get('Catégorie')?.hasError('required')">La catégorie est requise</mat-error>
+      </mat-form-field>
+    </div>
+
+    <div id="form-button">
+      <button mat-raised-button color="primary" type="submit">Valider</button>
+    </div>
+
+  </div>
+</form>
