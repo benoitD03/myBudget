@@ -38,7 +38,7 @@ export class DialogCreateFavoriComponent implements OnInit{
       if (this.createFavoriForm.valid) {
         const nom = this.createFavoriForm.get('Nom')?.value;
         const somme = this.createFavoriForm.get('Somme')?.value;
-        const categorie = this.createFavoriForm.get('Categorie')?.value;
+        const categorie = this.createFavoriForm.get('categorie')?.value;
         const idUser = this.accountService.getIdUser();
         const depense :boolean = this.categories.find(c => c.id_Categorie === categorie)?.Depense ?? false;
 

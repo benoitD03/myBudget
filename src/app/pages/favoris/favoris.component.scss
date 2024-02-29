@@ -30,9 +30,14 @@
 .mat-mdc-header-row, .mdc-data-table__header-row, .cdk-header-row, .ng-star-inserted {
   background-color: var(--card-content-background-color);
   color: var(--main-content-text-color) !important;
+  text-align: center;
 }
 
 #empty-favoris {
   Margin-top: 50px;
   text-align: center;
+}
+#actions{
+  display: flex;
+  justify-content: center;
 }

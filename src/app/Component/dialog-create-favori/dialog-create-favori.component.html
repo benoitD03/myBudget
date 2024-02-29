@@ -1,7 +1,7 @@
 <form [formGroup]="createFavoriForm" (ngSubmit)="onSubmit()">
 
   <div id="title">
-    <h2>Ajout d'un favori</h2>
+    <h2>{{ data.isModif ? 'Modification Favori' : 'Ajout Favori' }}</h2>
   </div>
   <div id="form">
 

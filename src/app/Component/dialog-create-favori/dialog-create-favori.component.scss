@@ -1,0 +1,28 @@
+form{
+  height: 100%;
+  padding-bottom: 25px;
+  margin: 0;
+  background: var(--main-content-background-color);
+  color: var(--main-content-text-color);
+}
+#title {
+  text-align: center;
+  margin: 0 0 40px 0;
+  padding-top: 20px;
+}
+#form {
+  text-align: center;
+  mat-form-field {
+    width: 80%;
+    margin: 15px 0;
+  }
+  #form-depense-revenu {
+    background-color: #F1F4F5;
+    margin-bottom: 15px;
+  }
+  #form-Image {
+    #form-Image-icon {
+      margin: 5px 0 0 0;
+    }
+  }
+}
