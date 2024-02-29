@@ -17,12 +17,17 @@
     <td mat-cell *matCellDef="let favoris">{{favoris.Nom}}</td>
   </ng-container>
 
-  <ng-container matColumnDef="Depense">
+  <ng-container matColumnDef="Somme">
+    <th mat-header-cell *matHeaderCellDef>Somme</th>
+    <td mat-cell *matCellDef="let favoris">{{favoris.Somme}}</td>
+  </ng-container>
+
+  <ng-container matColumnDef="Depense" *ngIf="!accountService.isMobile()">
     <th mat-header-cell *matHeaderCellDef>Depense</th>
     <td mat-cell *matCellDef="let favoris">{{favoris.Depense ? 'Oui' : 'Non'}}</td>
   </ng-container>
 
-  <ng-container matColumnDef="Revenu">
+  <ng-container matColumnDef="Revenu" *ngIf="!accountService.isMobile()">
     <th mat-header-cell *matHeaderCellDef>Revenu</th>
     <td mat-cell *matCellDef="let favoris">{{favoris.Depense ? 'Non' : 'Oui'}}</td>
   </ng-container>
@@ -33,9 +38,9 @@
       <button mat-icon-button (click)="onConfirmDeleteFavori(favoris)">
         <mat-icon>delete</mat-icon>
       </button>
-<!--      <button mat-icon-button (click)="openDialogModifyCategorie(categorie, true)">-->
-<!--        <mat-icon>build</mat-icon>-->
-<!--      </button>-->
+      <button mat-icon-button (click)="openDialogModifyFavori(favoris, true)">
+        <mat-icon>build</mat-icon>
+      </button>
     </td>
   </ng-container>
 

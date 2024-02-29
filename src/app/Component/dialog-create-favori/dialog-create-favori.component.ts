@@ -21,7 +21,7 @@ export class DialogCreateFavoriComponent implements OnInit{
     this.createFavoriForm = this.fb.group({
       Nom: [data.isModif ? data.favoriToModify.Nom : '', Validators.required],
       Somme: [data.isModif ? data.favoriToModify.Somme : 0, Validators.required],
-      Categorie: [data.isModif ? data.favoriToModify.Categorie : null, Validators.required],
+      categorie: [data.isModif ? data.favoriToModify.categorie.id_Categorie : null, Validators.required],
     });
   }
 
@@ -63,9 +63,8 @@ export class DialogCreateFavoriComponent implements OnInit{
             updatedFavoriData[key] = formControls[key].value;
           }
         }
-
         this.favoriService
-          .updateFavori(this.data.categorieToModify.id_Categorie, updatedFavoriData)
+          .updateFavori(this.data.favoriToModify.id_Favori, updatedFavoriData)
           .subscribe({
             next: (response: any) => {
               this.dialogRef.close();

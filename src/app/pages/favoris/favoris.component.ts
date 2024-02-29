@@ -16,7 +16,7 @@ import {DialogCreateFavoriComponent} from "../../Component/dialog-create-favori/
 })
 export class FavorisComponent implements OnInit{
   favoris: Favori[] = []
-  Columns: string[] = ['Nom','Depense', 'Revenu', 'Categorie', 'Actions'];
+  Columns: string[] = this.accountService.isMobile() ? ['Nom', 'Somme', 'Categorie', 'Actions'] : ['Nom', 'Somme', 'Depense', 'Revenu', 'Categorie', 'Actions'];
 
   constructor(private favoriService: FavoriService, public accountService: AccountService, public dialog: MatDialog) {
   }
@@ -26,10 +26,8 @@ export class FavorisComponent implements OnInit{
 
   loadList() {
     const id_User = this.accountService.getIdUser();
-    console.log('id_User', id_User)
     this.favoriService.getFavorisByUserId(Number(id_User)).subscribe({
       next : (data) => {
-        console.log("next")
         this.favoris=data;
       },
       error : (error) => {
@@ -83,21 +81,20 @@ export class FavorisComponent implements OnInit{
     }
   }
 
-  // openDialogModifyCategorie(categorie: Categorie, isModif: Boolean) {
-  //   console.log(categorie.Couleur)
-  //   const dialogRef = this.dialog.open(DialogCreateCategorieComponent, {
-  //     maxWidth: '100vw',
-  //     maxHeight: '100vh',
-  //     height: '70%',
-  //     width: '400px',
-  //     data:
-  //       { categorieToModify: categorie,
-  //         isModif: isModif
-  //       },
-  //   });
-  //
-  //   dialogRef.afterClosed().subscribe(result => {
-  //     this.loadList();
-  //   });
-  // }
+  openDialogModifyFavori(favori: Favori, isModif: Boolean) {
+    const dialogRef = this.dialog.open(DialogCreateFavoriComponent, {
+      maxWidth: '100vw',
+      maxHeight: '100vh',
+      height: '70%',
+      width: '400px',
+      data:
+        { favoriToModify: favori,
+          isModif: isModif
+        },
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      this.loadList();
+    });
+  }
 }

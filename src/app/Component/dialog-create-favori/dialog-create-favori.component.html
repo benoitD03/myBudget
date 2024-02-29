@@ -24,7 +24,7 @@
     <div id="form-cat">
       <mat-form-field appearance="fill">
         <mat-label>Catégorie</mat-label>
-        <mat-select formControlName="Categorie" required>
+        <mat-select formControlName="categorie" required>
           <mat-option *ngFor="let categorie of categories" [value]="categorie.id_Categorie">{{ categorie.Nom }}</mat-option>
         </mat-select>
         <mat-error *ngIf="createFavoriForm.get('Catégorie')?.hasError('required')">La catégorie est requise</mat-error>
