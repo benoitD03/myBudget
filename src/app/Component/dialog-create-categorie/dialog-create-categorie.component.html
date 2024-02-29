@@ -1,6 +1,6 @@
 <form [formGroup]="createCategorieForm" (ngSubmit)="onSubmit()">
   <div id="title">
-    <h2>Ajout d'une catégorie</h2>
+    <h2>{{ data.isModif ? 'Modification Catégorie' : 'Ajout Catégorie' }}</h2>
   </div>
   <div id="form">
 
