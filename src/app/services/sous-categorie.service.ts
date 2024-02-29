@@ -107,6 +107,14 @@ export class SousCategorieService {
     return this.http.post(Config.URL_CREATE_SOUS_CATEGORIES, sousCategorieData, { headers });
   }
 
+  createMultipleSousCategorie(sousCategoriesData:any): Observable<any> {
+    const token = this.accountService.getToken();
+
+    const headers = token ? new HttpHeaders({ Authorization: `Bearer ${token}` }) : new HttpHeaders();
+
+    return this.http.post(Config.URL_CREATE_MULTIPLE_SOUS_CATEGORIES, sousCategoriesData, { headers });
+  }
+
   /**
    * Méthode de suppression d'un sous catégorie
    * @param sousCategorieId

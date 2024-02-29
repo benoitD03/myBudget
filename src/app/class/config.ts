@@ -21,6 +21,7 @@ export class Config {
   static URL_SOUS_CATEGORIES_ALL_BY_MONTH = Config.URL_API + '/sous-categories/all-by-month';
   static URL_SOUS_CATEGORIES_BY_YEAR = Config.URL_API + '/sous-categories/by-year';
   static URL_CREATE_SOUS_CATEGORIES = Config.URL_API + '/sous-categories';
+  static URL_CREATE_MULTIPLE_SOUS_CATEGORIES = Config.URL_API + '/sous-categories/multiple';
   static URL_DELETE_SOUS_CATEGORIES = Config.URL_API + '/sous-categories';
   static URL_UPDATE_SOUS_CATEGORIES = Config.URL_API + '/sous-categories';
   static URL_FAVORIS = Config.URL_API + '/favoris/all';

@@ -18,6 +18,8 @@
   </div>
 </header>
 
+<button mat-raised-button (click)="addAllFavoris()">Ajouter tous mes favoris</button>
+
 <section class="main" *ngIf="categories.length>0 && !accountService.isMobile()">
   <div class="categorie-container depenses">
     <div class="categorie-container-title"><h2>Dépenses</h2></div>
