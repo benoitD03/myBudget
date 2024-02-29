@@ -1,5 +1,5 @@
 export class SousCategorie {
-  id_Sous_Categorie!: number;
+  id_Sous_Categorie?: number;
   Nom: string = "";
   Image: string = "";
   Depense: boolean = false;
