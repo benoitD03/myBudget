@@ -7,9 +7,9 @@ header{
     max-width: 100% !important;
     position: relative;
     @media (max-width:768px) {
-      margin-top: 40px;
+      margin-top: 80px;
     }
-    button {
+    #month-button {
       position: absolute;
       top: 15px;
       left: 10px;
@@ -17,6 +17,21 @@ header{
       color: var(--button-content-text-color);
       @media (max-width:768px) {
         top: -45px;
+        left: 0;
+        right: 0;
+        margin: auto;
+        width: 100%;
+      }
+    }
+    #fav-button {
+      position: absolute;
+      top: 15px;
+      right: 10px;
+      background-color: var(--button-content-background-color);
+      color: var(--button-content-text-color);
+      --mat-icon-color: #FBBC06;
+      @media (max-width:768px) {
+        top: -90px;
         left: 0;
         right: 0;
         margin: auto;
