@@ -1,7 +1,8 @@
 <header>
   <mat-card id="title"><mat-card-content>
-    <button mat-raised-button (click)="changeMonth()">{{ isPreviousMonth ? "Mois en cours" : "Mois précédent" }}</button>
+    <button id="month-button" mat-raised-button (click)="changeMonth()">{{ isPreviousMonth ? "Mois en cours" : "Mois précédent" }}</button>
     {{ isPreviousMonth ? "Le mois dernier" : "Mois en cours" }}
+    <button *ngIf="!isPreviousMonth" id="fav-button" mat-raised-button (click)="addAllFavoris()"><mat-icon>star</mat-icon>Ajouter tous mes favoris</button>
   </mat-card-content></mat-card>
 
   <div id="infos">
@@ -17,8 +18,6 @@
     <app-totals-graph></app-totals-graph>
   </div>
 </header>
-
-<button mat-raised-button (click)="addAllFavoris()">Ajouter tous mes favoris</button>
 
 <section class="main" *ngIf="categories.length>0 && !accountService.isMobile()">
   <div class="categorie-container depenses">
