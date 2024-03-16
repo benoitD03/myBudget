@@ -19,7 +19,11 @@
 
   <ng-container matColumnDef="Somme">
     <th mat-header-cell *matHeaderCellDef>Somme</th>
-    <td mat-cell *matCellDef="let favoris">{{favoris.Somme}}</td>
+    <td mat-cell *matCellDef="let favoris">
+      <div class="somme-value" [class]="favoris.Depense ? 'bg-depense' : 'bg-revenu'">
+      {{favoris.Somme}}
+      </div>
+    </td>
   </ng-container>
 
   <ng-container matColumnDef="Depense" *ngIf="!accountService.isMobile()">
