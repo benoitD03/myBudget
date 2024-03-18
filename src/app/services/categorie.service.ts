@@ -17,11 +17,7 @@ export class CategorieService {
    * @param userId : Id de l'utilisateur connecté
    */
   getCategoriesByUserId(userId: number): Observable<Categorie[]> {
-    const token = this.accountService.getToken();
-
-    const headers = token ? new HttpHeaders({ Authorization: `Bearer ${token}` }) : new HttpHeaders();
-
-    return this.http.get<Categorie[]>(Config.URL_CATEGORIES+'?id_User='+userId, { headers });
+    return this.http.get<Categorie[]>(Config.URL_CATEGORIES+'?id_User='+userId);
   }
 
   /**
@@ -29,10 +25,6 @@ export class CategorieService {
    * @param categorieId
    */
   createCategorie(nom: string, image: string, description: string, depense: boolean, couleur: string, userId: any): Observable<any> {
-    const token = this.accountService.getToken();
-
-    const headers = token ? new HttpHeaders({ Authorization: `Bearer ${token}` }) : new HttpHeaders();
-
     const categorieData = {
       Nom: nom,
       Image: image,
@@ -42,7 +34,7 @@ export class CategorieService {
       user: userId
     };
 
-    return this.http.post(Config.URL_CREATE_CATEGORIES, categorieData, { headers });
+    return this.http.post(Config.URL_CREATE_CATEGORIES, categorieData);
   }
 
   /**
@@ -50,11 +42,7 @@ export class CategorieService {
    * @param categorieId
    */
   deleteCategorie(categorieId: number): Observable<void> {
-    const token = this.accountService.getToken();
-
-    const headers = token ? new HttpHeaders({ Authorization: `Bearer ${token}` }) : new HttpHeaders();
-
-    return this.http.delete<void>(`${Config.URL_DELETE_CATEGORIES}/${categorieId}` , { headers });
+    return this.http.delete<void>(`${Config.URL_DELETE_CATEGORIES}/${categorieId}`);
   }
 
   /**
@@ -63,11 +51,7 @@ export class CategorieService {
    * @param updatedData ==> Catégories avec les données modifiées
    */
   updateCategorie(categorieId: number, updatedData: Categorie): Observable<any> {
-    const token = this.accountService.getToken();
-
-    const headers = token ? new HttpHeaders({ Authorization: `Bearer ${token}` }) : new HttpHeaders();
-
-    return this.http.put(`${Config.URL_UPDATE_CATEGORIES}/${categorieId}`, updatedData, { headers });
+    return this.http.put(`${Config.URL_UPDATE_CATEGORIES}/${categorieId}`, updatedData);
   }
 
 }

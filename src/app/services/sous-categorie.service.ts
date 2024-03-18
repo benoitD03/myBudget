@@ -19,11 +19,8 @@ export class SousCategorieService {
    * @param categorieId : Id de la categorie
    */
   getSousCategoriesByCategorieId(categorieId: number): Observable<SousCategorie[]> {
-    const token = this.accountService.getToken();
 
-    const headers = token ? new HttpHeaders({ Authorization: `Bearer ${token}` }) : new HttpHeaders();
-
-    return this.http.get<SousCategorie[]>(Config.URL_SOUS_CATEGORIES+'?id_Categorie='+categorieId, { headers });
+    return this.http.get<SousCategorie[]>(Config.URL_SOUS_CATEGORIES+'?id_Categorie='+categorieId);
   }
 
   /**
@@ -33,15 +30,12 @@ export class SousCategorieService {
    * @param month
    */
   getAllByCategorieAndMonth(categorieId: number, year: number, month: number): Observable<any> {
-    const token = this.accountService.getToken();
-
-    const headers = token ? new HttpHeaders({ Authorization: `Bearer ${token}` }) : new HttpHeaders();
     const params = new HttpParams()
       .set('categorieId', categorieId.toString())
       .set('year', year.toString())
       .set('month', month.toString());
 
-    return this.http.get<any>(Config.URL_SOUS_CATEGORIES_BY_MONTH, { headers, params });
+    return this.http.get<any>(Config.URL_SOUS_CATEGORIES_BY_MONTH, { params });
   }
 
   /**
@@ -50,15 +44,12 @@ export class SousCategorieService {
    * @param month
    */
   getAllByMonth(year: number, month: number, userId: number): Observable<any> {
-    const token = this.accountService.getToken();
-
-    const headers = token ? new HttpHeaders({ Authorization: `Bearer ${token}` }) : new HttpHeaders();
     const params = new HttpParams()
       .set('year', year.toString())
       .set('month', month.toString())
       .set('id_User', userId);
 
-    return this.http.get<any>(Config.URL_SOUS_CATEGORIES_ALL_BY_MONTH, { headers, params });
+    return this.http.get<any>(Config.URL_SOUS_CATEGORIES_ALL_BY_MONTH, { params });
   }
 
   /**
@@ -67,14 +58,11 @@ export class SousCategorieService {
    * @param month
    */
   getAllByYear(year: number, userId: number): Observable<any> {
-    const token = this.accountService.getToken();
-
-    const headers = token ? new HttpHeaders({ Authorization: `Bearer ${token}` }) : new HttpHeaders();
     const params = new HttpParams()
       .set('year', year.toString())
       .set('id_User', userId)
 
-    return this.http.get<any>(Config.URL_SOUS_CATEGORIES_BY_YEAR, { headers, params });
+    return this.http.get<any>(Config.URL_SOUS_CATEGORIES_BY_YEAR, { params });
   }
 
   /**
@@ -89,10 +77,6 @@ export class SousCategorieService {
    * @param couleur
    */
   createSousCategorie(nom: string, image: string, depense: boolean, date: any, somme: number, userId: any, categorieId: any, couleur: string): Observable<any> {
-    const token = this.accountService.getToken();
-
-    const headers = token ? new HttpHeaders({ Authorization: `Bearer ${token}` }) : new HttpHeaders();
-
     const sousCategorieData = {
       Nom: nom,
       Image: image,
@@ -104,15 +88,11 @@ export class SousCategorieService {
       Couleur: couleur
     };
 
-    return this.http.post(Config.URL_CREATE_SOUS_CATEGORIES, sousCategorieData, { headers });
+    return this.http.post(Config.URL_CREATE_SOUS_CATEGORIES, sousCategorieData);
   }
 
   createMultipleSousCategorie(sousCategoriesData:any): Observable<any> {
-    const token = this.accountService.getToken();
-
-    const headers = token ? new HttpHeaders({ Authorization: `Bearer ${token}` }) : new HttpHeaders();
-
-    return this.http.post(Config.URL_CREATE_MULTIPLE_SOUS_CATEGORIES, sousCategoriesData, { headers });
+    return this.http.post(Config.URL_CREATE_MULTIPLE_SOUS_CATEGORIES, sousCategoriesData);
   }
 
   /**
@@ -120,11 +100,7 @@ export class SousCategorieService {
    * @param sousCategorieId
    */
   deleteSousCategorie(sousCategorieId: number): Observable<void> {
-    const token = this.accountService.getToken();
-
-    const headers = token ? new HttpHeaders({ Authorization: `Bearer ${token}` }) : new HttpHeaders();
-
-    return this.http.delete<void>(`${Config.URL_DELETE_SOUS_CATEGORIES}/${sousCategorieId}` , { headers });
+    return this.http.delete<void>(`${Config.URL_DELETE_SOUS_CATEGORIES}/${sousCategorieId}`);
   }
 
   /**
@@ -133,10 +109,6 @@ export class SousCategorieService {
    * @param updatedData ==> Sous Catégories avec les données modifiées
    */
   updateSousCategorie(sousCategorieId: number, updatedData: SousCategorie): Observable<any> {
-    const token = this.accountService.getToken();
-
-    const headers = token ? new HttpHeaders({ Authorization: `Bearer ${token}` }) : new HttpHeaders();
-
-    return this.http.put(`${Config.URL_UPDATE_SOUS_CATEGORIES}/${sousCategorieId}`, updatedData, { headers });
+    return this.http.put(`${Config.URL_UPDATE_SOUS_CATEGORIES}/${sousCategorieId}`, updatedData);
   }
 }

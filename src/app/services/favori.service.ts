@@ -18,11 +18,7 @@ export class FavoriService {
    * @param userId : Id de l'utilisateur connecté
    */
   getFavorisByUserId(userId: number): Observable<Favori[] | []> {
-    const token = this.accountService.getToken();
-
-    const headers = token ? new HttpHeaders({ Authorization: `Bearer ${token}` }) : new HttpHeaders();
-
-    return this.http.get<Favori[] | []>(Config.URL_FAVORIS+'?id_User='+userId, { headers }).pipe(
+    return this.http.get<Favori[] | []>(Config.URL_FAVORIS+'?id_User='+userId).pipe(
       catchError(error => {
         console.error('Error occurred:', error);
         return throwError(error);
@@ -34,10 +30,6 @@ export class FavoriService {
    * Méthode de création d'un favori
    */
   createFavori(nom: string, depense: boolean, somme: string, userId: any, categorieId: any): Observable<any> {
-    const token = this.accountService.getToken();
-
-    const headers = token ? new HttpHeaders({ Authorization: `Bearer ${token}` }) : new HttpHeaders();
-
     const favoriData = {
       Nom: nom,
       Depense: depense,
@@ -45,8 +37,7 @@ export class FavoriService {
       user: userId,
       categorie: categorieId
     };
-
-    return this.http.post(Config.URL_CREATE_FAVORIS, favoriData, { headers });
+    return this.http.post(Config.URL_CREATE_FAVORIS, favoriData);
   }
 
   /**
@@ -54,11 +45,7 @@ export class FavoriService {
    * @param favoriId
    */
   deleteFavori(favoriId: number): Observable<void> {
-    const token = this.accountService.getToken();
-
-    const headers = token ? new HttpHeaders({ Authorization: `Bearer ${token}` }) : new HttpHeaders();
-
-    return this.http.delete<void>(`${Config.URL_DELETE_FAVORIS}/${favoriId}` , { headers });
+    return this.http.delete<void>(`${Config.URL_DELETE_FAVORIS}/${favoriId}`);
   }
 
   /**
@@ -67,10 +54,6 @@ export class FavoriService {
    * @param updatedData ==> Favori avec les données modifiées
    */
   updateFavori(favoriId: number, updatedData: Favori): Observable<any> {
-    const token = this.accountService.getToken();
-
-    const headers = token ? new HttpHeaders({ Authorization: `Bearer ${token}` }) : new HttpHeaders();
-
-    return this.http.put(`${Config.URL_UPDATE_FAVORIS}/${favoriId}`, updatedData, { headers });
+    return this.http.put(`${Config.URL_UPDATE_FAVORIS}/${favoriId}`, updatedData);
   }
 }
