@@ -10,7 +10,9 @@
     <canvas id="expenseChart"></canvas>
   </mat-card>
   <mat-card *ngIf="!accountService.isMobile()" id="graphique-doughnut">
-    <canvas id="expenseChart2"></canvas>
+<!--    <canvas id="expenseChart2"></canvas>-->
+    <h2>Epargne total cette année</h2>
+    <h4>{{totalEpargne}} €</h4>
   </mat-card>
 </div>
 <div *ngIf="depensesCategories.length === 0">Aucune dépense disponible.</div>

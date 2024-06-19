@@ -26,7 +26,7 @@
         <mat-form-field appearance="fill">
           <mat-label>Somme</mat-label>
 <!--          <input matInput formControlName="Somme" type="number" placeholder="Somme" required>-->
-          <input matInput formControlName="Somme" type="text" placeholder="Somme" pattern="^\d+(\.\d{1,2})?$" required>
+          <input matInput formControlName="Somme" type="number" placeholder="Somme" pattern="^\d+(\.\d{1,2})?$" required>
           <mat-error *ngIf="createSousCategorieForm.get('Somme')?.hasError('required')">La somme est requise</mat-error>
         </mat-form-field>
       </div>
