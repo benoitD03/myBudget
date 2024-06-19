@@ -17,6 +17,9 @@ import {AccountService} from "../../services/account.service";
 export class FullYearComponent implements OnInit, AfterViewInit{
   sousCategoriesDepenses!: SousCategorie[];
   sousCategoriesRevenus!: SousCategorie[];
+  totalDepenses!: number;
+  totalRevenus!: number;
+  totalEpargne!: number;
   depensesCategories: { categoryName: string; total: number }[] = [];
   Columns: string[] = this.accountService.isMobile() ? ['Image', 'Nom', 'Date', 'Somme'] : ['Image', 'Categorie', 'Nom', 'Date', 'Somme'];
   dataSource!: MatTableDataSource<SousCategorie>;
@@ -40,9 +43,12 @@ export class FullYearComponent implements OnInit, AfterViewInit{
       next : (data) => {
         this.sousCategoriesDepenses=data.filter((sousCategorie : SousCategorie )=> sousCategorie.Depense).sort((a : any, b: any) => (a.Date > b.Date) ? -1 : 1);
         this.sousCategoriesRevenus=data.filter((sousCategorie : SousCategorie )=> !sousCategorie.Depense).sort((a : any, b: any) => (a.Date > b.Date) ? -1 : 1);
+        this.totalRevenus = this.sousCategoriesRevenus.reduce((acc, value) => acc + value.Somme, 0);
         this.depensesCategories = this.depensesTotalesParCategories(this.sousCategoriesDepenses).sort((a, b) => b.total - a.total);;
         this.dataSource = new MatTableDataSource<SousCategorie>(this.sousCategoriesDepenses);
         this.dataSource.paginator = this.paginator;
+        this.totalEpargne = this.totalRevenus - this.totalDepenses;
+        console.log("Dépenses : " + this.totalDepenses + " Revenus : " + this.totalRevenus + " Epargne : " + this.totalEpargne);
       },
       error : (error) => {
         console.error('Erreur lors de la récupération des transactions :', error);
@@ -70,6 +76,7 @@ export class FullYearComponent implements OnInit, AfterViewInit{
         depensesMap.set(categoryName, sousCategorie.Somme);
       }
     });
+    this.totalDepenses = Array.from(depensesMap.values()).reduce((acc, value) => acc + value, 0);
 
     // On converti la map en tableau pour l'affichage dans le graphique
     return Array.from(depensesMap.entries()).map(([categoryName, total]) => ({ categoryName, total }));
