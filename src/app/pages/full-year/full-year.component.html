@@ -3,26 +3,22 @@
     Année complète
   </mat-card-content>
 </mat-card>
-
-
-<div id="graphique-container" *ngIf="depensesCategories.length > 0">
-  <mat-card id="graphique-bar">
-    <canvas id="expenseChart"></canvas>
-  </mat-card>
-  <mat-card *ngIf="!accountService.isMobile()" id="graphique-doughnut">
-<!--    <canvas id="expenseChart2"></canvas>-->
-    <h2>Epargne total cette année</h2>
-    <h4>{{totalEpargne}} €</h4>
-  </mat-card>
-</div>
-<div *ngIf="depensesCategories.length === 0">Aucune dépense disponible.</div>
-
+<mat-card id="total-epargne">
+  <h2>Epargne totale cette année</h2>
+  <h4>{{totalEpargne}} €</h4>
+</mat-card>
 
 <mat-card class="title">
   <mat-card-content>
     Liste des dépenses
   </mat-card-content>
 </mat-card>
+<div id="graphique-container" *ngIf="depensesCategories.length > 0">
+  <mat-card id="graphique-bar">
+    <canvas id="expenseChart"></canvas>
+  </mat-card>
+</div>
+<div *ngIf="depensesCategories.length === 0">Aucune dépense disponible.</div>
 
 <mat-form-field id="sous-categories-filtre">
   <mat-label>Filtre par nom</mat-label>
