@@ -29,7 +29,6 @@ export class AppComponent implements OnInit, AfterViewInit{
     document.body.setAttribute('data-theme', storedTheme || 'light');
 
     this.isLightTheme = storedTheme === 'light';
-
   }
 
   ngAfterViewInit() {
