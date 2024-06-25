@@ -27,7 +27,7 @@
 </mat-card>
 
 <!--TEMPLATE MOBILE-->
-<mat-card  *ngIf="accountService.isMobile()"class="mobile-card" >
+<mat-card  *ngIf="accountService.isMobile()" class="mobile-card" >
   <mat-card-header>
     <div id="header-icon-mobile"  mat-card-avatar class="example-header-image" [ngStyle]="{ 'background-color': sousCategorie.Couleur }"><mat-icon class="mat-icon">{{ sousCategorie.Image }}</mat-icon></div>
     <mat-card-title class="truncate">{{sousCategorie.Nom}}</mat-card-title>
