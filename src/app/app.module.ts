@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { NgModule, isDevMode } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { Location } from '@angular/common'
 import { AppRoutingModule } from './app-routing.module';
@@ -50,6 +50,7 @@ import { HelpPageComponent } from './pages/help-page/help-page.component';
 import { FavorisComponent } from './pages/favoris/favoris.component';
 import { DialogCreateFavoriComponent } from './Component/dialog-create-favori/dialog-create-favori.component';
 import {MatSelectModule} from "@angular/material/select";
+import { ServiceWorkerModule } from '@angular/service-worker';
 
 @NgModule({
   declarations: [
@@ -101,7 +102,13 @@ import {MatSelectModule} from "@angular/material/select";
     MatSortModule,
     MatPaginatorModule,
     MatTabsModule,
-    MatSelectModule
+    MatSelectModule,
+    ServiceWorkerModule.register('ngsw-worker.js', {
+      enabled: !isDevMode(),
+      // Register the ServiceWorker as soon as the application is stable
+      // or after 30 seconds (whichever comes first).
+      registrationStrategy: 'registerWhenStable:30000'
+    })
   ],
   providers: [
     AccountService,
