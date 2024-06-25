@@ -62,28 +62,28 @@ mat-card-content {
   }
 }
 .mobile-card {
-    mat-card-header {
-      background: var(--card-header-background-color) !important;
+  mat-card-header {
+    background: var(--card-header-background-color) !important;
+    color: var(--main-content-text-color) !important;
+    display: flex;
+    justify-content: space-around;
+    mat-card-subtitle {
       color: var(--main-content-text-color) !important;
-      display: flex;
-      justify-content: space-around;
-      mat-card-subtitle {
-        color: var(--main-content-text-color) !important;
-      }
-      .mat-icon {
-        margin-top: 8px;
-      }
     }
-    mat-card-actions {
-      display: flex;
-      justify-content: space-between;
-      button {
-        color: var(--main-content-text-color) !important;
-      }
+    .mat-icon {
+      margin-top: 8px;
     }
-    p {
-      margin-top: 0 !important;
-      font-size: 20px;
+  }
+  mat-card-actions {
+    display: flex;
+    justify-content: space-between;
+    button {
+      color: var(--main-content-text-color) !important;
     }
+  }
+  p {
+    margin-top: 0 !important;
+    font-size: 20px;
+  }
 }
 
