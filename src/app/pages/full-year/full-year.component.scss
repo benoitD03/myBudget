@@ -15,13 +15,27 @@ mat-paginator{
   color: var(--main-content-text-color) !important;
 }
 
-#total-epargne {
+.total-card {
   width: 100%;
   margin: auto;
+  margin-bottom: 10px;
   text-align: center;
+  background-color: #34A952;
   h4 {
     font-size: 30px;
   }
+}
+#total-depenses {
+  background-color: #ED4334 !important;
+  color: white !important;
+}
+#total-revenu {
+  background-color: #34A952 !important;
+  color: white !important;
+}
+#total-epargne {
+  background-color: #FBBC06 !important;
+  color: white !important;
 }
 
 #graphique-container {
