@@ -120,42 +120,42 @@ export class FullYearComponent implements OnInit, AfterViewInit{
       }
     });
 
-    new Chart(ctx2, {
-      type: 'doughnut',
-      data: {
-        labels: this.depensesCategories.map((expense) => expense.categoryName),
-        datasets: [{
-          label: 'Dépenses par catégories',
-          data: this.depensesCategories.map((expense) => expense.total),
-          borderWidth: 0,
-          backgroundColor: [
-            '#5AF3AA',
-            '#FFA96A',
-            '#1879F3',
-            '#815E2E',
-            '#95DC44',
-            '#D1A293',
-            '#E13C02',
-            '#E38DCD',
-            '#32403F',
-            '#3D3E9B'
-
-          ],
-        }]
-      },
-      options: {
-        plugins : {
-          legend: {
-            display: false
-          },
-        },
-        scales: {
-          y: {
-            beginAtZero: true
-          }
-        }
-      }
-    });
+    // new Chart(ctx2, {
+    //   type: 'doughnut',
+    //   data: {
+    //     labels: this.depensesCategories.map((expense) => expense.categoryName),
+    //     datasets: [{
+    //       label: 'Dépenses par catégories',
+    //       data: this.depensesCategories.map((expense) => expense.total),
+    //       borderWidth: 0,
+    //       backgroundColor: [
+    //         '#5AF3AA',
+    //         '#FFA96A',
+    //         '#1879F3',
+    //         '#815E2E',
+    //         '#95DC44',
+    //         '#D1A293',
+    //         '#E13C02',
+    //         '#E38DCD',
+    //         '#32403F',
+    //         '#3D3E9B'
+    //
+    //       ],
+    //     }]
+    //   },
+    //   options: {
+    //     plugins : {
+    //       legend: {
+    //         display: false
+    //       },
+    //     },
+    //     scales: {
+    //       y: {
+    //         beginAtZero: true
+    //       }
+    //     }
+    //   }
+    // });
   }
 
   applyFilterSousCategories(event: Event) {

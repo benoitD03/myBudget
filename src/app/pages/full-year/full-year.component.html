@@ -3,8 +3,8 @@
     Année complète
   </mat-card-content>
 </mat-card>
-<mat-card id="total-epargne">
-  <h2>Epargne totale cette année</h2>
+<mat-card class="total-card" id="total-epargne">
+  <h2>Epargne totale</h2>
   <h4>{{totalEpargne}} €</h4>
 </mat-card>
 
@@ -13,11 +13,15 @@
     Liste des dépenses
   </mat-card-content>
 </mat-card>
-<div id="graphique-container" *ngIf="depensesCategories.length > 0">
-  <mat-card id="graphique-bar">
-    <canvas id="expenseChart"></canvas>
-  </mat-card>
-</div>
+<!--<div id="graphique-container" *ngIf="depensesCategories.length > 0">-->
+<!--  <mat-card id="graphique-bar">-->
+<!--    <canvas id="expenseChart"></canvas>-->
+<!--  </mat-card>-->
+<!--</div>-->
+<mat-card class="total-card" id="total-depenses">
+  <h2>Dépenses totales</h2>
+  <h4>{{totalDepenses}} €</h4>
+</mat-card>
 <div *ngIf="depensesCategories.length === 0">Aucune dépense disponible.</div>
 
 <mat-form-field id="sous-categories-filtre">
@@ -64,6 +68,10 @@
   <mat-card-content>
     Liste des revenus
   </mat-card-content>
+</mat-card>
+<mat-card class="total-card" id="total-revenu">
+  <h2>Revenu total</h2>
+  <h4>{{totalRevenus}} €</h4>
 </mat-card>
 <table mat-table [dataSource]="sousCategoriesRevenus" class="mat-elevation-z8">
 
