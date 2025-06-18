@@ -60,6 +60,53 @@ mat-paginator{
     }
   }
 }
+
+#graphique-epargne-container {
+  background-color: transparent !important;
+  margin-bottom: 20px;
+  
+  #graphique-epargne {
+    width: 100%;
+    margin: auto 0 15px 0;
+    background-color: var(--card-content-background-color);
+    
+    mat-card-header {
+      margin-bottom: 10px;
+      
+      mat-card-title {
+        font-size: 18px;
+        font-weight: 600;
+        color: var(--main-content-text-color);
+      }
+    }
+    
+    mat-card-content {
+      padding: 0 15px 15px 15px;
+      height: 250px;
+      
+      #savingsChart {
+        width: 100% !important;
+        height: 100% !important;
+      }
+    }
+  }
+  
+  @media (max-width: 768px) {
+    #graphique-epargne {
+      width: 100% !important;
+      margin: auto 0 15px 0;
+      
+      mat-card-content {
+        padding: 0 5px 10px 5px;
+        height: 200px;
+        
+        #savingsChart {
+          height: 100% !important;
+        }
+      }
+    }
+  }
+}
 #sous-categories-filtre {
   width: 100%;
   margin-bottom: 10px;
