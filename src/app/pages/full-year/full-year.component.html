@@ -8,6 +8,17 @@
   <h4>{{totalEpargne}} €</h4>
 </mat-card>
 
+<div id="graphique-epargne-container" *ngIf="epargneMensuelle.length > 0">
+  <mat-card id="graphique-epargne">
+    <mat-card-header>
+      <mat-card-title>Évolution mensuelle de l'épargne</mat-card-title>
+    </mat-card-header>
+    <mat-card-content>
+      <canvas id="savingsChart" #savingsChart></canvas>
+    </mat-card-content>
+  </mat-card>
+</div>
+
 <mat-card class="title">
   <mat-card-content>
     Liste des dépenses

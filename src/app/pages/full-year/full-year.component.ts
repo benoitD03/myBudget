@@ -1,4 +1,4 @@
-import {AfterViewInit, Component, OnInit, ViewChild} from '@angular/core';
+import {AfterViewInit, Component, OnInit, ViewChild, ElementRef} from '@angular/core';
 import {SousCategorie} from "../../class/sous-categorie";
 import * as moment from "moment";
 import {SousCategorieService} from "../../services/sous-categorie.service";
@@ -21,10 +21,14 @@ export class FullYearComponent implements OnInit, AfterViewInit{
   totalRevenus!: number;
   totalEpargne!: number;
   depensesCategories: { categoryName: string; total: number }[] = [];
+  epargneMensuelle: { mois: string; epargne: number }[] = [];
   Columns: string[] = this.accountService.isMobile() ? ['Image', 'Nom', 'Date', 'Somme'] : ['Image', 'Categorie', 'Nom', 'Date', 'Somme'];
   dataSource!: MatTableDataSource<SousCategorie>;
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort: MatSort | null = null;
+  @ViewChild('savingsChart', { static: false }) savingsChartRef!: ElementRef<HTMLCanvasElement>;
+  
+  private chartInitialized = false;
 
 
   constructor(private sousCategorieService: SousCategorieService, public accountService : AccountService) {
@@ -45,10 +49,15 @@ export class FullYearComponent implements OnInit, AfterViewInit{
         this.sousCategoriesRevenus=data.filter((sousCategorie : SousCategorie )=> !sousCategorie.Depense).sort((a : any, b: any) => (a.Date > b.Date) ? -1 : 1);
         this.totalRevenus = this.sousCategoriesRevenus.reduce((acc, value) => acc + value.Somme, 0);
         this.depensesCategories = this.depensesTotalesParCategories(this.sousCategoriesDepenses).sort((a, b) => b.total - a.total);;
+        this.epargneMensuelle = this.calculerEpargneMensuelle(data);
         this.dataSource = new MatTableDataSource<SousCategorie>(this.sousCategoriesDepenses);
         this.dataSource.paginator = this.paginator;
         this.totalEpargne = this.totalRevenus - this.totalDepenses;
         console.log("Dépenses : " + this.totalDepenses + " Revenus : " + this.totalRevenus + " Epargne : " + this.totalEpargne);
+        console.log("Données d'épargne mensuelle calculées:", this.epargneMensuelle);
+        
+        // Initialiser les graphiques après le chargement des données
+        this.initializeChartsWhenReady();
       },
       error : (error) => {
         console.error('Erreur lors de la récupération des transactions :', error);
@@ -82,80 +91,147 @@ export class FullYearComponent implements OnInit, AfterViewInit{
     return Array.from(depensesMap.entries()).map(([categoryName, total]) => ({ categoryName, total }));
   }
 
-  ngAfterViewInit() {
+  /**
+   * Méthode permettant de calculer l'épargne mensuelle (revenus - dépenses) pour chaque mois de l'année
+   * @param data toutes les sous-catégories (dépenses et revenus)
+   * @private
+   */
+  private calculerEpargneMensuelle(data: SousCategorie[]): { mois: string; epargne: number }[] {
+    const moisEpargne = new Map<string, { revenus: number; depenses: number }>();
+    
+    // Initialiser tous les mois de l'année
+    const nomsMois = [
+      'Janvier', 'Février', 'Mars', 'Avril', 'Mai', 'Juin',
+      'Juillet', 'Août', 'Septembre', 'Octobre', 'Novembre', 'Décembre'
+    ];
+    
+    nomsMois.forEach(mois => {
+      moisEpargne.set(mois, { revenus: 0, depenses: 0 });
+    });
 
+    // Calculer les totaux par mois
+    data.forEach((sousCategorie) => {
+      const date = moment(sousCategorie.Date);
+      const moisNom = nomsMois[date.month()];
+      const current = moisEpargne.get(moisNom)!;
+      
+      if (sousCategorie.Depense) {
+        current.depenses += sousCategorie.Somme;
+      } else {
+        current.revenus += sousCategorie.Somme;
+      }
+    });
+
+    // Convertir en tableau avec calcul de l'épargne
+    return nomsMois.map(mois => {
+      const data = moisEpargne.get(mois)!;
+      return {
+        mois: mois,
+        epargne: data.revenus - data.depenses
+      };
+    });
+  }
+
+  ngAfterViewInit() {
+    // Initialiser les graphiques si les données sont déjà chargées
+    if (this.epargneMensuelle && this.epargneMensuelle.length > 0 && !this.chartInitialized) {
+      setTimeout(() => {
+        this.initializeChart();
+      }, 200);
+    }
+  }
+
+  private initializeChartsWhenReady() {
+    // Attendre que la vue soit rendue avant d'initialiser les graphiques
     setTimeout(() => {
-      this.initializeChart();
-    }, 100);
+      if (!this.chartInitialized) {
+        this.initializeChart();
+      }
+    }, 500);
   }
 
   private initializeChart() {
-    const ctx = document.getElementById('expenseChart') as HTMLCanvasElement;
-    const ctx2 = document.getElementById('expenseChart2') as HTMLCanvasElement;
+    if (this.chartInitialized) {
+      return;
+    }
 
-    new Chart(ctx, {
-      type: 'bar',
+    const ctxEpargne = document.getElementById('savingsChart') as HTMLCanvasElement;
+
+    console.log('Tentative d\'initialisation du graphique d\'épargne...');
+    console.log('ctxEpargne:', ctxEpargne);
+    console.log('epargneMensuelle:', this.epargneMensuelle);
+
+    if (!ctxEpargne) {
+      console.error('Element savingsChart non trouvé');
+      return;
+    }
+
+    if (!this.epargneMensuelle || this.epargneMensuelle.length === 0) {
+      console.error('Données epargneMensuelle non disponibles');
+      return;
+    }
+
+    this.chartInitialized = true;
+
+    // Graphique pour l'épargne mensuelle
+    console.log('Création du graphique d\'épargne...');
+    new Chart(ctxEpargne, {
+      type: 'line',
       data: {
-        labels: this.depensesCategories.map((expense) => expense.categoryName),
+        labels: this.epargneMensuelle.map((item) => item.mois),
         datasets: [{
-          label: 'Dépenses par catégories',
-          data: this.depensesCategories.map((expense) => expense.total),
-          borderWidth: 1,
+          label: 'Épargne mensuelle (€)',
+          data: this.epargneMensuelle.map((item) => item.epargne),
+          borderColor: '#4CAF50',
+          backgroundColor: 'rgba(76, 175, 80, 0.1)',
+          borderWidth: 3,
+          fill: true,
+          tension: 0.4
         }]
       },
       options: {
-        plugins : {
+        responsive: true,
+        maintainAspectRatio: false,
+        plugins: {
           legend: {
-            display: false
+            display: true,
+            position: 'top'
           },
+          title: {
+            display: false
+          }
         },
         scales: {
           x: {
-            display: this.accountService.isMobile() ? false : true,
+            display: true,
+            title: {
+              display: !this.accountService.isMobile(),
+              text: 'Mois'
+            },
+            ticks: {
+              maxRotation: this.accountService.isMobile() ? 45 : 0,
+              minRotation: 0
+            }
           },
           y: {
-            beginAtZero: true
+            display: true,
+            title: {
+              display: !this.accountService.isMobile(),
+              text: 'Épargne (€)'
+            },
+            grid: {
+              color: 'rgba(0, 0, 0, 0.1)'
+            }
           }
+        },
+        interaction: {
+          intersect: false,
+          mode: 'index'
         }
       }
     });
 
-    // new Chart(ctx2, {
-    //   type: 'doughnut',
-    //   data: {
-    //     labels: this.depensesCategories.map((expense) => expense.categoryName),
-    //     datasets: [{
-    //       label: 'Dépenses par catégories',
-    //       data: this.depensesCategories.map((expense) => expense.total),
-    //       borderWidth: 0,
-    //       backgroundColor: [
-    //         '#5AF3AA',
-    //         '#FFA96A',
-    //         '#1879F3',
-    //         '#815E2E',
-    //         '#95DC44',
-    //         '#D1A293',
-    //         '#E13C02',
-    //         '#E38DCD',
-    //         '#32403F',
-    //         '#3D3E9B'
-    //
-    //       ],
-    //     }]
-    //   },
-    //   options: {
-    //     plugins : {
-    //       legend: {
-    //         display: false
-    //       },
-    //     },
-    //     scales: {
-    //       y: {
-    //         beginAtZero: true
-    //       }
-    //     }
-    //   }
-    // });
+    console.log('Graphique d\'épargne créé avec succès !');
   }
 
   applyFilterSousCategories(event: Event) {
