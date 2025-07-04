@@ -1,8 +1,25 @@
 <header>
   <mat-card id="title"><mat-card-content>
-    <button id="month-button" mat-raised-button (click)="changeMonth()">{{ isPreviousMonth ? "Mois en cours" : "Mois précédent" }}</button>
-    {{ isPreviousMonth ? "Le mois dernier" : "Mois en cours" }}
-    <button *ngIf="!isPreviousMonth" id="fav-button" mat-raised-button (click)="addAllFavoris()"><mat-icon>star</mat-icon>Ajouter tous mes favoris</button>
+    <div class="month-navigation">
+      <button mat-icon-button (click)="previousMonth()" [attr.aria-label]="'Mois précédent'">
+        <mat-icon>chevron_left</mat-icon>
+      </button>
+      
+      <div class="month-display">
+        <span class="month-name">{{ getCurrentMonthName() }}</span>
+        <button *ngIf="!isCurrentMonth()" mat-button class="current-month-btn" (click)="goToCurrentMonth()">
+          Revenir au mois en cours
+        </button>
+      </div>
+      
+      <button mat-icon-button (click)="nextMonth()" [attr.aria-label]="'Mois suivant'">
+        <mat-icon>chevron_right</mat-icon>
+      </button>
+    </div>
+    
+    <button *ngIf="isCurrentMonth()" id="fav-button" mat-raised-button (click)="addAllFavoris()">
+      <mat-icon>star</mat-icon>Ajouter tous mes favoris
+    </button>
   </mat-card-content></mat-card>
 
   <div id="infos">
@@ -23,13 +40,13 @@
   <div class="categorie-container depenses">
     <div class="categorie-container-title"><h2>Dépenses</h2></div>
     <div *ngFor="let categorie of categories">
-      <app-categorie-card *ngIf="categorie.Depense" [categorie]="categorie" [previousMonth]="month" ></app-categorie-card>
+      <app-categorie-card *ngIf="categorie.Depense" [categorie]="categorie" [currentMonth]="currentMonth" [currentYear]="currentYear" ></app-categorie-card>
     </div>
   </div>
   <div class="categorie-container revenus">
     <div class="categorie-container-title"><h2>Revenus</h2></div>
     <div *ngFor="let categorie of categories">
-      <app-categorie-card *ngIf="!categorie.Depense" [categorie]="categorie" [previousMonth]="month" ></app-categorie-card>
+      <app-categorie-card *ngIf="!categorie.Depense" [categorie]="categorie" [currentMonth]="currentMonth" [currentYear]="currentYear" ></app-categorie-card>
     </div>
   </div>
 </section>
@@ -40,7 +57,7 @@
       <div class="categorie-container depenses">
         <div class="categorie-container-title"><h2>Dépenses</h2></div>
         <div *ngFor="let categorie of categories">
-          <app-categorie-card *ngIf="categorie.Depense" [categorie]="categorie" [previousMonth]="month" ></app-categorie-card>
+          <app-categorie-card *ngIf="categorie.Depense" [categorie]="categorie" [currentMonth]="currentMonth" [currentYear]="currentYear" ></app-categorie-card>
         </div>
       </div>
     </mat-tab>
@@ -48,7 +65,7 @@
       <div class="categorie-container revenus">
         <div class="categorie-container-title"><h2>Revenus</h2></div>
         <div *ngFor="let categorie of categories">
-          <app-categorie-card *ngIf="!categorie.Depense" [categorie]="categorie" [previousMonth]="month" ></app-categorie-card>
+          <app-categorie-card *ngIf="!categorie.Depense" [categorie]="categorie" [currentMonth]="currentMonth" [currentYear]="currentYear" ></app-categorie-card>
         </div>
       </div>
     </mat-tab>

@@ -20,13 +20,29 @@ export class DashboardComponent implements OnInit{
 
   categories: Categorie[] = [];
   favoris: Favori[] = [];
-  month: number = 0;
-  isPreviousMonth: boolean = localStorage.getItem("isPreviousMonth") === "true";
-
+  currentMonth: number;
+  currentYear: number;
+  monthNames: string[] = [
+    'Janvier', 'Février', 'Mars', 'Avril', 'Mai', 'Juin',
+    'Juillet', 'Août', 'Septembre', 'Octobre', 'Novembre', 'Décembre'
+  ];
 
   constructor(private categorieService: CategorieService, public accountService: AccountService, private router: Router,
               public totauxService : TotauxService, public dialog: MatDialog, private favoriService: FavoriService,
               private sousCategorieService: SousCategorieService) {
+    // Initialiser avec le mois/année actuels ou récupérer depuis localStorage
+    const storedMonth = localStorage.getItem("currentMonth");
+    const storedYear = localStorage.getItem("currentYear");
+    
+    if (storedMonth && storedYear) {
+      this.currentMonth = Number(storedMonth);
+      this.currentYear = Number(storedYear);
+    } else {
+      this.currentMonth = moment().month() + 1; // moment() retourne 0-11, on veut 1-12
+      this.currentYear = moment().year();
+    }
+    
+    this.saveCurrentMonthToStorage();
   }
 
   ngOnInit() {
@@ -48,23 +64,69 @@ export class DashboardComponent implements OnInit{
       }
     })
   }
+
   /**
-   * Méthode permettant d'afficher le mois dernier ou le mois en cours
+   * Méthode permettant de naviguer vers le mois précédent
    */
-  changeMonth() {
-    const isPreviousMonth=localStorage.getItem("isPreviousMonth");
-    this.isPreviousMonth=(isPreviousMonth === 'true');
-    if (!isPreviousMonth) {
-      this.month = moment().month();
-      localStorage.setItem("month", String(this.month));
-      localStorage.setItem("isPreviousMonth", String(true));
+  previousMonth() {
+    if (this.currentMonth === 1) {
+      this.currentMonth = 12;
+      this.currentYear--;
     } else {
-      localStorage.removeItem("month");
-      localStorage.removeItem("isPreviousMonth");
+      this.currentMonth--;
     }
-      this.isPreviousMonth=!this.isPreviousMonth;
-      this.loadData();
-      this.totauxService.calculateTotals();
+    this.saveCurrentMonthToStorage();
+    this.loadData();
+    this.totauxService.calculateTotals();
+  }
+
+  /**
+   * Méthode permettant de naviguer vers le mois suivant
+   */
+  nextMonth() {
+    if (this.currentMonth === 12) {
+      this.currentMonth = 1;
+      this.currentYear++;
+    } else {
+      this.currentMonth++;
+    }
+    this.saveCurrentMonthToStorage();
+    this.loadData();
+    this.totauxService.calculateTotals();
+  }
+
+  /**
+   * Méthode permettant de revenir au mois en cours
+   */
+  goToCurrentMonth() {
+    this.currentMonth = moment().month() + 1;
+    this.currentYear = moment().year();
+    this.saveCurrentMonthToStorage();
+    this.loadData();
+    this.totauxService.calculateTotals();
+  }
+
+  /**
+   * Méthode pour sauvegarder le mois/année actuel dans localStorage
+   */
+  private saveCurrentMonthToStorage() {
+    localStorage.setItem("currentMonth", String(this.currentMonth));
+    localStorage.setItem("currentYear", String(this.currentYear));
+  }
+
+  /**
+   * Méthode pour obtenir le nom du mois affiché
+   */
+  getCurrentMonthName(): string {
+    return `${this.monthNames[this.currentMonth - 1]} ${this.currentYear}`;
+  }
+
+  /**
+   * Méthode pour vérifier si on est sur le mois en cours
+   */
+  isCurrentMonth(): boolean {
+    const now = moment();
+    return this.currentMonth === (now.month() + 1) && this.currentYear === now.year();
   }
 
   /**
