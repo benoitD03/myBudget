@@ -32,8 +32,8 @@ export class AccountService {
     localStorage.removeItem('token');
     localStorage.removeItem('id_User');
     localStorage.removeItem('name');
-    localStorage.removeItem('month');
-    localStorage.removeItem('isPreviousMonth');
+    localStorage.removeItem('currentMonth');
+    localStorage.removeItem('currentYear');
   }
 
   /**

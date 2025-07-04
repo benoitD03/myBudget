@@ -19,7 +19,8 @@ export class CategorieCardComponent {
 
   panelOpenState = false;
   @Input() categorie: any;
-  @Input() previousMonth: any;
+  @Input() currentMonth: number = 0;
+  @Input() currentYear: number = 0;
   @Output() totalCategorieChange = new EventEmitter<{ value: number; isDepense: boolean }>();
   sousCategories: SousCategorie[] = [];
   totalCategorie: number = 0;
@@ -35,9 +36,17 @@ export class CategorieCardComponent {
    */
   loadSousCategories() {
     const id_Categorie = this.categorie.id_Categorie;
-    this.previousMonth=localStorage.getItem("month");
-    const year = moment().year();
-    const month = this.previousMonth ? this.previousMonth : moment().month() + 1;
+    // Utiliser les propriétés passées par le parent ou récupérer depuis localStorage
+    let month = this.currentMonth;
+    let year = this.currentYear;
+    
+    if (!month || !year) {
+      const storedMonth = localStorage.getItem("currentMonth");
+      const storedYear = localStorage.getItem("currentYear");
+      month = storedMonth ? Number(storedMonth) : moment().month() + 1;
+      year = storedYear ? Number(storedYear) : moment().year();
+    }
+    
     this.sousCategorieService.getAllByCategorieAndMonth(id_Categorie, year, month).subscribe({
       next: (data) => {
         this.sousCategories = data;
@@ -58,6 +67,16 @@ export class CategorieCardComponent {
    */
   onAddToTotalDepense() {
     this.totalCategorieChange.emit({value: this.totalCategorie, isDepense: this.categorie.Depense});
+  }
+
+  /**
+   * Méthode pour vérifier si on est sur le mois en cours
+   */
+  isCurrentMonth(): boolean {
+    const now = moment();
+    const currentMonth = this.currentMonth || Number(localStorage.getItem("currentMonth")) || (now.month() + 1);
+    const currentYear = this.currentYear || Number(localStorage.getItem("currentYear")) || now.year();
+    return currentMonth === (now.month() + 1) && currentYear === now.year();
   }
 
   /**

@@ -23,9 +23,10 @@ export class TotauxService {
    */
   calculateTotals(): void {
     const id_User: string | null = this.accountService.getIdUser();
-    const stockedMonth = localStorage.getItem("month");
+    const stockedMonth = localStorage.getItem("currentMonth");
+    const stockedYear = localStorage.getItem("currentYear");
     const month = stockedMonth ? Number(stockedMonth) : moment().month() + 1;
-    const year = moment().year();
+    const year = stockedYear ? Number(stockedYear) : moment().year();
 
     this.sousCategorieService.getAllByMonth(year, month, Number(id_User)).subscribe(
       (data) => {

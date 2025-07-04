@@ -9,32 +9,65 @@ header{
     @media (max-width:768px) {
       margin-top: 80px;
     }
-    #month-button {
-      position: absolute;
-      top: 15px;
-      left: 10px;
-      background-color: var(--button-content-background-color);
-      color: var(--button-content-text-color);
+    
+    .month-navigation {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 20px;
+      margin-bottom: 20px;
+      
       @media (max-width:768px) {
-        top: -45px;
-        left: 0;
-        right: 0;
-        margin: auto;
-        width: 100%;
+        flex-direction: column;
+        gap: 10px;
+      }
+      
+      .month-display {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 5px;
+        min-width: 200px;
+        
+        .month-name {
+          font-size: 24px;
+          font-weight: bold;
+          color: var(--main-content-text-color);
+        }
+        
+        .current-month-btn {
+          font-size: 12px;
+          background-color: var(--button-content-background-color);
+          color: var(--button-content-text-color);
+          min-height: 30px;
+        }
+      }
+      
+      button[mat-icon-button] {
+        background-color: var(--button-content-background-color);
+        color: var(--button-content-text-color);
+        border-radius: 50%;
+        width: 48px;
+        height: 48px;
+        
+        mat-icon {
+          font-size: 24px;
+        }
+        
+        &:hover {
+          background-color: var(--button-content-background-color);
+          opacity: 0.8;
+        }
       }
     }
+    
     #fav-button {
-      position: absolute;
-      top: 15px;
-      right: 10px;
       background-color: var(--button-content-background-color);
       color: var(--button-content-text-color);
       --mat-icon-color: #FBBC06;
+      margin-top: 10px;
+      
       @media (max-width:768px) {
-        top: -90px;
-        left: 0;
-        right: 0;
-        margin: auto;
         width: 100%;
       }
     }
