@@ -1,37 +1,83 @@
 <header>
-  <mat-card id="title"><mat-card-content>
-    <div class="month-navigation">
-      <button mat-icon-button (click)="previousMonth()" [attr.aria-label]="'Mois précédent'">
-        <mat-icon>chevron_left</mat-icon>
-      </button>
-      
-      <div class="month-display">
-        <span class="month-name">{{ getCurrentMonthName() }}</span>
-        <button *ngIf="!isCurrentMonth()" mat-button class="current-month-btn" (click)="goToCurrentMonth()">
-          Revenir au mois en cours
+  <mat-card class="navigation-card" elevation="3">
+    <mat-card-content>
+      <div class="month-navigation">
+        <button mat-icon-button 
+                (click)="previousMonth()" 
+                [attr.aria-label]="'Mois précédent'"
+                class="nav-button">
+          <mat-icon>chevron_left</mat-icon>
+        </button>
+        
+        <div class="month-info">
+          <h2 class="month-title">{{ getCurrentMonthName() }}</h2>
+        </div>
+        
+        <button mat-icon-button 
+                (click)="nextMonth()" 
+                [attr.aria-label]="'Mois suivant'"
+                class="nav-button">
+          <mat-icon>chevron_right</mat-icon>
         </button>
       </div>
       
-      <button mat-icon-button (click)="nextMonth()" [attr.aria-label]="'Mois suivant'">
-        <mat-icon>chevron_right</mat-icon>
-      </button>
-    </div>
-    
-    <button *ngIf="isCurrentMonth()" id="fav-button" mat-raised-button (click)="addAllFavoris()">
-      <mat-icon>star</mat-icon>Ajouter tous mes favoris
-    </button>
-  </mat-card-content></mat-card>
+      <div class="action-section">
+        <button *ngIf="isCurrentMonth()" 
+                mat-raised-button 
+                (click)="addAllFavoris()"
+                class="favorites-button">
+          <mat-icon>star</mat-icon>
+          <span class="btn-text">Ajouter tous mes favoris</span>
+        </button>
+        
+        <button *ngIf="!isCurrentMonth()" 
+                mat-raised-button 
+                (click)="goToCurrentMonth()"
+                class="current-month-btn">
+          <mat-icon>today</mat-icon>
+          <span class="btn-text">Revenir au mois en cours</span>
+        </button>
+      </div>
+    </mat-card-content>
+  </mat-card>
 
   <div id="infos">
-    <mat-card class="totaux totaux-number" id="total-revenu">
-      <mat-card-content>Revenu Total: <br><br><span>{{ totauxService.totalRevenu }} €</span></mat-card-content>
+    <mat-card class="totaux totaux-number" id="total-revenu" elevation="4">
+      <mat-card-header>
+        <div mat-card-avatar class="revenue-avatar">
+          <mat-icon>trending_up</mat-icon>
+        </div>
+        <mat-card-title>Revenus Totaux</mat-card-title>
+      </mat-card-header>
+      <mat-card-content>
+        <div class="amount-display">{{ totauxService.totalRevenu }} €</div>
+      </mat-card-content>
     </mat-card>
-    <mat-card class="totaux totaux-number" id="total-depenses">
-      <mat-card-content>Dépenses Totales: <br><br><span>{{ totauxService.totalDepense }} €</span></mat-card-content>
+    
+    <mat-card class="totaux totaux-number" id="total-depenses" elevation="4">
+      <mat-card-header>
+        <div mat-card-avatar class="expense-avatar">
+          <mat-icon>trending_down</mat-icon>
+        </div>
+        <mat-card-title>Dépenses Totales</mat-card-title>
+      </mat-card-header>
+      <mat-card-content>
+        <div class="amount-display">{{ totauxService.totalDepense }} €</div>
+      </mat-card-content>
     </mat-card>
-    <mat-card class="totaux totaux-number" id="total-epargne">
-      <mat-card-content>Epargne possible: <br><br><span>{{ totauxService.epargnePossible }} €</span></mat-card-content>
+    
+    <mat-card class="totaux totaux-number" id="total-epargne" elevation="4">
+      <mat-card-header>
+        <div mat-card-avatar class="savings-avatar">
+          <mat-icon>savings</mat-icon>
+        </div>
+        <mat-card-title>Épargne Possible</mat-card-title>
+      </mat-card-header>
+      <mat-card-content>
+        <div class="amount-display">{{ totauxService.epargnePossible }} €</div>
+      </mat-card-content>
     </mat-card>
+    
     <app-totals-graph></app-totals-graph>
   </div>
 </header>
