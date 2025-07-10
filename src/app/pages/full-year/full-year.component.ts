@@ -21,7 +21,7 @@ export class FullYearComponent implements OnInit, AfterViewInit{
   totalRevenus!: number;
   totalEpargne!: number;
   depensesCategories: { categoryName: string; total: number }[] = [];
-  epargneMensuelle: { mois: string; epargne: number }[] = [];
+  epargneMensuelle: { mois: string; revenus: number; depenses: number; epargne: number }[] = [];
   Columns: string[] = this.accountService.isMobile() ? ['Image', 'Nom', 'Date', 'Somme'] : ['Image', 'Categorie', 'Nom', 'Date', 'Somme'];
   dataSource!: MatTableDataSource<SousCategorie>;
   @ViewChild(MatPaginator) paginator!: MatPaginator;
@@ -96,7 +96,7 @@ export class FullYearComponent implements OnInit, AfterViewInit{
    * @param data toutes les sous-catégories (dépenses et revenus)
    * @private
    */
-  private calculerEpargneMensuelle(data: SousCategorie[]): { mois: string; epargne: number }[] {
+  private calculerEpargneMensuelle(data: SousCategorie[]): { mois: string; revenus: number; depenses: number; epargne: number }[] {
     const moisEpargne = new Map<string, { revenus: number; depenses: number }>();
     
     // Initialiser tous les mois de l'année
@@ -124,10 +124,12 @@ export class FullYearComponent implements OnInit, AfterViewInit{
 
     // Convertir en tableau avec calcul de l'épargne
     return nomsMois.map(mois => {
-      const data = moisEpargne.get(mois)!;
+      const monthData = moisEpargne.get(mois)!;
       return {
         mois: mois,
-        epargne: data.revenus - data.depenses
+        revenus: monthData.revenus,
+        depenses: monthData.depenses,
+        epargne: monthData.revenus - monthData.depenses
       };
     });
   }
@@ -176,18 +178,25 @@ export class FullYearComponent implements OnInit, AfterViewInit{
     // Graphique pour l'épargne mensuelle
     console.log('Création du graphique d\'épargne...');
     new Chart(ctxEpargne, {
-      type: 'line',
+      type: 'bar',
       data: {
         labels: this.epargneMensuelle.map((item) => item.mois),
-        datasets: [{
-          label: 'Épargne mensuelle (€)',
-          data: this.epargneMensuelle.map((item) => item.epargne),
-          borderColor: '#4CAF50',
-          backgroundColor: 'rgba(76, 175, 80, 0.1)',
-          borderWidth: 3,
-          fill: true,
-          tension: 0.4
-        }]
+        datasets: [
+          {
+            label: 'Dépenses (€)',
+            data: this.epargneMensuelle.map((item) => item.depenses),
+            backgroundColor: '#F44336',
+            borderColor: '#D32F2F',
+            borderWidth: 1
+          },
+          {
+            label: 'Épargne (€)',
+            data: this.epargneMensuelle.map((item) => item.epargne),
+            backgroundColor: '#4CAF50',
+            borderColor: '#388E3C',
+            borderWidth: 1
+          }
+        ]
       },
       options: {
         responsive: true,
@@ -195,14 +204,34 @@ export class FullYearComponent implements OnInit, AfterViewInit{
         plugins: {
           legend: {
             display: true,
-            position: 'top'
+            position: 'top',
+            labels: {
+              usePointStyle: true,
+              padding: 15
+            }
           },
           title: {
             display: false
+          },
+          tooltip: {
+            callbacks: {
+              afterLabel: (context) => {
+                const dataIndex = context.dataIndex;
+                const revenus = this.epargneMensuelle[dataIndex].revenus;
+                return `Revenus totaux: ${revenus} €`;
+              },
+              footer: (tooltipItems) => {
+                const dataIndex = tooltipItems[0].dataIndex;
+                const monthData = this.epargneMensuelle[dataIndex];
+                const total = monthData.depenses + monthData.epargne;
+                return `Total: ${total} € | Revenus: ${monthData.revenus} €`;
+              }
+            }
           }
         },
         scales: {
           x: {
+            stacked: true,
             display: true,
             title: {
               display: !this.accountService.isMobile(),
@@ -214,10 +243,12 @@ export class FullYearComponent implements OnInit, AfterViewInit{
             }
           },
           y: {
+            stacked: true,
             display: true,
+            beginAtZero: true,
             title: {
               display: !this.accountService.isMobile(),
-              text: 'Épargne (€)'
+              text: 'Montant (€)'
             },
             grid: {
               color: 'rgba(0, 0, 0, 0.1)'

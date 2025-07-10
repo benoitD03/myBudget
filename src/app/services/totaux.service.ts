@@ -9,14 +9,14 @@ import {Chart} from "chart.js/auto";
 })
 export class TotauxService {
 
-  constructor( private sousCategorieService : SousCategorieService, private accountService : AccountService) {
-    this.calculateTotals();
-  }
-
   totalDepense!: number;
   totalRevenu!: number;
   epargnePossible!: number;
   chart!: any;
+
+  constructor( private sousCategorieService : SousCategorieService, private accountService : AccountService) {
+    this.calculateTotals();
+  }
 
   /**
    * Méthode permettant de calculer les totaux présent dans la page Dashboard
@@ -50,21 +50,47 @@ export class TotauxService {
     const ctx = document.getElementById("myChart");
     if (ctx instanceof HTMLCanvasElement){
       this.chart = new Chart(ctx, {
-        type: 'pie',
+        type: 'bar',
         data: {
-          labels: ['Revenus', 'Dépenses', 'Epargne possible'],
-          datasets: [{
-            data: [revenu, depense, epargne],
-            backgroundColor: [
-              '#34A952',
-              '#ED4334',
-              '#FBBC06'
-            ],
-            borderWidth: 0,
-            hoverOffset: 10
-          }]
+          labels: ['Répartition du mois'],
+          datasets: [
+            {
+              label: 'Dépenses',
+              data: [depense],
+              backgroundColor: '#ED4334',
+              borderColor: '#D32F2F',
+              borderWidth: 1
+            },
+            {
+              label: 'Épargne',
+              data: [epargne],
+              backgroundColor: '#FBBC06',
+              borderColor: '#E6A905',
+              borderWidth: 1
+            }
+          ]
         },
-        options: {}
+        options: {
+          responsive: true,
+          maintainAspectRatio: false,
+          indexAxis: 'y',
+          plugins: {
+            legend: {
+              display: true,
+              position: 'bottom'
+            }
+          },
+          scales: {
+            x: {
+              stacked: true,
+              beginAtZero: true
+            },
+            y: {
+              stacked: true,
+              display: false
+            }
+          }
+        }
       });
     }
   }
@@ -73,8 +99,11 @@ export class TotauxService {
    * Méthode permettant de mettre à jours le graphique lorsqu'une valeur a changée
    */
   updatedChart(): void {
-    this.chart.data.datasets[0].data= [this.totalRevenu, this.totalDepense, this.epargnePossible];
-    this.chart.update();
-}
+    if (this.chart && this.chart.data && this.chart.data.datasets) {
+      this.chart.data.datasets[0].data = [this.totalDepense];
+      this.chart.data.datasets[1].data = [this.epargnePossible];
+      this.chart.update();
+    }
+  }
 
 }
